@@ -45,7 +45,7 @@ export function Footer() {
               Vanegas Solutions
             </p>
             <p className="text-muted-foreground text-sm mt-1">
-              Digitalizando negocios en Medellín 🚀
+              Digitalizando negocios 🚀
             </p>
           </div>
 
