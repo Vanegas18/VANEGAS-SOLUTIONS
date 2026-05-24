@@ -6,7 +6,7 @@ import { useRef } from "react";
 import { MessageCircle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const WHATSAPP_URL = "https://wa.me/message/KAQPPGZPVYOVK1";
+const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 
 export function CTASection() {
   const ref = useRef(null);

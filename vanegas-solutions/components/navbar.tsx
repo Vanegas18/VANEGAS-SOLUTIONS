@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const WHATSAPP_URL = "https://wa.me/message/KAQPPGZPVYOVK1";
+const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 
 const navLinks = [
   { href: "#servicios", label: "Servicios" },

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 
-const WHATSAPP_URL = "https://wa.me/message/KAQPPGZPVYOVK1";
+const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 
 export function WhatsAppButton() {
   return (

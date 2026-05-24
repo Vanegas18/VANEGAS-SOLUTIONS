@@ -1,10 +1,10 @@
 import { FaInstagram, FaWhatsapp, FaFacebook, FaTiktok } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
-const WHATSAPP_URL = "https://wa.me/message/KAQPPGZPVYOVK1";
+const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 const INSTAGRAM_URL = "https://www.instagram.com/vanegas.solutions/";
 const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61572028376926";
-const TIKTOK_URL = "https://www.tiktok.com/@felipecatano0";
+const TIKTOK_URL = "https://www.tiktok.com/@vanegassolutions";
 const EMAIL = "mailto:contacto@vanegassolutions.com";
 
 const socials = [

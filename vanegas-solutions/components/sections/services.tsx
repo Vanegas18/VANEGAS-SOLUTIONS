@@ -11,7 +11,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
-const WHATSAPP_URL = "https://wa.me/message/KAQPPGZPVYOVK1";
+const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 
 const services = [
   {
