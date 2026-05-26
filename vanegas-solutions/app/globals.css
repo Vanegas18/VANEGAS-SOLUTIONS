@@ -1,6 +1,7 @@
 html, body {
   background-color: #0A0A0F !important;
   color: #ffffff;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
 @import 'tailwindcss';

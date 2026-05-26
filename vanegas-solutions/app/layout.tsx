@@ -4,16 +4,24 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
+  display: "swap",
+  preload: true,
 });
 
 const syne = Syne({
   subsets: ["latin"],
   variable: "--font-syne",
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -64,7 +72,7 @@ export default function RootLayout({
       )}>
       <body className="font-sans antialiased">
         {children}
-        {process.env.NODE_ENV === "production" && <Analytics />}
+        {<Analytics />}
       </body>
     </html>
   );
