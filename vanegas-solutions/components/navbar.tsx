@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -16,20 +15,74 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [MotionComponents, setMotionComponents] = useState<{
+    nav: React.ElementType;
+    div: React.ElementType;
+    AnimatePresence: React.ElementType;
+  } | null>(null);
 
+  // Scroll listener
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Framer Motion carga después del primer render
+  useEffect(() => {
+    import("framer-motion").then((mod) => {
+      setMotionComponents({
+        nav: mod.motion.nav,
+        div: mod.motion.div,
+        AnimatePresence: mod.AnimatePresence,
+      });
+    });
+  }, []);
+
+  const Nav = MotionComponents?.nav ?? "nav";
+  const MotionDiv = MotionComponents?.div ?? "div";
+  const AnimatePresence = MotionComponents?.AnimatePresence;
+
+  const navProps = MotionComponents
+    ? { initial: { y: -100 }, animate: { y: 0 }, transition: { duration: 0.5 } }
+    : {};
+
+  const mobileMenuProps = MotionComponents
+    ? {
+        initial: { opacity: 0, height: 0 },
+        animate: { opacity: 1, height: "auto" },
+        exit: { opacity: 0, height: 0 },
+      }
+    : {};
+
+  const mobileMenu = isMobileMenuOpen && (
+    <MotionDiv
+      {...mobileMenuProps}
+      className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border">
+      <div className="px-4 py-6 space-y-4">
+        {navLinks.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block text-foreground hover:text-primary transition-colors py-2">
+            {link.label}
+          </a>
+        ))}
+        <Button
+          asChild
+          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+            Contactar
+          </a>
+        </Button>
+      </div>
+    </MotionDiv>
+  );
+
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+    <Nav
+      {...navProps}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-background/80 backdrop-blur-xl border-b border-border"
@@ -70,37 +123,12 @@ export function Navbar() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border">
-            <div className="px-4 py-6 space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-foreground hover:text-primary transition-colors py-2">
-                  {link.label}
-                </a>
-              ))}
-              <Button
-                asChild
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  Contactar
-                </a>
-              </Button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+      {/* Con AnimatePresence si Framer cargó, sin ella si no */}
+      {AnimatePresence ? (
+        <AnimatePresence>{mobileMenu}</AnimatePresence>
+      ) : (
+        mobileMenu
+      )}
+    </Nav>
   );
 }
