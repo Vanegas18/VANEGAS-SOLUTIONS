@@ -43,8 +43,8 @@ export function CTASection() {
 
   // Animación base reutilizable
   const fadeUp = (delay = 0) => ({
-    initial: { opacity: 0, y: 20 },
-    animate: isInView ? { opacity: 1, y: 0 } : {},
+    initial: { opacity: 1, y: 20 },
+    animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 20 },
     transition: { duration: 0.6, delay },
   });
 

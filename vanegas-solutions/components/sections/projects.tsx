@@ -12,23 +12,7 @@ const projects = [
     image: "/images/buildmart.png",
     description: "Sistema web completo con catálogo, carrito, pagos y gestión administrativa",
     result: "Ahora controla todo su negocio desde una sola plataforma, sin depender de terceros",
-  },
-  {
-    icon: Scissors,
-    name: "Barberia Style",
-    category: "Barbería",
-    image: "",
-    description: "Sistema de citas por WhatsApp y web automatizado",
-    result: "Reservas sin llamadas, agenda siempre llena",
-  },
-  {
-    icon: Wrench,
-    name: "Ferretería El Progreso",
-    category: "Ferretería",
-    image: "",
-    description: "Catálogo digital con precios actualizables",
-    result: "Clientes consultan precios sin llamar",
-  },
+  }
 ];
 
 function ProjectPreview({ image, icon: Icon, name }: { image?: string; icon: React.ElementType; name: string }) {
@@ -84,8 +68,8 @@ export function ProjectsSection() {
   const fadeUp = (delay = 0) =>
     MotionDiv
       ? {
-          initial: { opacity: 0, y: delay === 0 ? 20 : 30 },
-          animate: isInView ? { opacity: 1, y: 0 } : {},
+          initial: { opacity: 1, y: 20},
+          animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 20 },
           transition: { duration: delay === 0 ? 0.6 : 0.5, delay },
         }
       : {};

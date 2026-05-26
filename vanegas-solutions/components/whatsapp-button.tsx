@@ -20,7 +20,7 @@ export function WhatsAppButton() {
 
   const motionProps = MotionA
     ? {
-        initial: { scale: 0, opacity: 0 },
+        initial: { scale: 0, opacity: 1 },
         animate: { scale: 1, opacity: 1 },
         transition: { type: "spring", stiffness: 200 },
       }

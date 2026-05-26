@@ -40,7 +40,7 @@ export function HeroSection() {
   const heroAnim = (delay = 0) =>
     MotionComponents
       ? {
-          initial: { opacity: 0, y: 30 },
+          initial: { opacity: 1, y: 24 },
           animate: { opacity: 1, y: 0 },
           transition: { duration: 0.6, delay },
         }

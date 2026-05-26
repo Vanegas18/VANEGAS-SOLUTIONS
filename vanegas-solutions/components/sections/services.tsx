@@ -173,8 +173,8 @@ export function ServicesSection() {
   const fadeUp = (delay = 0) =>
     MotionDiv
       ? {
-          initial: { opacity: 0, y: delay === 0 ? 20 : 30 },
-          animate: isInView ? { opacity: 1, y: 0 } : {},
+          initial: { opacity: 1, y: 20},
+          animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 20 },
           transition: { duration: delay === 0 ? 0.6 : 0.5, delay },
         }
       : {};

@@ -31,8 +31,8 @@ export function PainSection() {
     <section ref={ref} className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 1, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 20 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
@@ -44,8 +44,8 @@ export function PainSection() {
           {painPoints.map((point, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              initial={{ opacity: 1, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 30 }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
               className="glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300">
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
