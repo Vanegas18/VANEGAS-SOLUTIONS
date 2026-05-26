@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -35,6 +35,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_CO",
   },
+  other: {
+    "color-scheme": "dark",
+  },
 };
 
 export const viewport: Viewport = {
@@ -51,7 +54,14 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={cn("bg-background", outfit.variable, syne.variable, "font-sans", geist.variable)}>
+      style={{ backgroundColor: "#0A0A0F" }}
+      className={cn(
+        "bg-background",
+        outfit.variable,
+        syne.variable,
+        "font-sans",
+        geist.variable,
+      )}>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === "production" && <Analytics />}

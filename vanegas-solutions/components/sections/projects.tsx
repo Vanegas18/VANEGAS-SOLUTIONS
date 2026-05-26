@@ -16,20 +16,6 @@ const projects = [
     result:
       "Ahora controla todo su negocio desde una sola plataforma, sin depender de terceros",
   },
-  {
-    icon: Scissors,
-    name: "Barberia Style",
-    category: "Barbería",
-    description: "Sistema de citas por WhatsApp y web automatizado",
-    result: "Reservas sin llamadas, agenda siempre llena",
-  },
-  {
-    icon: Wrench,
-    name: "Ferretería El Progreso",
-    category: "Ferretería",
-    description: "Catálogo digital con precios actualizables",
-    result: "Clientes consultan precios sin llamar",
-  },
 ];
 
 function ProjectPreview({
