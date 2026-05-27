@@ -7,20 +7,20 @@ import { cn } from "@/lib/utils";
 const geist = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
-  display: "swap",
+  display: "optional",
 });
 
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
-  display: "swap",
+  display: "optional",
   preload: true,
 });
 
 const syne = Syne({
   subsets: ["latin"],
   variable: "--font-syne",
-  display: "swap",
+  display: "optional",
   preload: true,
 });
 
