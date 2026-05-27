@@ -9,10 +9,12 @@ import { FAQSection } from "@/components/sections/faq";
 import { CTASection } from "@/components/sections/cta";
 import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
+import { LoadingScreen } from "@/components/loading-screen";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background">
+      <LoadingScreen />
       <Navbar />
       <HeroSection />
       <PainSection />
