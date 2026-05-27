@@ -66,13 +66,6 @@ export function HeroSection() {
         Indicador de scroll — fade-in tardío con CSS (scroll-indicator en globals.css).
         scroll-bounce anima el contenedor, scroll-dot anima el punto interior.
       */}
-      <div
-        className="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2"
-        aria-hidden="true">
-        <div className="scroll-bounce w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
-          <div className="scroll-dot w-1.5 h-3 bg-muted-foreground/50 rounded-full mt-2" />
-        </div>
-      </div>
     </section>
   );
 }
