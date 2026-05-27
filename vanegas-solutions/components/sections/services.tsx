@@ -99,7 +99,7 @@ function ServiceModal({
               <Icon className="w-5 h-5 text-primary" />
             </div>
             <DialogHeader className="text-left space-y-0">
-              <DialogTitle className="text-base font-bold text-foreground font-(family-name:--font-syne) leading-tight">
+              <DialogTitle className="text-base font-bold text-foreground font-[family-name:var(--font-syne)] leading-tight">
                 {service.modal.headline}
               </DialogTitle>
               <DialogDescription className="sr-only">
@@ -157,7 +157,7 @@ export function ServicesSection() {
       className="py-24 md:py-32 bg-background dot-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="section-item text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-(family-name:--font-syne)">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
             ¿Qué puedo hacer por tu negocio?
           </h2>
         </div>

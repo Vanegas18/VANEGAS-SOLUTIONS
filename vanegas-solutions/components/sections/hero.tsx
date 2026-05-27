@@ -28,7 +28,7 @@ export function HeroSection() {
           Estos corren inmediatamente al cargar la página — sin esperar ningún JS.
           opacity:0 inicial está dentro del keyframe @from, no como estado React.
         */}
-        <h1 className="hero-animate text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight font-(family-name:--font-syne) text-balance">
+        <h1 className="hero-animate text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight font-[family-name:var(--font-syne)] text-balance">
           Digitaliza tu negocio y vende más 🚀
         </h1>
 

@@ -19,7 +19,7 @@ export function CTASection() {
       <div className="absolute inset-0 bg-linear-to-br from-primary/10 via-accent/5 to-background" />
       <div className="absolute inset-0 dot-pattern opacity-50" />
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="section-item text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 font-(family-name:--font-syne)">
+        <h2 className="section-item text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 font-[family-name:var(--font-syne)]">
           ¿Listo para digitalizar tu negocio?
         </h2>
         <p className="section-item delay-1 text-lg md:text-xl text-muted-foreground mb-10">
