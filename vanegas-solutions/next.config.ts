@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === "development";
+
 const nextConfig: NextConfig = {
-  // Divide el bundle agresivamente para que Lucide y shadcn
-  // no bloqueen el parse inicial en Safari iOS
   experimental: {
     optimizePackageImports: [
       "lucide-react",
@@ -11,11 +11,12 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Comprime todo con gzip/brotli
   compress: true,
 
-  // Headers de cache agresivo para assets estáticos
   async headers() {
+    // 🚫 NO aplicar cache en desarrollo
+    if (isDev) return [];
+
     return [
       {
         source: "/_next/static/:path*",
