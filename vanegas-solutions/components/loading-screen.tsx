@@ -20,9 +20,15 @@ export function LoadingScreen() {
 
     const hideTimer = setTimeout(() => {
       setFadeOut(true);
-      // Dispara evento global cuando el loading termina
-      window.dispatchEvent(new CustomEvent("loading-complete"));
-      setTimeout(() => setVisible(false), FADE_DURATION);
+
+      // Esperamos a que el fade termine ANTES de disparar el evento.
+      // Así el overlay ya no está bloqueando el viewport cuando
+      // useSectionAnimation empieza a observar.
+      setTimeout(() => {
+        setVisible(false);
+        // El evento se dispara DESPUÉS de que el div se desmonta
+        window.dispatchEvent(new CustomEvent("loading-complete"));
+      }, FADE_DURATION);
     }, LOADING_DURATION);
 
     return () => {
