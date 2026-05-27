@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { TrendingDown, Smartphone, Clock } from "lucide-react";
 import { useMotion } from "@/components/motion-provider";
+import { usePageReady } from "@/hooks/use-page-ready";
 
 const painPoints = [
   { icon: TrendingDown, title: "Pierdes clientes porque no te encuentran en internet", description: "Tu negocio es invisible para quienes buscan en Google" },
@@ -14,15 +15,18 @@ export function PainSection() {
   const ref = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
   const motionLib = useMotion();
+  const pageReady = usePageReady();
 
   useEffect(() => {
+    if (!pageReady) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setIsInView(true); observer.disconnect(); } },
-      { threshold: 0.1, rootMargin: "-100px" }
+      { threshold: 0.1, rootMargin: "-50px" }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, []);
+  }, [pageReady]);
 
   const Div = motionLib?.motion.div ?? "div";
 
