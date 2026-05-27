@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useState } from "react";
 import { Globe, MessageSquare, Zap, ArrowRight, Check } from "lucide-react";
 import {
   Dialog,
@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { useMotion } from "@/components/motion-provider";
+import { useSectionAnimation } from "@/hooks/use-section-animation";
 
 const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 const services = [
@@ -90,15 +90,16 @@ function ServiceModal({
   if (!service) return null;
   const Icon = service.icon;
   return (
+    // Dialog de shadcn — JS puro para el modal, no necesita Framer Motion
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-lg bg-[#0f0f17] border border-white/10 text-foreground p-0 overflow-hidden">
         <div className="bg-primary/10 border-b border-white/10 px-6 py-5">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
               <Icon className="w-5 h-5 text-primary" />
             </div>
             <DialogHeader className="text-left space-y-0">
-              <DialogTitle className="text-base font-bold text-foreground font-[family-name:var(--font-syne)] leading-tight">
+              <DialogTitle className="text-base font-bold text-foreground font-(family-name:--font-syne) leading-tight">
                 {service.modal.headline}
               </DialogTitle>
               <DialogDescription className="sr-only">
@@ -120,7 +121,7 @@ function ServiceModal({
                 <li
                   key={i}
                   className="flex items-start gap-2.5 text-sm text-foreground/80">
-                  <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                   {item}
                 </li>
               ))}
@@ -146,34 +147,8 @@ function ServiceModal({
 }
 
 export function ServicesSection() {
-  const ref = useRef<HTMLElement>(null);
-  const [isInView, setIsInView] = useState(false);
   const [selected, setSelected] = useState<Service | null>(null);
-  const motionLib = useMotion();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1, rootMargin: "-100px" },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const Div = motionLib?.motion.div ?? "div";
-  const fadeUp = (delay = 0) =>
-    motionLib
-      ? {
-          initial: { opacity: 1, y: 16 },
-          animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 16 },
-          transition: { duration: delay === 0 ? 0.6 : 0.5, delay },
-        }
-      : {};
+  const ref = useSectionAnimation();
 
   return (
     <section
@@ -181,18 +156,17 @@ export function ServicesSection() {
       id="servicios"
       className="py-24 md:py-32 bg-background dot-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Div {...fadeUp(0)} className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
+        <div className="section-item text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-(family-name:--font-syne)">
             ¿Qué puedo hacer por tu negocio?
           </h2>
-        </Div>
+        </div>
         <div className="grid md:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <Div
+            <div
               key={index}
-              {...fadeUp(index * 0.15)}
               onClick={() => setSelected(service)}
-              className="group glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300 cursor-pointer">
+              className={`section-item delay-${index + 1} group glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300 cursor-pointer`}>
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
                 <service.icon className="w-7 h-7 text-primary" />
               </div>
@@ -207,7 +181,7 @@ export function ServicesSection() {
                 Ver más{" "}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
-            </Div>
+            </div>
           ))}
         </div>
       </div>
@@ -219,3 +193,4 @@ export function ServicesSection() {
     </section>
   );
 }
+  

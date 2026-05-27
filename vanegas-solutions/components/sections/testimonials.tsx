@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
 import { Star } from "lucide-react";
-import { useMotion } from "@/components/motion-provider";
+import { useSectionAnimation } from "@/hooks/use-section-animation";
 
 const testimonials = [
   {
@@ -22,48 +21,21 @@ const testimonials = [
 ];
 
 export function TestimonialsSection() {
-  const ref = useRef<HTMLElement>(null);
-  const [isInView, setIsInView] = useState(false);
-  const motionLib = useMotion();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1, rootMargin: "-100px" },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const Div = motionLib?.motion.div ?? "div";
-  const fadeUp = (delay = 0) =>
-    motionLib
-      ? {
-          initial: { opacity: 1, y: 16 },
-          animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 16 },
-          transition: { duration: delay === 0 ? 0.6 : 0.5, delay },
-        }
-      : {};
+  const ref = useSectionAnimation();
 
   return (
     <section ref={ref} className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Div {...fadeUp(0)} className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
+        <div className="section-item text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-(family-name:--font-syne)">
             Lo que dicen los negocios
           </h2>
-        </Div>
+        </div>
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {testimonials.map((testimonial, index) => (
-            <Div
+            <div
               key={index}
-              {...fadeUp(index * 0.15)}
-              className="glass-card rounded-2xl p-6 md:p-8">
+              className={`section-item delay-${index + 1} glass-card rounded-2xl p-6 md:p-8`}>
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-lg">
                   {testimonial.initials}
@@ -88,7 +60,7 @@ export function TestimonialsSection() {
               <p className="text-foreground leading-relaxed">
                 &ldquo;{testimonial.quote}&rdquo;
               </p>
-            </Div>
+            </div>
           ))}
         </div>
       </div>

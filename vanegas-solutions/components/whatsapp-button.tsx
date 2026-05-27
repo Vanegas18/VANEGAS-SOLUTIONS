@@ -2,12 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
-import { useMotion } from "@/components/motion-provider";
 
 const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 
 export function WhatsAppButton() {
-  const motionLib = useMotion();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -17,23 +15,15 @@ export function WhatsAppButton() {
 
   if (!show) return null;
 
-  const A = motionLib?.motion.a ?? "a";
-  const motionProps = motionLib
-    ? {
-        initial: { scale: 0, opacity: 1 },
-        animate: { scale: 1, opacity: 1 },
-        transition: { type: "spring", stiffness: 200 },
-      }
-    : {};
-
   return (
+    // whatsapp-enter: scale 0→1 con CSS cubic-bezier spring-like (definido en globals.css)
     <a
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
-      className="fixed bottom-6 right-6 z-50 group"
-      {...motionProps}>
+      className="whatsapp-enter fixed bottom-6 right-6 z-50 group">
+      {/* Ping animado — usa la clase animate-ping de Tailwind, no Framer */}
       <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-25" />
       <span className="relative flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#25D366] text-white shadow-lg shadow-[#25D366]/30 group-hover:shadow-xl group-hover:shadow-[#25D366]/40 group-hover:scale-110 transition-all duration-300">
         <MessageCircle className="w-7 h-7 md:w-8 md:h-8" />

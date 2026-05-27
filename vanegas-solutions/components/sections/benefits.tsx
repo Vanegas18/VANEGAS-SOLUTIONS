@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
 import { Target, DollarSign, FolderKanban, Zap } from "lucide-react";
-import { useMotion } from "@/components/motion-provider";
+import { useSectionAnimation } from "@/hooks/use-section-animation";
 
 const benefits = [
   {
@@ -28,49 +27,21 @@ const benefits = [
 ];
 
 export function BenefitsSection() {
-  const ref = useRef<HTMLElement>(null);
-  const [isInView, setIsInView] = useState(false);
-  const motionLib = useMotion();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1, rootMargin: "-100px" },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const Div = motionLib?.motion.div ?? "div";
-
-  const fadeUp = (delay = 0) =>
-    motionLib
-      ? {
-          initial: { opacity: 1, y: 16 },
-          animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 16 },
-          transition: { duration: 0.5, delay },
-        }
-      : {};
+  const ref = useSectionAnimation();
 
   return (
     <section ref={ref} className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Div {...fadeUp(0)} className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
+        <div className="section-item text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-(family-name:--font-syne)">
             ¿Por qué trabajar con Vanegas Solutions?
           </h2>
-        </Div>
+        </div>
         <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {benefits.map((benefit, index) => (
-            <Div
+            <div
               key={index}
-              {...fadeUp(index * 0.1)}
-              className="glass-card glass-card-hover rounded-2xl p-6 md:p-8 flex items-start gap-4 transition-all duration-300">
+              className={`section-item delay-${index + 1} glass-card glass-card-hover rounded-2xl p-6 md:p-8 flex items-start gap-4 transition-all duration-300`}>
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                 <benefit.icon className="w-7 h-7 text-primary" />
               </div>
@@ -80,7 +51,7 @@ export function BenefitsSection() {
                 </h3>
                 <p className="text-muted-foreground">{benefit.description}</p>
               </div>
-            </Div>
+            </div>
           ))}
         </div>
       </div>

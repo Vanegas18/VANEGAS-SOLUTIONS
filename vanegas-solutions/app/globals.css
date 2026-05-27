@@ -1,54 +1,58 @@
-html, body {
-  background-color: #0A0A0F !important;
+html,
+body {
+  background-color: #0a0a0f !important;
   color: #ffffff;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #0A0A0F;
+  --background: #0a0a0f;
   --foreground: #ffffff;
   --card: rgba(255, 255, 255, 0.03);
   --card-foreground: #ffffff;
-  --popover: #0A0A0F;
+  --popover: #0a0a0f;
   --popover-foreground: #ffffff;
-  --primary: #3B82F6;
+  --primary: #3b82f6;
   --primary-foreground: #ffffff;
   --secondary: rgba(255, 255, 255, 0.05);
   --secondary-foreground: #ffffff;
   --muted: rgba(255, 255, 255, 0.05);
   --muted-foreground: #9ca3af;
-  --accent: #2563EB;
+  --accent: #2563eb;
   --accent-foreground: #ffffff;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.1);
-  --ring: #3B82F6;
+  --ring: #3b82f6;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.75rem;
-  --sidebar: #0A0A0F;
+  --sidebar: #0a0a0f;
   --sidebar-foreground: #ffffff;
-  --sidebar-primary: #3B82F6;
+  --sidebar-primary: #3b82f6;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: rgba(255, 255, 255, 0.05);
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #3B82F6;
+  --sidebar-ring: #3b82f6;
 }
 
 @theme inline {
-  --font-sans: var(--font-outfit), 'Outfit', sans-serif;
-  --font-display: var(--font-syne), 'Syne', sans-serif;
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-sans: var(--font-outfit), "Outfit", sans-serif;
+  --font-display: var(--font-syne), "Syne", sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -119,8 +123,201 @@ html {
 
 /* Dot pattern background */
 .dot-pattern {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px
+  );
   background-size: 24px 24px;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   ANIMATION SYSTEM — reemplaza Framer Motion completamente
+   Todo el contenido es visible por defecto (opacity:1, y:0).
+   Las animaciones son un "enhancement" progresivo con CSS.
+   ============================================================ */
+
+/* --- Keyframes --- */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes glowPulse2 {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1.2);
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+}
+
+@keyframes whatsappScale {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* --- Hero: animaciones inmediatas al cargar --- */
+.hero-animate {
+  animation: fadeSlideUp 0.6s ease forwards;
+}
+.hero-animate-delay-1 {
+  animation-delay: 0.1s;
+}
+.hero-animate-delay-2 {
+  animation-delay: 0.25s;
+}
+.hero-animate-delay-3 {
+  animation-delay: 0.4s;
+}
+.hero-animate-delay-4 {
+  animation-delay: 0.6s;
+}
+
+/* El indicador de scroll en el hero */
+.scroll-indicator {
+  animation: fadeIn 0.5s ease 1.2s forwards;
+  opacity: 0;
+}
+.scroll-bounce {
+  animation: scrollBounce 1.5s ease-in-out infinite;
+}
+.scroll-dot {
+  animation: scrollBounce 1.5s ease-in-out infinite;
+}
+
+/* Orbes de luz del hero */
+.hero-glow-1 {
+  animation: glowPulse 8s ease-in-out infinite;
+  opacity: 0.3;
+}
+.hero-glow-2 {
+  animation: glowPulse2 10s ease-in-out infinite;
+  opacity: 0.4;
+}
+
+/* --- Navbar: desliza desde arriba al cargar --- */
+.navbar-animate {
+  animation: slideDown 0.5s ease forwards;
+}
+
+/* --- Secciones con scroll: visibles por defecto, animan cuando entran en viewport --- */
+/* Estado inicial: visible. Si JS activa la clase, anima. */
+.section-item {
+  /* Visible por defecto — Safari lo muestra aunque JS no corra */
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+/* Cuando JS puede correr y el elemento aún no está en vista */
+.section-item.will-animate {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Cuando el IntersectionObserver dispara */
+.section-item.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delays para stagger dentro de una sección */
+.section-item.delay-0 {
+  transition-delay: 0s;
+}
+.section-item.delay-1 {
+  transition-delay: 0.1s;
+}
+.section-item.delay-2 {
+  transition-delay: 0.2s;
+}
+.section-item.delay-3 {
+  transition-delay: 0.3s;
+}
+.section-item.delay-4 {
+  transition-delay: 0.4s;
+}
+
+/* --- WhatsApp button: aparece con spring-like CSS --- */
+.whatsapp-enter {
+  animation: whatsappScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* --- Mobile menu: altura animada con CSS transition --- */
+.mobile-menu {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+.mobile-menu.open {
+  max-height: 400px;
 }
 
 /* Pulse animation for WhatsApp button */
@@ -136,37 +333,10 @@ html {
 }
 
 .pulse-ring::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: #25D366;
+  background: #25d366;
   animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-[data-framer-component-type],
-.framer-hidden {
-  opacity: 1 !important;
-}
-
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.animate-section {
-  animation: fadeSlideUp 0.5s ease forwards;
-}
-
-.animate-delay-1 { animation-delay: 0.1s; }
-.animate-delay-2 { animation-delay: 0.2s; }
-.animate-delay-3 { animation-delay: 0.3s; }
-.animate-delay-4 { animation-delay: 0.4s; }
