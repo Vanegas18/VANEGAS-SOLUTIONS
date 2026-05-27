@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 
-const LOADING_DURATION = 7000;
-const FADE_DURATION = 600;
+// Duración reducida a 1.5s — solo lo suficiente para que
+// el primer paint de Next.js esté completo
+const LOADING_DURATION = 1500;
+const FADE_DURATION = 400;
 
 export function LoadingScreen() {
   const [visible, setVisible] = useState(true);
@@ -16,19 +18,11 @@ export function LoadingScreen() {
       const elapsed = Date.now() - start;
       const pct = Math.min((elapsed / LOADING_DURATION) * 100, 100);
       setProgress(pct);
-    }, 50);
+    }, 30);
 
     const hideTimer = setTimeout(() => {
       setFadeOut(true);
-
-      // Esperamos a que el fade termine ANTES de disparar el evento.
-      // Así el overlay ya no está bloqueando el viewport cuando
-      // useSectionAnimation empieza a observar.
-      setTimeout(() => {
-        setVisible(false);
-        // El evento se dispara DESPUÉS de que el div se desmonta
-        window.dispatchEvent(new CustomEvent("loading-complete"));
-      }, FADE_DURATION);
+      setTimeout(() => setVisible(false), FADE_DURATION);
     }, LOADING_DURATION);
 
     return () => {
@@ -41,7 +35,7 @@ export function LoadingScreen() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0A0A0F] transition-opacity duration-[600ms] ${
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0A0A0F] transition-opacity duration-[400ms] ${
         fadeOut ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}>
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] pointer-events-none" />
