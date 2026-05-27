@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { Target, DollarSign, FolderKanban, Zap } from "lucide-react";
+import { useMotion } from "@/components/motion-provider";
 
 const benefits = [
   {
@@ -29,34 +30,30 @@ const benefits = [
 export function BenefitsSection() {
   const ref = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
-  const [MotionDiv, setMotionDiv] = useState<React.ElementType | null>(null);
+  const motionLib = useMotion();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsInView(true);
-          import("framer-motion").then((mod) => {
-            setMotionDiv(() => mod.motion.div);
-          });
           observer.disconnect();
         }
       },
       { threshold: 0.1, rootMargin: "-100px" },
     );
-
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
-  const Div = MotionDiv ?? "div";
+  const Div = motionLib?.motion.div ?? "div";
 
   const fadeUp = (delay = 0) =>
-    MotionDiv
+    motionLib
       ? {
-          initial: { opacity: 1, y: 20 },
-          animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 20 },
-          transition: { duration: delay === 0 ? 0.6 : 0.5, delay },
+          initial: { opacity: 1, y: 16 },
+          animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 16 },
+          transition: { duration: 0.5, delay },
         }
       : {};
 
@@ -68,7 +65,6 @@ export function BenefitsSection() {
             ¿Por qué trabajar con Vanegas Solutions?
           </h2>
         </Div>
-
         <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {benefits.map((benefit, index) => (
             <Div

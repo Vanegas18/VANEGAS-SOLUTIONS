@@ -9,9 +9,9 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { useMotion } from "@/components/motion-provider";
 
 const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
-
 const services = [
   {
     icon: Globe,
@@ -137,8 +137,7 @@ function ServiceModal({
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-sm transition-colors">
-            Quiero esto para mi negocio
-            <ArrowRight className="w-4 h-4" />
+            Quiero esto para mi negocio <ArrowRight className="w-4 h-4" />
           </a>
         </div>
       </DialogContent>
@@ -149,17 +148,14 @@ function ServiceModal({
 export function ServicesSection() {
   const ref = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
-  const [MotionDiv, setMotionDiv] = useState<React.ElementType | null>(null);
   const [selected, setSelected] = useState<Service | null>(null);
+  const motionLib = useMotion();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsInView(true);
-          import("framer-motion").then((mod) => {
-            setMotionDiv(() => mod.motion.div);
-          });
           observer.disconnect();
         }
       },
@@ -169,12 +165,12 @@ export function ServicesSection() {
     return () => observer.disconnect();
   }, []);
 
-  const Div = MotionDiv ?? "div";
+  const Div = motionLib?.motion.div ?? "div";
   const fadeUp = (delay = 0) =>
-    MotionDiv
+    motionLib
       ? {
-          initial: { opacity: 1, y: 20},
-          animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 20 },
+          initial: { opacity: 1, y: 16 },
+          animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 16 },
           transition: { duration: delay === 0 ? 0.6 : 0.5, delay },
         }
       : {};
@@ -190,7 +186,6 @@ export function ServicesSection() {
             ¿Qué puedo hacer por tu negocio?
           </h2>
         </Div>
-
         <div className="grid md:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <Div
@@ -209,7 +204,7 @@ export function ServicesSection() {
                 {service.description}
               </p>
               <span className="inline-flex items-center gap-1 text-sm text-muted-foreground group-hover:text-primary transition-colors">
-                Ver más
+                Ver más{" "}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
             </Div>

@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { Star } from "lucide-react";
+import { useMotion } from "@/components/motion-provider";
 
 const testimonials = [
   {
@@ -23,16 +24,13 @@ const testimonials = [
 export function TestimonialsSection() {
   const ref = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
-  const [MotionDiv, setMotionDiv] = useState<React.ElementType | null>(null);
+  const motionLib = useMotion();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsInView(true);
-          import("framer-motion").then((mod) => {
-            setMotionDiv(() => mod.motion.div);
-          });
           observer.disconnect();
         }
       },
@@ -42,12 +40,12 @@ export function TestimonialsSection() {
     return () => observer.disconnect();
   }, []);
 
-  const Div = MotionDiv ?? "div";
+  const Div = motionLib?.motion.div ?? "div";
   const fadeUp = (delay = 0) =>
-    MotionDiv
+    motionLib
       ? {
-          initial: { opacity: 1, y: 20 },
-          animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 20 },
+          initial: { opacity: 1, y: 16 },
+          animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 16 },
           transition: { duration: delay === 0 ? 0.6 : 0.5, delay },
         }
       : {};
@@ -60,7 +58,6 @@ export function TestimonialsSection() {
             Lo que dicen los negocios
           </h2>
         </Div>
-
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <Div

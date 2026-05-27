@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useMotion } from "@/components/motion-provider";
 
 const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
-
 const navLinks = [
   { href: "#servicios", label: "Servicios" },
   { href: "#proyectos", label: "Proyectos" },
@@ -15,39 +15,23 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [MotionComponents, setMotionComponents] = useState<{
-    nav: React.ElementType;
-    div: React.ElementType;
-    AnimatePresence: React.ElementType;
-  } | null>(null);
+  const motionLib = useMotion();
 
-  // Scroll listener
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Framer Motion carga después del primer render
-  useEffect(() => {
-    import("framer-motion").then((mod) => {
-      setMotionComponents({
-        nav: mod.motion.nav,
-        div: mod.motion.div,
-        AnimatePresence: mod.AnimatePresence,
-      });
-    });
-  }, []);
+  const Nav = motionLib?.motion.nav ?? "nav";
+  const MotionDiv = motionLib?.motion.div ?? "div";
+  const AnimatePresence = motionLib?.AnimatePresence;
 
-  const Nav = MotionComponents?.nav ?? "nav";
-  const MotionDiv = MotionComponents?.div ?? "div";
-  const AnimatePresence = MotionComponents?.AnimatePresence;
-
-  const navProps = MotionComponents
+  const navProps = motionLib
     ? { initial: { y: -100 }, animate: { y: 0 }, transition: { duration: 0.5 } }
     : {};
 
-  const mobileMenuProps = MotionComponents
+  const mobileMenuProps = motionLib
     ? {
         initial: { opacity: 1, height: 0 },
         animate: { opacity: 1, height: "auto" },
@@ -95,7 +79,6 @@ export function Navbar() {
             className="text-xl md:text-2xl font-bold text-foreground font-[family-name:var(--font-syne)]">
             Vanegas Solutions
           </a>
-
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
@@ -113,7 +96,6 @@ export function Navbar() {
               </a>
             </Button>
           </div>
-
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 text-foreground"
@@ -122,8 +104,6 @@ export function Navbar() {
           </button>
         </div>
       </div>
-
-      {/* Con AnimatePresence si Framer cargó, sin ella si no */}
       {AnimatePresence ? (
         <AnimatePresence>{mobileMenu}</AnimatePresence>
       ) : (

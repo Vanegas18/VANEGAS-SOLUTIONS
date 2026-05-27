@@ -3,25 +3,18 @@
 import { useRef, useEffect, useState } from "react";
 import { ArrowRight, Store, Scissors, Wrench } from "lucide-react";
 import Image from "next/image";
+import { useMotion } from "@/components/motion-provider";
 
 const projects = [
-  {
-    icon: Store,
-    name: "BuildMart",
-    category: "Constructora",
-    image: "/images/buildmart.png",
-    description: "Sistema web completo con catálogo, carrito, pagos y gestión administrativa",
-    result: "Ahora controla todo su negocio desde una sola plataforma, sin depender de terceros",
-  }
+  { icon: Store, name: "BuildMart", category: "Constructora", image: "/images/buildmart.png", description: "Sistema web completo con catálogo, carrito, pagos y gestión administrativa", result: "Ahora controla todo su negocio desde una sola plataforma, sin depender de terceros" },
+  { icon: Scissors, name: "Barberia Style", category: "Barbería", image: "", description: "Sistema de citas por WhatsApp y web automatizado", result: "Reservas sin llamadas, agenda siempre llena" },
+  { icon: Wrench, name: "Ferretería El Progreso", category: "Ferretería", image: "", description: "Catálogo digital con precios actualizables", result: "Clientes consultan precios sin llamar" },
 ];
 
 function ProjectPreview({ image, icon: Icon, name }: { image?: string; icon: React.ElementType; name: string }) {
   return image ? (
     <div className="relative h-32 md:h-40 overflow-hidden">
-      <Image
-        src={image}
-        alt={`Vista previa de ${name}`}
-        fill
+      <Image src={image} alt={`Vista previa de ${name}`} fill
         sizes="(max-width: 768px) 100vw, 33vw"
         className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
         onError={(e) => {
@@ -45,34 +38,25 @@ function ProjectPreview({ image, icon: Icon, name }: { image?: string; icon: Rea
 export function ProjectsSection() {
   const ref = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
-  const [MotionDiv, setMotionDiv] = useState<React.ElementType | null>(null);
+  const motionLib = useMotion();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          import("framer-motion").then((mod) => {
-            setMotionDiv(() => mod.motion.div);
-          });
-          observer.disconnect();
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) { setIsInView(true); observer.disconnect(); } },
       { threshold: 0.1, rootMargin: "-100px" }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
-  const Div = MotionDiv ?? "div";
+  const Div = motionLib?.motion.div ?? "div";
+
   const fadeUp = (delay = 0) =>
-    MotionDiv
-      ? {
-          initial: { opacity: 1, y: 20},
-          animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 20 },
-          transition: { duration: delay === 0 ? 0.6 : 0.5, delay },
-        }
-      : {};
+    motionLib ? {
+      initial: { opacity: 1, y: 16 },
+      animate: isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 16 },
+      transition: { duration: delay === 0 ? 0.6 : 0.5, delay },
+    } : {};
 
   return (
     <section ref={ref} id="proyectos" className="py-24 md:py-32 bg-background dot-pattern">
@@ -83,14 +67,10 @@ export function ProjectsSection() {
           </h2>
           <p className="text-muted-foreground text-lg">Ejemplos reales de lo que puedo construir para vos</p>
         </Div>
-
         <div className="grid md:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <Div
-              key={index}
-              {...fadeUp(index * 0.15)}
-              className="group glass-card glass-card-hover rounded-2xl overflow-hidden transition-all duration-300"
-            >
+            <Div key={index} {...fadeUp(index * 0.15)}
+              className="group glass-card glass-card-hover rounded-2xl overflow-hidden transition-all duration-300">
               <div className="bg-[#1a1a24] px-4 py-3 flex items-center gap-2 border-b border-border">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/60" />

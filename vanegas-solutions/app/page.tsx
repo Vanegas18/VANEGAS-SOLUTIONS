@@ -10,22 +10,25 @@ import { CTASection } from "@/components/sections/cta";
 import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { LoadingScreen } from "@/components/loading-screen";
+import { MotionProvider } from "@/components/motion-provider";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
-      <LoadingScreen />
-      <Navbar />
-      <HeroSection />
-      <PainSection />
-      <ServicesSection />
-      <TestimonialsSection />
-      <ProjectsSection />
-      <BenefitsSection />
-      <FAQSection />
-      <CTASection />
-      <Footer />
-      <WhatsAppButton />
-    </main>
+    <MotionProvider>
+      <main className="min-h-screen bg-background">
+        <LoadingScreen />
+        <Navbar />
+        <HeroSection />
+        <PainSection />
+        <ServicesSection />
+        <TestimonialsSection />
+        <ProjectsSection />
+        <BenefitsSection />
+        <FAQSection />
+        <CTASection />
+        <Footer />
+        <WhatsAppButton />
+      </main>
+    </MotionProvider>
   );
 }
