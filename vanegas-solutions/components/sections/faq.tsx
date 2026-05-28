@@ -1,12 +1,14 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useSectionAnimation } from "@/hooks/use-section-animation";
 
 const faqs = [
   {
@@ -30,7 +32,8 @@ const faqs = [
 ];
 
 export function FAQSection() {
-  const ref = useSectionAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section
@@ -38,13 +41,20 @@ export function FAQSection() {
       id="faq"
       className="py-24 md:py-32 bg-background dot-pattern">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="section-item text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
             Preguntas frecuentes
           </h2>
-        </div>
-        {/* El Accordion de shadcn usa JS puro (Radix UI), no Framer Motion */}
-        <div className="section-item delay-1">
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}>
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem
@@ -60,7 +70,7 @@ export function FAQSection() {
               </AccordionItem>
             ))}
           </Accordion>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

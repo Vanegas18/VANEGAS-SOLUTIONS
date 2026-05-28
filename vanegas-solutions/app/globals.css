@@ -1,9 +1,3 @@
-html, body {
-  background-color: #0A0A0F !important;
-  color: #ffffff;
-  font-family: system-ui, -apple-system, sans-serif;
-}
-
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -84,30 +78,63 @@ html, body {
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--background); }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
 
-html { scroll-behavior: smooth; }
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
 
-/* Glass card */
+/* Glass card effect */
 .glass-card {
   background: rgba(255, 255, 255, 0.03);
-  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
+
 .glass-card-hover:hover {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(59, 130, 246, 0.3);
   box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
 }
 
-/* Dot pattern */
+/* Dot pattern background */
 .dot-pattern {
-  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+/* Pulse animation for WhatsApp button */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25D366;
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 /* Gradient text */
@@ -117,80 +144,3 @@ html { scroll-behavior: smooth; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-/* ============================================================
-   ANIMACIONES — CSS puro, zero JS dependency
-   Todo visible por defecto. Animaciones son enhancement.
-   ============================================================ */
-
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes scrollBounce {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(8px); }
-}
-@keyframes glowPulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50%       { opacity: 0.5; transform: scale(1.2); }
-}
-@keyframes glowPulse2 {
-  0%, 100% { opacity: 0.4; transform: scale(1.2); }
-  50%       { opacity: 0.2; transform: scale(1); }
-}
-@keyframes whatsappScale {
-  from { transform: scale(0); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
-}
-
-/* Hero — anima al cargar, sin JS */
-.hero-animate {
-  opacity: 0;
-  animation: fadeSlideUp 0.6s ease forwards;
-}
-.hero-animate-delay-1 { animation-delay: 0.1s; }
-.hero-animate-delay-2 { animation-delay: 0.25s; }
-.hero-animate-delay-3 { animation-delay: 0.4s; }
-
-.scroll-indicator {
-  opacity: 0;
-  animation: fadeIn 0.5s ease 1.2s forwards;
-}
-.scroll-bounce { animation: scrollBounce 1.5s ease-in-out infinite; }
-
-.hero-glow-1 { animation: glowPulse 8s ease-in-out infinite; opacity: 0.3; }
-.hero-glow-2 { animation: glowPulse2 10s ease-in-out infinite; opacity: 0.4; }
-
-/* Navbar */
-.navbar-animate {
-  animation: slideDown 0.5s ease forwards;
-}
-
-/* Secciones — SIEMPRE VISIBLES, sin lógica JS */
-/* section-item es solo una clase semántica, no oculta nada */
-.section-item {
-  opacity: 1;
-  transform: none;
-}
-
-/* WhatsApp */
-.whatsapp-enter {
-  animation: whatsappScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* Mobile menu */
-.mobile-menu {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.3s ease;
-}
-.mobile-menu.open { max-height: 400px; }

@@ -1,27 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Syne } from "next/font/google";
+import { Outfit, Syne, Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-// Quitamos Geist Mono — no se usa en el sitio y suma ~40kb al bundle
-// display: "swap" en lugar de "optional" — evita FOIT (flash invisible)
-// en Safari que a veces ignora "optional" y no muestra el texto nunca
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
-  display: "swap",
-  preload: true,
-  // Solo los weights que realmente usás
-  weight: ["400", "500", "600", "700"],
 });
 
 const syne = Syne({
   subsets: ["latin"],
   variable: "--font-syne",
-  display: "swap",
-  preload: true,
-  weight: ["400", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -43,9 +35,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_CO",
   },
-  other: {
-    "color-scheme": "dark",
-  },
 };
 
 export const viewport: Viewport = {
@@ -62,16 +51,10 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      style={{ backgroundColor: "#0A0A0F" }}
-      className={cn(
-        "bg-background",
-        outfit.variable,
-        syne.variable,
-        "font-sans",
-      )}>
+      className={cn("bg-background", outfit.variable, syne.variable, "font-sans", geist.variable)}>
       <body className="font-sans antialiased">
         {children}
-        <Analytics />
+        {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
   );

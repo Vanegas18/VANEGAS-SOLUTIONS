@@ -1,42 +1,64 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { MessageCircle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
-const badges = [
-  "Respondo en menos de 1 hora",
-  "Sin contratos",
-  "Resultados reales",
-];
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden dot-pattern">
-      {/*
-        Orbes de luz del fondo — animadas con CSS (glowPulse keyframes en globals.css).
-        Sin Framer Motion: no hay dependencia de JS para mostrar estos elementos.
-      */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="hero-glow-1 absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[128px]" />
-        <div className="hero-glow-2 absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-[128px]" />
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[128px]"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-[128px]"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.4, 0.2, 0.4],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
       </div>
 
+      {/* Hero content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/*
-          hero-animate + hero-animate-delay-*: keyframe fadeSlideUp definido en globals.css.
-          Estos corren inmediatamente al cargar la página — sin esperar ningún JS.
-          opacity:0 inicial está dentro del keyframe @from, no como estado React.
-        */}
-        <h1 className="hero-animate text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight font-[family-name:var(--font-syne)] text-balance">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight font-[family-name:var(--font-syne)] text-balance">
           Digitaliza tu negocio y vende más 🚀
-        </h1>
+        </motion.h1>
 
-        <p className="hero-animate hero-animate-delay-1 mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
           Páginas web, WhatsApp automatizado y soluciones simples para negocios.
-        </p>
+        </motion.p>
 
-        <div className="hero-animate hero-animate-delay-2 mt-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-10">
           <Button
             asChild
             size="lg"
@@ -50,22 +72,43 @@ export function HeroSection() {
               Hablar por WhatsApp
             </a>
           </Button>
-        </div>
+        </motion.div>
 
-        <div className="hero-animate hero-animate-delay-3 mt-8 flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-muted-foreground">
-          {badges.map((item, index) => (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-8 flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-muted-foreground">
+          {[
+            "Respondo en menos de 1 hora",
+            "Sin contratos",
+            "Resultados reales",
+          ].map((item, index) => (
             <span key={index} className="flex items-center gap-1.5">
               <CheckCircle className="w-4 h-4 text-green-500" />
               {item}
             </span>
           ))}
-        </div>
+        </motion.div>
       </div>
 
-      {/*
-        Indicador de scroll — fade-in tardío con CSS (scroll-indicator en globals.css).
-        scroll-bounce anima el contenedor, scroll-dot anima el punto interior.
-      */}
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-1.5 h-3 bg-muted-foreground/50 rounded-full mt-2"
+          />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

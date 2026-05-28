@@ -1,7 +1,9 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 import { TrendingDown, Smartphone, Clock } from "lucide-react";
-import { useSectionAnimation } from "@/hooks/use-section-animation";
 
 const painPoints = [
   {
@@ -22,23 +24,30 @@ const painPoints = [
 ];
 
 export function PainSection() {
-  // El hook agrega .will-animate al montar y .in-view al intersectar
-  // Si JS no corre, los elementos quedan visibles por defecto (sin .will-animate)
-  const ref = useSectionAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section ref={ref} className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="section-item text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
             ¿Te identificás con esto?
           </h2>
-        </div>
+        </motion.div>
+
         <div className="grid md:grid-cols-3 gap-6">
           {painPoints.map((point, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`section-item delay-${index + 1} glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300`}>
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              className="glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300">
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
                 <point.icon className="w-7 h-7 text-primary" />
               </div>
@@ -48,7 +57,7 @@ export function PainSection() {
               <p className="text-muted-foreground text-sm md:text-base">
                 {point.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

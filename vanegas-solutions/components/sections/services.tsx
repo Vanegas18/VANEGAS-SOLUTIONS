@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Globe, MessageSquare, Zap, ArrowRight, Check } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { Globe, MessageSquare, Zap, ArrowRight, X, Check } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -9,9 +10,9 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { useSectionAnimation } from "@/hooks/use-section-animation";
 
 const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
+
 const services = [
   {
     icon: Globe,
@@ -89,13 +90,13 @@ function ServiceModal({
 }) {
   if (!service) return null;
   const Icon = service.icon;
+
   return (
-    // Dialog de shadcn — JS puro para el modal, no necesita Framer Motion
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-lg bg-[#0f0f17] border border-white/10 text-foreground p-0 overflow-hidden">
         <div className="bg-primary/10 border-b border-white/10 px-6 py-5">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
               <Icon className="w-5 h-5 text-primary" />
             </div>
             <DialogHeader className="text-left space-y-0">
@@ -108,10 +109,14 @@ function ServiceModal({
             </DialogHeader>
           </div>
         </div>
+
+
         <div className="px-6 py-5 space-y-5">
+
           <p className="text-muted-foreground text-sm leading-relaxed">
             {service.modal.explanation}
           </p>
+
           <div>
             <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">
               Qué incluye
@@ -121,24 +126,29 @@ function ServiceModal({
                 <li
                   key={i}
                   className="flex items-start gap-2.5 text-sm text-foreground/80">
-                  <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                   {item}
                 </li>
               ))}
             </ul>
           </div>
+
+          {/* Ideal para */}
           <div className="bg-white/3 border border-white/8 rounded-xl px-4 py-3">
             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
               Ideal para
             </p>
             <p className="text-sm text-foreground/70">{service.modal.ideal}</p>
           </div>
+
+          {/* CTA */}
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-sm transition-colors">
-            Quiero esto para mi negocio <ArrowRight className="w-4 h-4" />
+            Quiero esto para mi negocio
+            <ArrowRight className="w-4 h-4" />
           </a>
         </div>
       </DialogContent>
@@ -147,8 +157,9 @@ function ServiceModal({
 }
 
 export function ServicesSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selected, setSelected] = useState<Service | null>(null);
-  const ref = useSectionAnimation();
 
   return (
     <section
@@ -156,17 +167,25 @@ export function ServicesSection() {
       id="servicios"
       className="py-24 md:py-32 bg-background dot-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="section-item text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
             ¿Qué puedo hacer por tu negocio?
           </h2>
-        </div>
+        </motion.div>
+
         <div className="grid md:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
               onClick={() => setSelected(service)}
-              className={`section-item delay-${index + 1} group glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300 cursor-pointer`}>
+              className="group glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300 cursor-pointer">
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
                 <service.icon className="w-7 h-7 text-primary" />
               </div>
@@ -178,13 +197,14 @@ export function ServicesSection() {
                 {service.description}
               </p>
               <span className="inline-flex items-center gap-1 text-sm text-muted-foreground group-hover:text-primary transition-colors">
-                Ver más{" "}
+                Ver más
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
+
       <ServiceModal
         service={selected}
         open={!!selected}
@@ -193,4 +213,3 @@ export function ServicesSection() {
     </section>
   );
 }
-  
