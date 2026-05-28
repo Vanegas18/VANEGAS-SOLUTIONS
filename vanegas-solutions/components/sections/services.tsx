@@ -1,21 +1,27 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { Globe, MessageSquare, Zap, ArrowRight, Check } from "lucide-react";
-import { useInViewLite } from "@/hooks/use-in-view-lite";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+import { useState } from "react";
 
 const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 
 const services = [
   {
-    icon: Globe,
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#3B82F6"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M2 12h20" />
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+      </svg>
+    ),
     title: "Página web profesional",
     benefit: "Tu negocio abierto 24/7, sin que hagas nada",
     description:
@@ -36,7 +42,20 @@ const services = [
     },
   },
   {
-    icon: MessageSquare,
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#3B82F6"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+      </svg>
+    ),
     title: "WhatsApp automatizado",
     benefit: "Respondé a clientes automáticamente y no pierdas ventas",
     description: "Respuestas inteligentes que trabajan mientras dormís.",
@@ -56,7 +75,21 @@ const services = [
     },
   },
   {
-    icon: Zap,
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#3B82F6"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        {/* removed invalid <bolt /> element */}
+        <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+      </svg>
+    ),
     title: "Sistemas para negocios",
     benefit: "Organizá tu negocio y trabajá menos con más orden",
     description: "Inventario, citas, pedidos y más, todo en un solo lugar.",
@@ -79,93 +112,41 @@ const services = [
 
 type Service = (typeof services)[number];
 
-function ServiceModal({
-  service,
-  open,
-  onClose,
-}: {
-  service: Service | null;
-  open: boolean;
-  onClose: () => void;
-}) {
-  if (!service) return null;
-  const Icon = service.icon;
-
-  return (
-    <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-lg bg-[#0f0f17] border border-white/10 text-foreground p-0 overflow-hidden">
-        <div className="bg-primary/10 border-b border-white/10 px-6 py-5">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
-              <Icon className="w-5 h-5 text-primary" />
-            </div>
-            <DialogHeader className="text-left space-y-0">
-              <DialogTitle className="text-base font-bold text-foreground font-[family-name:var(--font-syne)] leading-tight">
-                {service.modal.headline}
-              </DialogTitle>
-              <DialogDescription className="sr-only">
-                Información detallada sobre {service.title}
-              </DialogDescription>
-            </DialogHeader>
-          </div>
-        </div>
-
-        <div className="px-6 py-5 space-y-5">
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            {service.modal.explanation}
-          </p>
-
-          <div>
-            <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">
-              Qué incluye
-            </p>
-            <ul className="space-y-2">
-              {service.modal.includes.map((item, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-2.5 text-sm text-foreground/80">
-                  <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="bg-white/5 border border-white/8 rounded-xl px-4 py-3">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-              Ideal para
-            </p>
-            <p className="text-sm text-foreground/70">{service.modal.ideal}</p>
-          </div>
-
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-sm transition-colors">
-            Quiero esto para mi negocio
-            <ArrowRight className="w-4 h-4" />
-          </a>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
-
 export function ServicesSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInViewLite(ref, { once: true, margin: "-100px" });
   const [selected, setSelected] = useState<Service | null>(null);
 
   return (
     <section
-      ref={ref}
       id="servicios"
       className="py-24 md:py-32 bg-background dot-pattern">
+      <style>{`
+        @keyframes svc-in {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .svc-title  { animation: svc-in 0.6s ease both; }
+        .svc-card-0 { animation: svc-in 0.5s ease 0.1s both; }
+        .svc-card-1 { animation: svc-in 0.5s ease 0.25s both; }
+        .svc-card-2 { animation: svc-in 0.5s ease 0.4s both; }
+
+        /* Modal */
+        .svc-modal-backdrop {
+          position: fixed; inset: 0; z-index: 50;
+          background: rgba(0,0,0,0.7);
+          display: flex; align-items: center; justify-content: center;
+          padding: 16px;
+        }
+        .svc-modal {
+          background: #0f0f17;
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 16px;
+          width: 100%; max-width: 512px;
+          max-height: 90vh; overflow-y: auto;
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className="text-center mb-16 fade-up"
-          style={isInView ? { opacity: 1, transform: "translateY(0)" } : {}}>
+        <div className="svc-title text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
             ¿Qué puedo hacer por tu negocio?
           </h2>
@@ -176,18 +157,9 @@ export function ServicesSection() {
             <div
               key={index}
               onClick={() => setSelected(service)}
-              className="group glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300 cursor-pointer fade-up"
-              style={
-                isInView
-                  ? {
-                      opacity: 1,
-                      transform: "translateY(0)",
-                      transitionDelay: `${index * 0.15}s`,
-                    }
-                  : {}
-              }>
+              className={`svc-card-${index} group glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300 cursor-pointer`}>
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                <service.icon className="w-7 h-7 text-primary" />
+                {service.svg}
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
                 {service.title}
@@ -198,18 +170,124 @@ export function ServicesSection() {
               </p>
               <span className="inline-flex items-center gap-1 text-sm text-muted-foreground group-hover:text-primary transition-colors">
                 Ver más
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
               </span>
             </div>
           ))}
         </div>
       </div>
 
-      <ServiceModal
-        service={selected}
-        open={!!selected}
-        onClose={() => setSelected(null)}
-      />
+      {/* Modal CSS puro — sin Radix/Dialog */}
+      {selected && (
+        <div className="svc-modal-backdrop" onClick={() => setSelected(null)}>
+          <div className="svc-modal" onClick={(e) => e.stopPropagation()}>
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 py-5 border-b border-white/10 bg-blue-600/10">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-600/20 flex items-center justify-center flex-shrink-0">
+                  {selected.svg}
+                </div>
+                <p className="text-base font-bold text-white font-[family-name:var(--font-syne)] leading-tight">
+                  {selected.modal.headline}
+                </p>
+              </div>
+              <button
+                onClick={() => setSelected(null)}
+                className="text-white/50 hover:text-white ml-4 flex-shrink-0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round">
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Body */}
+            <div className="px-6 py-5 space-y-5">
+              <p className="text-gray-400 text-sm leading-relaxed">
+                {selected.modal.explanation}
+              </p>
+
+              <div>
+                <p className="text-xs font-semibold text-blue-500 uppercase tracking-wider mb-3">
+                  Qué incluye
+                </p>
+                <ul className="space-y-2">
+                  {selected.modal.includes.map((item, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-2.5 text-sm text-white/80">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#3B82F6"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="flex-shrink-0 mt-0.5">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <path d="m9 11 3 3L22 4" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-white/5 border border-white/10 rounded-xl px-4 py-3">
+                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">
+                  Ideal para
+                </p>
+                <p className="text-sm text-white/70">{selected.modal.ideal}</p>
+              </div>
+
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-colors">
+                Quiero esto para mi negocio
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

@@ -1,81 +1,60 @@
-"use client";
-
-import { useRef } from "react";
-import { Star } from "lucide-react";
-import { useInViewLite } from "@/hooks/use-in-view-lite";
-
 const testimonials = [
   {
     initials: "CR",
     name: "Carlos R.",
     business: "BuildMart, Materiales de Construcción",
-    quote:
-      "Antes tenía que atender el teléfono todo el día. Ahora los clientes hacen pedidos directo desde la web, sin que yo tenga que levantar un dedo.",
+    quote: "Antes tenía que atender el teléfono todo el día. Ahora los clientes hacen pedidos directo desde la web, sin que yo tenga que levantar un dedo.",
   },
   {
     initials: "FV",
     name: "Felipe V.",
     business: "Barberia Style",
-    quote:
-      "Mis clientes adoran poder reservar por WhatsApp. Mi agenda nunca estuvo tan llena, y yo tengo más tiempo para enfocarme en el negocio.",
+    quote: "Mis clientes adoran poder reservar por WhatsApp. Mi agenda nunca estuvo tan llena, y yo tengo más tiempo para enfocarme en el negocio.",
   },
 ];
 
-export function TestimonialsSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInViewLite(ref, { once: true, margin: "-100px" });
+const StarSVG = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#eab308" stroke="#eab308" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+  </svg>
+);
 
+export function TestimonialsSection() {
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-background">
+    <section className="py-24 md:py-32 bg-background">
+      <style>{`
+        @keyframes test-in {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .test-title  { animation: test-in 0.6s ease both; }
+        .test-card-0 { animation: test-in 0.5s ease 0.1s both; }
+        .test-card-1 { animation: test-in 0.5s ease 0.25s both; }
+      `}</style>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className="text-center mb-16 fade-up"
-          style={isInView ? { opacity: 1, transform: "translateY(0)" } : {}}>
+        <div className="test-title text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
             Lo que dicen los negocios
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="glass-card rounded-2xl p-6 md:p-8 fade-up"
-              style={
-                isInView
-                  ? {
-                      opacity: 1,
-                      transform: "translateY(0)",
-                      transitionDelay: `${index * 0.15}s`,
-                    }
-                  : {}
-              }>
+          {testimonials.map((t, index) => (
+            <div key={index} className={`test-card-${index} glass-card rounded-2xl p-6 md:p-8`}>
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-lg">
-                  {testimonial.initials}
+                <div className="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                  {t.initials}
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.business}
-                  </p>
+                  <p className="font-semibold text-foreground">{t.name}</p>
+                  <p className="text-sm text-muted-foreground">{t.business}</p>
                 </div>
               </div>
-
               <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-5 h-5 fill-yellow-500 text-yellow-500"
-                  />
-                ))}
+                {[...Array(5)].map((_, i) => <StarSVG key={i} />)}
               </div>
-
-              <p className="text-foreground leading-relaxed">
-                &ldquo;{testimonial.quote}&rdquo;
-              </p>
+              <p className="text-foreground leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
             </div>
           ))}
         </div>
