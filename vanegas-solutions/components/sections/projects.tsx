@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight, Store, Scissors, Wrench } from "lucide-react";
 import Image from "next/image";
+import { useInViewLite } from "@/hooks/use-in-view-lite";
 
 const projects = [
   {
@@ -57,7 +57,6 @@ function ProjectPreview({
           if (fallback) fallback.style.display = "flex";
         }}
       />
-
       <div
         data-fallback
         style={{ display: "none" }}
@@ -73,8 +72,8 @@ function ProjectPreview({
 }
 
 export function ProjectsSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInViewLite(ref, { once: true, margin: "-100px" });
 
   return (
     <section
@@ -82,27 +81,31 @@ export function ProjectsSection() {
       id="proyectos"
       className="py-24 md:py-32 bg-background dot-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16">
+        <div
+          className="text-center mb-16 fade-up"
+          style={isInView ? { opacity: 1, transform: "translateY(0)" } : {}}>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 font-[family-name:var(--font-syne)]">
             Así podría verse tu negocio
           </h2>
           <p className="text-muted-foreground text-lg">
             Ejemplos reales de lo que puedo construir para vos
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="group glass-card glass-card-hover rounded-2xl overflow-hidden transition-all duration-300">
+              className="group glass-card glass-card-hover rounded-2xl overflow-hidden transition-all duration-300 fade-up"
+              style={
+                isInView
+                  ? {
+                      opacity: 1,
+                      transform: "translateY(0)",
+                      transitionDelay: `${index * 0.15}s`,
+                    }
+                  : {}
+              }>
               <div className="bg-[#1a1a24] px-4 py-3 flex items-center gap-2 border-b border-border">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/60" />
@@ -142,7 +145,7 @@ export function ProjectsSection() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

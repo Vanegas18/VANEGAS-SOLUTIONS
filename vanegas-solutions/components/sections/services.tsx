@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Globe, MessageSquare, Zap, ArrowRight, X, Check } from "lucide-react";
+import { Globe, MessageSquare, Zap, ArrowRight, Check } from "lucide-react";
+import { useInViewLite } from "@/hooks/use-in-view-lite";
 import {
   Dialog,
   DialogContent,
@@ -39,7 +39,7 @@ const services = [
     icon: MessageSquare,
     title: "WhatsApp automatizado",
     benefit: "Respondé a clientes automáticamente y no pierdas ventas",
-    description: "Respuestas inteligentes que trabajan mientras duermes.",
+    description: "Respuestas inteligentes que trabajan mientras dormís.",
     modal: {
       headline: "¿Cómo funciona el WhatsApp automatizado?",
       explanation:
@@ -110,9 +110,7 @@ function ServiceModal({
           </div>
         </div>
 
-
         <div className="px-6 py-5 space-y-5">
-
           <p className="text-muted-foreground text-sm leading-relaxed">
             {service.modal.explanation}
           </p>
@@ -133,15 +131,13 @@ function ServiceModal({
             </ul>
           </div>
 
-          {/* Ideal para */}
-          <div className="bg-white/3 border border-white/8 rounded-xl px-4 py-3">
+          <div className="bg-white/5 border border-white/8 rounded-xl px-4 py-3">
             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
               Ideal para
             </p>
             <p className="text-sm text-foreground/70">{service.modal.ideal}</p>
           </div>
 
-          {/* CTA */}
           <a
             href={WHATSAPP_URL}
             target="_blank"
@@ -157,8 +153,8 @@ function ServiceModal({
 }
 
 export function ServicesSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInViewLite(ref, { once: true, margin: "-100px" });
   const [selected, setSelected] = useState<Service | null>(null);
 
   return (
@@ -167,25 +163,29 @@ export function ServicesSection() {
       id="servicios"
       className="py-24 md:py-32 bg-background dot-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16">
+        <div
+          className="text-center mb-16 fade-up"
+          style={isInView ? { opacity: 1, transform: "translateY(0)" } : {}}>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
             ¿Qué puedo hacer por tu negocio?
           </h2>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
               onClick={() => setSelected(service)}
-              className="group glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300 cursor-pointer">
+              className="group glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300 cursor-pointer fade-up"
+              style={
+                isInView
+                  ? {
+                      opacity: 1,
+                      transform: "translateY(0)",
+                      transitionDelay: `${index * 0.15}s`,
+                    }
+                  : {}
+              }>
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
                 <service.icon className="w-7 h-7 text-primary" />
               </div>
@@ -200,7 +200,7 @@ export function ServicesSection() {
                 Ver más
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

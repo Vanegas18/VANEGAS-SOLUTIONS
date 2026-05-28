@@ -1,16 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { MessageCircle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useInViewLite } from "@/hooks/use-in-view-lite";
 
 const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 
 export function CTASection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInViewLite(ref, { once: true, margin: "-100px" });
 
   return (
     <section ref={ref} className="py-24 md:py-32 relative overflow-hidden">
@@ -18,26 +17,37 @@ export function CTASection() {
       <div className="absolute inset-0 dot-pattern opacity-50" />
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 font-[family-name:var(--font-syne)]">
+        <h2
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 font-[family-name:var(--font-syne)] fade-up"
+          style={isInView ? { opacity: 1, transform: "translateY(0)" } : {}}>
           ¿Listo para digitalizar tu negocio?
-        </motion.h2>
+        </h2>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-lg md:text-xl text-muted-foreground mb-10">
+        <p
+          className="text-lg md:text-xl text-muted-foreground mb-10 fade-up"
+          style={
+            isInView
+              ? {
+                  opacity: 1,
+                  transform: "translateY(0)",
+                  transitionDelay: "0.1s",
+                }
+              : {}
+          }>
           Escribime hoy y en menos de 24 horas tenés una propuesta.
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}>
+        <div
+          className="fade-up"
+          style={
+            isInView
+              ? {
+                  opacity: 1,
+                  transform: "translateY(0)",
+                  transitionDelay: "0.2s",
+                }
+              : {}
+          }>
           <Button
             asChild
             size="lg"
@@ -51,13 +61,19 @@ export function CTASection() {
               Escríbeme por WhatsApp 💬
             </a>
           </Button>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-8 flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-muted-foreground">
+        <div
+          className="mt-8 flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-muted-foreground fade-up"
+          style={
+            isInView
+              ? {
+                  opacity: 1,
+                  transform: "translateY(0)",
+                  transitionDelay: "0.3s",
+                }
+              : {}
+          }>
           {["Sin contratos", "Sin permanencia", "Resultados garantizados"].map(
             (item, index) => (
               <span key={index} className="flex items-center gap-1.5">
@@ -66,7 +82,7 @@ export function CTASection() {
               </span>
             ),
           )}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

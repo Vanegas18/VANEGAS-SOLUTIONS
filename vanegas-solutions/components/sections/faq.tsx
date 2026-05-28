@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
 import { useRef } from "react";
 import {
   Accordion,
@@ -9,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useInViewLite } from "@/hooks/use-in-view-lite";
 
 const faqs = [
   {
@@ -32,8 +31,8 @@ const faqs = [
 ];
 
 export function FAQSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInViewLite(ref, { once: true, margin: "-100px" });
 
   return (
     <section
@@ -41,20 +40,25 @@ export function FAQSection() {
       id="faq"
       className="py-24 md:py-32 bg-background dot-pattern">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16">
+        <div
+          className="text-center mb-16 fade-up"
+          style={isInView ? { opacity: 1, transform: "translateY(0)" } : {}}>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
             Preguntas frecuentes
           </h2>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}>
+        <div
+          className="fade-up"
+          style={
+            isInView
+              ? {
+                  opacity: 1,
+                  transform: "translateY(0)",
+                  transitionDelay: "0.2s",
+                }
+              : {}
+          }>
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem
@@ -70,7 +74,7 @@ export function FAQSection() {
               </AccordionItem>
             ))}
           </Accordion>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

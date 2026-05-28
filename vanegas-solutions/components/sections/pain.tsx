@@ -1,9 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { TrendingDown, Smartphone, Clock } from "lucide-react";
+import { useInViewLite } from "@/hooks/use-in-view-lite";
 
 const painPoints = [
   {
@@ -13,41 +12,45 @@ const painPoints = [
   },
   {
     icon: Smartphone,
-    title: "Tu competencia ya tiene web y redes, y tu no",
+    title: "Tu competencia ya tiene web y redes, y vos no",
     description: "Mientras dudás, ellos captan a tus clientes potenciales",
   },
   {
     icon: Clock,
     title: "Respondés WhatsApp manualmente todo el día y se te van los pedidos",
-    description: "Cuando no puedes contestar, las ventas se pierden",
+    description: "Cuando no podés contestar, las ventas se pierden",
   },
 ];
 
 export function PainSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInViewLite(ref, { once: true, margin: "-100px" });
 
   return (
     <section ref={ref} className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16">
+        <div
+          className="text-center mb-16 fade-up"
+          style={isInView ? { opacity: 1, transform: "translateY(0)" } : {}}>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
             ¿Te identificás con esto?
           </h2>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {painPoints.map((point, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300">
+              className="glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300 fade-up"
+              style={
+                isInView
+                  ? {
+                      opacity: 1,
+                      transform: "translateY(0)",
+                      transitionDelay: `${index * 0.15}s`,
+                    }
+                  : {}
+              }>
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
                 <point.icon className="w-7 h-7 text-primary" />
               </div>
@@ -57,7 +60,7 @@ export function PainSection() {
               <p className="text-muted-foreground text-sm md:text-base">
                 {point.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
