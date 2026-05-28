@@ -1,7 +1,6 @@
 "use client";
 
 import { MessageCircle, CheckCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 
@@ -35,7 +34,6 @@ export function HeroSection() {
         .hero-blob-2 { animation: hero-blob-2 10s ease-in-out infinite; }
       `}</style>
 
-      {/* Animated background blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="hero-blob-1 absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[128px]" />
         <div className="hero-blob-2 absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-[128px]" />
@@ -43,7 +41,7 @@ export function HeroSection() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="hero-h1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight font-[family-name:var(--font-syne)] text-balance">
-          Digitaliza tu negocio y vendee más 🚀
+          Digitaliza tu negocio y vende más 🚀
         </h1>
 
         <p className="hero-p mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
@@ -51,19 +49,14 @@ export function HeroSection() {
         </p>
 
         <div className="hero-cta mt-10">
-          <Button
-            asChild
-            size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8 py-6 rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2">
-              <MessageCircle className="w-5 h-5" />
-              Hablar por WhatsApp
-            </a>
-          </Button>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4 rounded-xl shadow-lg transition-all">
+            <MessageCircle className="w-5 h-5" />
+            Hablar por WhatsApp
+          </a>
         </div>
 
         <div className="hero-tags mt-8 flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-muted-foreground">
@@ -80,7 +73,6 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2">
         <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
           <div className="scroll-dot w-1.5 h-3 bg-muted-foreground/50 rounded-full mt-2" />
