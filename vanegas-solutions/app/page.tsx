@@ -20,14 +20,10 @@ export default function Home() {
       <TestimonialsSection />
       <ProjectsSection />
       <BenefitsSection />
-      {/* <ServicesSection />
-      <TestimonialsSection />
-      <ProjectsSection />
-      <BenefitsSection />
       <FAQSection />
       <CTASection />
       <Footer />
-      <WhatsAppButton /> */}
+      <WhatsAppButton />
     </main>
   );
 }

@@ -1,6 +1,3 @@
-import { FaInstagram, FaWhatsapp, FaFacebook, FaTiktok } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-
 const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 const INSTAGRAM_URL = "https://www.instagram.com/vanegas.solutions/";
 const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61572028376926";
@@ -10,29 +7,102 @@ const EMAIL = "mailto:contacto@vanegassolutions.com";
 const socials = [
   {
     href: INSTAGRAM_URL,
-    icon: FaInstagram,
     label: "Instagram",
     color: "hover:text-pink-400",
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+      </svg>
+    ),
   },
   {
     href: WHATSAPP_URL,
-    icon: FaWhatsapp,
     label: "WhatsApp",
     color: "hover:text-green-400",
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+      </svg>
+    ),
   },
   {
     href: FACEBOOK_URL,
-    icon: FaFacebook,
     label: "Facebook",
     color: "hover:text-blue-400",
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      </svg>
+    ),
   },
   {
     href: TIKTOK_URL,
-    icon: FaTiktok,
     label: "TikTok",
     color: "hover:text-white",
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+      </svg>
+    ),
   },
-  { href: EMAIL, icon: MdEmail, label: "Correo", color: "hover:text-sky-400" },
+  {
+    href: EMAIL,
+    label: "Correo",
+    color: "hover:text-sky-400",
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        <rect width="20" height="16" x="2" y="4" rx="2" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+      </svg>
+    ),
+  },
 ];
 
 export function Footer() {
@@ -48,9 +118,8 @@ export function Footer() {
               Digitalizando negocios 🚀
             </p>
           </div>
-
           <div className="flex items-center gap-3">
-            {socials.map(({ href, icon: Icon, label, color }) => (
+            {socials.map(({ href, label, color, svg }) => (
               <a
                 key={label}
                 href={href}
@@ -58,12 +127,11 @@ export function Footer() {
                 rel="noopener noreferrer"
                 aria-label={label}
                 className={`w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground transition-colors ${color}`}>
-                <Icon className="w-5 h-5" />
+                {svg}
               </a>
             ))}
           </div>
         </div>
-
         <div className="mt-8 pt-8 border-t border-border text-center">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Juan Jose Vanegas. Todos los derechos
