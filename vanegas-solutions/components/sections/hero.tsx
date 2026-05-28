@@ -43,7 +43,7 @@ export function HeroSection() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="hero-h1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight font-[family-name:var(--font-syne)] text-balance">
-          Digitaliza tu negocio y vende mucho más 🚀
+          Digitaliza tu negocio y vendee más 🚀
         </h1>
 
         <p className="hero-p mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
