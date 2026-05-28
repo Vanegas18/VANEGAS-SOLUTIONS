@@ -52,6 +52,10 @@ export default function RootLayout({
     <html
       lang="es"
       className={cn("bg-background", outfit.variable, syne.variable, "font-sans", geist.variable)}>
+      <head>
+        <script src="//cdn.jsdelivr.net/npm/eruda" async />
+        <script dangerouslySetInnerHTML={{__html: 'eruda.init()'}} async />
+      </head>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === "production" && <Analytics />}
