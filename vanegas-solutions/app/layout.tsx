@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -51,10 +51,24 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={cn("bg-background", outfit.variable, syne.variable, "font-sans", geist.variable)}>
+      className={cn(
+        "bg-background",
+        outfit.variable,
+        syne.variable,
+        "font-sans",
+        geist.variable,
+      )}>
       <head>
-        <script src="//cdn.jsdelivr.net/npm/eruda" async />
-        <script dangerouslySetInnerHTML={{__html: 'eruda.init()'}} async />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+        var s = document.createElement('script');
+        s.src = '//cdn.jsdelivr.net/npm/eruda';
+        s.onload = function() { eruda.init(); };
+        document.head.appendChild(s);
+      `,
+          }}
+        />
       </head>
       <body className="font-sans antialiased">
         {children}
