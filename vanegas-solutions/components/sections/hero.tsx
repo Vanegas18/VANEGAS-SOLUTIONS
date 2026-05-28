@@ -95,6 +95,12 @@ export function HeroSection() {
           ))}
         </div>
       </div>
+
+      <div className="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2">
+        <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
+          <div className="scroll-dot w-1.5 h-3 bg-muted-foreground/50 rounded-full mt-2" />
+        </div>
+      </div>
     </section>
   );
 }
