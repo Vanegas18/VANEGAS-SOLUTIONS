@@ -1,13 +1,42 @@
-"use client";
-
-import { useRef } from "react";
-import { ArrowRight, Store, Scissors, Wrench } from "lucide-react";
 import Image from "next/image";
-import { useInViewLite } from "@/hooks/use-in-view-lite";
+
+const ArrowSVG = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round">
+    <path d="M5 12h14" />
+    <path d="m12 5 7 7-7 7" />
+  </svg>
+);
 
 const projects = [
   {
-    icon: Store,
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="64"
+        height="64"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#3B82F6"
+        strokeWidth="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ opacity: 0.3 }}>
+        <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" />
+        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+        <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" />
+        <path d="M2 7h20" />
+        <path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7" />
+      </svg>
+    ),
     name: "BuildMart",
     category: "Constructora",
     image: "/images/buildmart.png",
@@ -17,73 +46,74 @@ const projects = [
       "Ahora controla todo su negocio desde una sola plataforma, sin depender de terceros",
   },
   {
-    icon: Scissors,
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="64"
+        height="64"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#3B82F6"
+        strokeWidth="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ opacity: 0.3 }}>
+        <path d="M20 7c0 2.21-3.58 4-8 4S4 9.21 4 7" />
+        <path d="M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4" />
+        <path d="M4 7v5c0 2.21 3.58 4 8 4" />
+        <path d="M20 7v2" />
+        <circle cx="18" cy="18" r="3" />
+        <path d="m22 22-1.5-1.5" />
+      </svg>
+    ),
     name: "Barberia Style",
     category: "Barbería",
+    image: "",
     description: "Sistema de citas por WhatsApp y web automatizado",
     result: "Reservas sin llamadas, agenda siempre llena",
   },
   {
-    icon: Wrench,
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="64"
+        height="64"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#3B82F6"
+        strokeWidth="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ opacity: 0.3 }}>
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+      </svg>
+    ),
     name: "Ferretería El Progreso",
     category: "Ferretería",
+    image: "",
     description: "Catálogo digital con precios actualizables",
     result: "Clientes consultan precios sin llamar",
   },
 ];
 
-function ProjectPreview({
-  image,
-  icon: Icon,
-  name,
-}: {
-  image?: string;
-  icon: React.ElementType;
-  name: string;
-}) {
-  return image ? (
-    <div className="relative h-32 md:h-40 overflow-hidden">
-      <Image
-        src={image}
-        alt={`Vista previa de ${name}`}
-        fill
-        sizes="(max-width: 768px) 100vw, 33vw"
-        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-        onError={(e) => {
-          (e.currentTarget as HTMLImageElement).style.display = "none";
-          const fallback = e.currentTarget.parentElement?.querySelector(
-            "[data-fallback]",
-          ) as HTMLElement;
-          if (fallback) fallback.style.display = "flex";
-        }}
-      />
-      <div
-        data-fallback
-        style={{ display: "none" }}
-        className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 items-center justify-center">
-        <Icon className="w-16 h-16 text-primary/30" />
-      </div>
-    </div>
-  ) : (
-    <div className="h-32 md:h-40 bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">
-      <Icon className="w-16 h-16 text-primary/30" />
-    </div>
-  );
-}
-
 export function ProjectsSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInViewLite(ref, { once: true, margin: "-100px" });
-
   return (
     <section
-      ref={ref}
       id="proyectos"
       className="py-24 md:py-32 bg-background dot-pattern">
+      <style>{`
+        @keyframes proj-in {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .proj-title  { animation: proj-in 0.6s ease both; }
+        .proj-card-0 { animation: proj-in 0.5s ease 0.1s both; }
+        .proj-card-1 { animation: proj-in 0.5s ease 0.25s both; }
+        .proj-card-2 { animation: proj-in 0.5s ease 0.4s both; }
+      `}</style>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className="text-center mb-16 fade-up"
-          style={isInView ? { opacity: 1, transform: "translateY(0)" } : {}}>
+        <div className="proj-title text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 font-[family-name:var(--font-syne)]">
             Así podría verse tu negocio
           </h2>
@@ -96,16 +126,8 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group glass-card glass-card-hover rounded-2xl overflow-hidden transition-all duration-300 fade-up"
-              style={
-                isInView
-                  ? {
-                      opacity: 1,
-                      transform: "translateY(0)",
-                      transitionDelay: `${index * 0.15}s`,
-                    }
-                  : {}
-              }>
+              className={`proj-card-${index} group glass-card glass-card-hover rounded-2xl overflow-hidden transition-all duration-300`}>
+              {/* Browser bar */}
               <div className="bg-[#1a1a24] px-4 py-3 flex items-center gap-2 border-b border-border">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/60" />
@@ -119,11 +141,22 @@ export function ProjectsSection() {
                 </div>
               </div>
 
-              <ProjectPreview
-                image={project.image}
-                icon={project.icon}
-                name={project.name}
-              />
+              {/* Preview */}
+              {project.image ? (
+                <div className="relative h-32 md:h-40 overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={`Vista previa de ${project.name}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+              ) : (
+                <div className="h-32 md:h-40 bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">
+                  {project.svg}
+                </div>
+              )}
 
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-3">
@@ -141,8 +174,7 @@ export function ProjectsSection() {
                   → {project.result}
                 </p>
                 <span className="inline-flex items-center gap-1 text-sm text-muted-foreground group-hover:text-primary transition-colors">
-                  Así podría verse tu negocio
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  Así podría verse tu negocio <ArrowSVG />
                 </span>
               </div>
             </div>

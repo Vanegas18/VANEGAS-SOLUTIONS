@@ -18,6 +18,8 @@ export default function Home() {
       <PainSection />
       <ServicesSection />
       <TestimonialsSection />
+      <ProjectsSection />
+      <BenefitsSection />
       {/* <ServicesSection />
       <TestimonialsSection />
       <ProjectsSection />
