@@ -5,8 +5,8 @@ const painPoints = [
         <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
       </svg>
     ),
-    title: "Pierdes clientes porque no te encuentran en internet",
-    description: "Tu negocio es invisible para quienes buscan en Google",
+    title: "Tu negocio no existe en Google",
+    description: "Mientras duermes, tu competencia está captando los clientes que deberían ser tuyos",
   },
   {
     svg: (
@@ -14,8 +14,8 @@ const painPoints = [
         <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>
       </svg>
     ),
-    title: "Tu competencia ya tiene web y redes, y vos no",
-    description: "Mientras dudás, ellos captan a tus clientes potenciales",
+    title: "Pierdes ventas por no responder a tiempo",
+    description: "Cada mensaje sin respuesta es dinero que se va. Y pasa todo el día, todos los días",
   },
   {
     svg: (
@@ -23,8 +23,8 @@ const painPoints = [
         <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
       </svg>
     ),
-    title: "Respondés WhatsApp manualmente todo el día y se te van los pedidos",
-    description: "Cuando no podés contestar, las ventas se pierden",
+    title: "Todo depende de ti, y eso te tiene agotado",
+    description: "Sin sistemas, sin orden — si tú no estás, el negocio se para",
   },
 ];
 
@@ -45,7 +45,7 @@ export function PainSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="pain-title text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
-            ¿Te identificás con esto?
+            ¿Te identificas con alguno de estos?
           </h2>
         </div>
 

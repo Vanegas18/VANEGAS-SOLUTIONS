@@ -3,7 +3,7 @@ const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 const guarantees = [
   "Sin contratos",
   "Sin permanencia",
-  "Resultados garantizados",
+  "Primera consulta gratis",
 ];
 
 export function CTASection() {
@@ -25,10 +25,11 @@ export function CTASection() {
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="cta-h2 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 font-[family-name:var(--font-syne)]">
-          ¿Listo para digitalizar tu negocio?
+          Tu negocio puede estar digitalizado esta semana
         </h2>
         <p className="cta-p text-lg md:text-xl text-muted-foreground mb-10">
-          Escribime hoy y en menos de 24 horas tenés una propuesta.
+          Escríbeme hoy — en menos de 24 horas tienes una propuesta concreta y
+          un plan claro.
         </p>
         <div className="cta-btn">
           <a
@@ -48,7 +49,7 @@ export function CTASection() {
               strokeLinejoin="round">
               <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
             </svg>
-            Escríbeme por WhatsApp 💬
+            Empezar ahora por WhatsApp 🚀
           </a>
         </div>
         <div className="cta-tags mt-8 flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-muted-foreground">

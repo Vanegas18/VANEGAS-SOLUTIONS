@@ -4,6 +4,11 @@ import { useState } from "react";
 
 const faqs = [
   {
+    question: "¿Por dónde empezamos?",
+    answer:
+      "Escríbeme por WhatsApp, me cuentas tu negocio y en menos de 24 horas te mando una propuesta concreta.",
+  },
+  {
     question: "¿Cuánto cuesta?",
     answer:
       "Depende del proyecto. Los paquetes básicos arrancan desde $399.000 COP. Hablamos y te doy un precio justo según lo que necesitás.",
@@ -11,7 +16,7 @@ const faqs = [
   {
     question: "¿Cuánto demora?",
     answer:
-      "Una página web básica lista en 5-7 días. Proyectos más grandes en 2-3 semanas.",
+      "Páginas web: 3-7 días. Automatización: 2-5 días. Configuración básica: 1-3 días.",
   },
   {
     question: "¿Necesito saber de tecnología?",

@@ -2,7 +2,7 @@ const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 
 const badges = [
   "Respondo en menos de 1 hora",
-  "Sin contratos",
+  "Primera consulta gratis",
   "Resultados reales",
 ];
 
@@ -43,11 +43,11 @@ export function HeroSection() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="hero-h1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight font-[family-name:var(--font-syne)] text-balance">
-          Digitaliza tu negocio y vende más 🚀
+          Tu negocio pierde clientes hoy por no estar en internet 📲
         </h1>
 
         <p className="hero-p mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-          Páginas web, WhatsApp automatizado y soluciones simples para negocios.
+          Te ayudo a digitalizarlo en menos de 7 días — más ventas, más orden, menos trabajo manual.
         </p>
 
         <div className="hero-cta mt-10">
@@ -69,7 +69,7 @@ export function HeroSection() {
               strokeLinejoin="round">
               <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
             </svg>
-            Hablar por WhatsApp
+            Quiero digitalizar mi negocio
           </a>
         </div>
 

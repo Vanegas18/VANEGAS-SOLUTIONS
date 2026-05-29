@@ -3,13 +3,13 @@ const testimonials = [
     initials: "CR",
     name: "Carlos R.",
     business: "BuildMart, Materiales de Construcción",
-    quote: "Antes tenía que atender el teléfono todo el día. Ahora los clientes hacen pedidos directo desde la web, sin que yo tenga que levantar un dedo.",
+    quote: "En 5 días tenía mi página lista. La primera semana ya recibí 3 consultas nuevas que antes se perdían porque no me encontraban..",
   },
   {
     initials: "FV",
     name: "Felipe V.",
     business: "Barberia Style",
-    quote: "Mis clientes adoran poder reservar por WhatsApp. Mi agenda nunca estuvo tan llena, y yo tengo más tiempo para enfocarme en el negocio.",
+    quote: "Antes perdía reservas por no ver los mensajes a tiempo. Ahora WhatsApp trabaja solo y mi agenda está llena.",
   },
 ];
 

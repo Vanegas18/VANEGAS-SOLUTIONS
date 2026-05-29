@@ -57,7 +57,7 @@ const benefits = [
       </svg>
     ),
     title: "Más orden",
-    description: "Sistemas simples que organizan tu negocio",
+    description: "Un negocio organizado crece más rápido",
   },
   {
     svg: (

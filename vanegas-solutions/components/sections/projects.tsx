@@ -45,55 +45,6 @@ const projects = [
     result:
       "Ahora controla todo su negocio desde una sola plataforma, sin depender de terceros",
   },
-  {
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="64"
-        height="64"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#3B82F6"
-        strokeWidth="1"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        style={{ opacity: 0.3 }}>
-        <path d="M20 7c0 2.21-3.58 4-8 4S4 9.21 4 7" />
-        <path d="M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4" />
-        <path d="M4 7v5c0 2.21 3.58 4 8 4" />
-        <path d="M20 7v2" />
-        <circle cx="18" cy="18" r="3" />
-        <path d="m22 22-1.5-1.5" />
-      </svg>
-    ),
-    name: "Barberia Style",
-    category: "Barbería",
-    image: "",
-    description: "Sistema de citas por WhatsApp y web automatizado",
-    result: "Reservas sin llamadas, agenda siempre llena",
-  },
-  {
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="64"
-        height="64"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#3B82F6"
-        strokeWidth="1"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        style={{ opacity: 0.3 }}>
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-      </svg>
-    ),
-    name: "Ferretería El Progreso",
-    category: "Ferretería",
-    image: "",
-    description: "Catálogo digital con precios actualizables",
-    result: "Clientes consultan precios sin llamar",
-  },
 ];
 
 export function ProjectsSection() {
@@ -118,11 +69,18 @@ export function ProjectsSection() {
             Así podría verse tu negocio
           </h2>
           <p className="text-muted-foreground text-lg">
-            Ejemplos reales de lo que puedo construir para vos
+            Ejemplos reales de lo que puedo construir para tu negocio.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div
+          className={`grid gap-6 ${
+            projects.length === 1
+              ? "grid-cols-1 max-w-sm mx-auto"
+              : projects.length === 2
+                ? "grid-cols-1 md:grid-cols-2 max-w-2xl mx-auto"
+                : "grid-cols-1 md:grid-cols-3"
+          }`}>
           {projects.map((project, index) => (
             <div
               key={index}
