@@ -18,25 +18,6 @@ const ArrowSVG = () => (
 
 const projects = [
   {
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="64"
-        height="64"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#3B82F6"
-        strokeWidth="1"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        style={{ opacity: 0.3 }}>
-        <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" />
-        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-        <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" />
-        <path d="M2 7h20" />
-        <path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7" />
-      </svg>
-    ),
     name: "BuildMart",
     category: "Constructora",
     image: "/images/buildmart.png",
@@ -44,6 +25,37 @@ const projects = [
       "Sistema web completo con catálogo, carrito, pagos y gestión administrativa",
     result:
       "Ahora controla todo su negocio desde una sola plataforma, sin depender de terceros",
+    link: "https://build-two-sage.vercel.app/",
+  },
+  {
+    name: "SaborExpress",
+    category: "Restaurante",
+    image: "/images/saborexpress.png",
+    description:
+      "Landing page con menú digital y sistema de reservas via WhatsApp",
+    result:
+      "Ahora sus clientes pueden reservar y ordenar desde su celular, sin esperas ni llamadas perdidas",
+    link: "https://restaurant-landing-beta.vercel.app/",
+  },
+  {
+    name: "Lumen",
+    category: "Tienda de ropa",
+    image: "/images/lumen.png",
+    description:
+      "Landing page con catálogo de productos y sistema de compra via WhatsApp",
+    result:
+      "Ahora sus clientes pueden comprar desde su celular, sin esperas ni llamadas perdidas",
+    link: "https://store-landing-rouge.vercel.app/",
+  },
+  {
+    name: "Maison Noir",
+    category: "Perfumería",
+    image: "/images/maison.png",
+    description:
+      "Catalogo digital con sistema de compra via WhatsApp Y panel administrativo para gestionar productos",
+    result:
+      "Ahora sus clientes pueden comprar desde su celular, sin esperas ni llamadas perdidas y el negocio puede gestionar su catálogo sin depender de terceros",
+    link: "https://perfume-catalog-chi.vercel.app/",
   },
 ];
 
@@ -100,7 +112,7 @@ export function ProjectsSection() {
               </div>
 
               {/* Preview */}
-              {project.image ? (
+              {project.image && (
                 <div className="relative h-32 md:h-40 overflow-hidden">
                   <Image
                     src={project.image}
@@ -109,10 +121,6 @@ export function ProjectsSection() {
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
-                </div>
-              ) : (
-                <div className="h-32 md:h-40 bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">
-                  {project.svg}
                 </div>
               )}
 
@@ -131,9 +139,16 @@ export function ProjectsSection() {
                 <p className="text-sm text-primary font-medium mb-4">
                   → {project.result}
                 </p>
-                <span className="inline-flex items-center gap-1 text-sm text-muted-foreground group-hover:text-primary transition-colors">
-                  Así podría verse tu negocio <ArrowSVG />
-                </span>
+                <div className="mt-auto">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-sm text-muted-foreground group-hover:text-primary transition-colors"
+                  >
+                    Ver proyecto <ArrowSVG />
+                  </a>
+                </div>
               </div>
             </div>
           ))}
