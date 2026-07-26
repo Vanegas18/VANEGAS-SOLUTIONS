@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { legalDocs } from "@/lib/legal-content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -20,5 +21,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: "https://vanegassolutions.com/legal",
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.5,
+    },
+    ...legalDocs.map((doc) => ({
+      url: `https://vanegassolutions.com/legal/${doc.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.4,
+    })),
   ];
 }

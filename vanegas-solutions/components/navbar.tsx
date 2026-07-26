@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
+import Link from "next/link";
 
 const navLinks = [
-  { href: "#servicios", label: "Servicios" },
-  { href: "#proyectos", label: "Proyectos" },
-  { href: "#testimonios", label: "Testimonios" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#servicios", label: "Servicios" },
+  { href: "/#proyectos", label: "Proyectos" },
+  { href: "/#testimonios", label: "Testimonios" },
+  { href: "/legal", label: "Legal" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export function Navbar() {
@@ -18,19 +20,19 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <a
-            href="#"
+          <Link
+            href="/"
             className="text-xl md:text-2xl font-bold text-foreground font-(family-name:--font-syne)">
             Vanegas Solutions
-          </a>
+          </Link>
           <div className="flex items-center gap-6">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="hidden md:block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 {link.label}
-              </a>
+              </Link>
             ))}
             <a
               href={waLink("Hola, quiero saber más sobre Vanegas Solutions")}
