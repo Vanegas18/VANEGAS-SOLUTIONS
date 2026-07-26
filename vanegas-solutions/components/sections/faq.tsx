@@ -11,12 +11,12 @@ const faqs = [
   {
     question: "¿Cuánto cuesta?",
     answer:
-      "Depende del proyecto. Los paquetes básicos arrancan desde $399.000 COP. Hablamos y te doy un precio justo según lo que necesitás.",
+      "Depende del proyecto. Los paquetes básicos arrancan desde $299.000 COP. Hablamos y te doy un precio justo según lo que necesitas.",
   },
   {
     question: "¿Cuánto demora?",
     answer:
-      "Páginas web: 3-7 días. Automatización: 2-5 días. Configuración básica: 1-3 días.",
+      "Depende del alcance del proyecto. Una vez definimos qué necesitas, te doy un tiempo estimado claro antes de empezar.",
   },
   {
     question: "¿Necesito saber de tecnología?",
@@ -24,7 +24,18 @@ const faqs = [
   },
   {
     question: "¿Qué pasa si no quedo satisfecho?",
-    answer: "Sin contratos ni permanencia. Si no quedás conforme, no pagás.",
+    answer:
+      "No hay contratos de permanencia — si en el futuro no quieres seguir con el servicio de Fidelización, no hay problema. Además, cualquier error atribuible al desarrollo queda cubierto por garantía.",
+  },
+  {
+    question: "¿Cómo funciona el pago?",
+    answer:
+      "Se solicita un anticipo del 50% para iniciar el proyecto, y el saldo restante se cancela según lo acordado o antes de la entrega final.",
+  },
+  {
+    question: "¿Qué pasa después de la entrega?",
+    answer:
+      "Te doy soporte inicial para resolver dudas. Si quieres que siga acompañándote con mejoras, actualizaciones y nuevas funcionalidades, existe el servicio de Fidelización mensual.",
   },
 ];
 

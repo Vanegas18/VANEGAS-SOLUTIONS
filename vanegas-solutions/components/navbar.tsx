@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-
-const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
+import { waLink } from "@/lib/whatsapp";
 
 const navLinks = [
-  { href: "#servicios", label: "Servicios" }, 
+  { href: "#servicios", label: "Servicios" },
   { href: "#proyectos", label: "Proyectos" },
   { href: "#testimonios", label: "Testimonios" },
   { href: "#faq", label: "FAQ" },
@@ -34,7 +33,7 @@ export function Navbar() {
               </a>
             ))}
             <a
-              href={WHATSAPP_URL}
+              href={waLink("Hola, quiero saber más sobre Vanegas Solutions")}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-primary text-white text-sm font-medium px-4 py-2 rounded-lg">
@@ -64,7 +63,7 @@ export function Navbar() {
             </a>
           ))}
           <a
-            href={WHATSAPP_URL}
+            href={waLink("Hola, quiero saber más sobre Vanegas Solutions")}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-primary hover:bg-primary/90 text-primary-foreground text-center text-sm font-medium px-4 py-2.5 rounded-lg transition-colors">

@@ -1,4 +1,4 @@
-const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
+import { waLink } from "@/lib/whatsapp";
 
 export function WhatsAppButton() {
   return (
@@ -17,7 +17,7 @@ export function WhatsAppButton() {
       `}</style>
 
       <a
-        href={WHATSAPP_URL}
+        href={waLink("Hola, tengo una consulta")}
         target="_blank"
         rel="noopener noreferrer"
         className="wa-btn fixed bottom-6 right-6 z-50"

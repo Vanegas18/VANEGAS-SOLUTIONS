@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { Globe, MessageCircle, Zap, FileText, Grid2x2, Instagram, Package, CheckCircle2, X, ArrowRight } from "lucide-react";
-
-const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
+import { waLink } from "@/lib/whatsapp";
 
 const services = [
   {
@@ -27,6 +26,8 @@ const services = [
       ],
       ideal:
         "Tiendas, restaurantes, peluquerías, ferreterías, talleres — cualquier negocio que quiera más clientes.",
+      whatsappMessage:
+        "Hola, me interesa una página web profesional para mi negocio",
     },
   },
   {
@@ -49,6 +50,7 @@ const services = [
       ],
       ideal:
         "Cualquier negocio que reciba consultas por WhatsApp y quiera responder mejor y más rápido.",
+      whatsappMessage: "Hola, quiero optimizar mi WhatsApp Business",
     },
   },
   {
@@ -71,6 +73,7 @@ const services = [
       ],
       ideal:
         "Negocios con procesos repetitivos que consumen tiempo: agendas, pedidos, confirmaciones, seguimientos.",
+      whatsappMessage: "Hola, quiero automatizar procesos de mi negocio",
     },
   },
   {
@@ -93,6 +96,7 @@ const services = [
       ],
       ideal:
         "Negocios que hacen publicidad en redes sociales o Google y necesitan una página que convierta ese tráfico en clientes.",
+      whatsappMessage: "Hola, necesito una landing page para mi negocio",
     },
   },
   {
@@ -116,6 +120,8 @@ const services = [
       ],
       ideal:
         "Tiendas, ferreterías, distribuidoras, restaurantes — negocios con muchos productos que reciben consultas repetitivas.",
+      whatsappMessage:
+        "Hola, quiero un catálogo digital para mostrar mis productos",
     },
   },
   {
@@ -139,6 +145,7 @@ const services = [
       ],
       ideal:
         "Negocios que tienen redes sociales pero no las tienen bien configuradas o no generan resultados.",
+      whatsappMessage: "Hola, quiero optimizar mis redes sociales",
     },
   },
   {
@@ -162,6 +169,7 @@ const services = [
       ],
       ideal:
         "Negocios que quieren dar el salto digital de una sola vez, sin hacerlo por partes.",
+      whatsappMessage: "Hola, quiero digitalizar completamente mi negocio",
     },
   },
 ];
@@ -175,12 +183,12 @@ export function ServicesSection() {
     <section
       id="servicios"
       className="py-24 md:py-32 bg-background dot-pattern">
-      <div className="svc-modal-backdrop" style={{position: 'fixed'}} />
+      <div className="svc-modal-backdrop" style={{ position: "fixed" }} />
       <style>{`
         .svc-modal-backdrop {
           position: fixed; inset: 0; z-index: 50;
           background: rgba(0,0,0,0.7);
-          display: ${selected ? 'flex' : 'none'}; align-items: center; justify-content: center;
+          display: ${selected ? "flex" : "none"}; align-items: center; justify-content: center;
           padding: 16px;
         }
         .svc-modal {
@@ -193,8 +201,10 @@ export function ServicesSection() {
       `}</style>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-stagger" style={{ "--delay": "0s" } as React.CSSProperties}>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
+        <div
+          className="text-center mb-16 animate-stagger"
+          style={{ "--delay": "0s" } as React.CSSProperties}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-(family-name:--font-syne)">
             ¿Qué puedo hacer por tu negocio?
           </h2>
         </div>
@@ -216,7 +226,7 @@ export function ServicesSection() {
 
               <div
                 className={`flex ${service.featured ? "md:flex-row flex-col md:items-center gap-8" : "flex-col"}`}>
-                <div className={service.featured ? "flex-shrink-0" : ""}>
+                <div className={service.featured ? "shrink-0" : ""}>
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors text-primary">
                     {service.icon}
                   </div>
@@ -237,7 +247,7 @@ export function ServicesSection() {
                       <div
                         key={i}
                         className="flex items-center gap-2 bg-primary/10 rounded-lg px-3 py-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 text-primary" />
+                        <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-primary" />
                         <span className="text-xs text-foreground/80">
                           {item}
                         </span>
@@ -261,16 +271,16 @@ export function ServicesSection() {
           <div className="svc-modal" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between px-6 py-5 border-b border-white/10 bg-primary/10">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0 text-primary">
+                <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center shrink-0 text-primary">
                   {selected.icon}
                 </div>
-                <p className="text-base font-bold text-white font-[family-name:var(--font-syne)] leading-tight">
+                <p className="text-base font-bold text-white font-(family-name:--font-syne) leading-tight">
                   {selected.modal.headline}
                 </p>
               </div>
               <button
                 onClick={() => setSelected(null)}
-                className="text-white/50 hover:text-white ml-4 flex-shrink-0">
+                className="text-white/50 hover:text-white ml-4 shrink-0">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -288,7 +298,7 @@ export function ServicesSection() {
                     <li
                       key={i}
                       className="flex items-start gap-2.5 text-sm text-white/80">
-                      <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5 text-primary" />
+                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-primary" />
                       {item}
                     </li>
                   ))}
@@ -301,7 +311,7 @@ export function ServicesSection() {
                 <p className="text-sm text-white/70">{selected.modal.ideal}</p>
               </div>
               <a
-                href={WHATSAPP_URL}
+                href={waLink(selected.modal.whatsappMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-sm transition-colors">

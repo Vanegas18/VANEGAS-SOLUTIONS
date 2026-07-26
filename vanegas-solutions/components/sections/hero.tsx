@@ -1,4 +1,4 @@
-const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
+import { waLink } from "@/lib/whatsapp";
 
 const badges = [
   "Respondo en menos de 1 hora",
@@ -42,7 +42,7 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="hero-h1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight font-[family-name:var(--font-syne)] text-balance">
+        <h1 className="hero-h1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight font-(family-name:--font-syne) text-balance">
           Tu negocio pierde clientes hoy por no estar en internet
         </h1>
 
@@ -53,7 +53,9 @@ export function HeroSection() {
 
         <div className="hero-cta mt-10">
           <a
-            href={WHATSAPP_URL}
+            href={waLink(
+              "Hola, quiero información sobre digitalizar mi negocio",
+            )}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-lg px-8 py-4 rounded-xl shadow-lg shadow-primary/25 transition-all">
@@ -70,7 +72,7 @@ export function HeroSection() {
               strokeLinejoin="round">
               <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
             </svg>
-            Quiero digitalizar mi negocio
+            Cuéntame de tu negocio, sin compromiso
           </a>
         </div>
 

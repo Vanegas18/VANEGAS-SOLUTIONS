@@ -1,11 +1,11 @@
-const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
+import { waLink } from "@/lib/whatsapp";
 
 export function ProjectsCTASection() {
   return (
     <section className="pb-20 md:pb-24 bg-background dot-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <a
-          href={WHATSAPP_URL}
+          href={waLink("Hola, vi los proyectos y quiero algo similar para mi negocio")}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors text-sm md:text-base font-medium">

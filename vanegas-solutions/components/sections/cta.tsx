@@ -1,4 +1,4 @@
-const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
+import { waLink } from "@/lib/whatsapp";
 
 export function CTASection() {
   return (
@@ -14,11 +14,11 @@ export function CTASection() {
         .cta-tags { animation: cta-in 0.6s ease 0.3s both; }
       `}</style>
 
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-background" />
+      <div className="absolute inset-0 bg-linear-to-br from-primary/10 via-accent/5 to-background" />
       <div className="absolute inset-0 dot-pattern opacity-50" />
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="cta-h2 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 font-[family-name:var(--font-syne)]">
+        <h2 className="cta-h2 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 font-(family-name:--font-syne)">
           Tu negocio puede estar digitalizado esta semana
         </h2>
         <p className="cta-p text-lg md:text-xl text-muted-foreground mb-10">
@@ -27,7 +27,7 @@ export function CTASection() {
         </p>
         <div className="cta-btn">
           <a
-            href={WHATSAPP_URL}
+            href={waLink("Hola, quiero empezar a digitalizar mi negocio ahora")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-lg font-semibold px-10 py-4 rounded-xl shadow-lg shadow-primary/25 transition-all">

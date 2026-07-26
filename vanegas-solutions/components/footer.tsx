@@ -111,7 +111,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
-            <p className="text-xl font-bold text-foreground font-[family-name:var(--font-syne)]">
+            <p className="text-xl font-bold text-foreground font-(family-name:--font-syne)">
               Vanegas Solutions
             </p>
             <p className="text-muted-foreground text-sm mt-1">
