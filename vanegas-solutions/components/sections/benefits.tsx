@@ -7,7 +7,7 @@ const benefits = [
         height="28"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#3B82F6"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round">
@@ -27,7 +27,7 @@ const benefits = [
         height="28"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#3B82F6"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round">
@@ -46,7 +46,7 @@ const benefits = [
         height="28"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#3B82F6"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round">
@@ -67,7 +67,7 @@ const benefits = [
         height="28"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#3B82F6"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round">
@@ -105,7 +105,7 @@ export function BenefitsSection() {
             <div
               key={index}
               className={`ben-card-${index} glass-card glass-card-hover rounded-2xl p-6 md:p-8 flex items-start gap-4 transition-all duration-300`}>
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                 {benefit.svg}
               </div>
               <div>

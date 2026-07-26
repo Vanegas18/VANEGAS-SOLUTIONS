@@ -36,7 +36,7 @@ export function CTASection() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-10 py-4 rounded-xl shadow-lg shadow-blue-600/25 transition-all">
+            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-lg font-semibold px-10 py-4 rounded-xl shadow-lg shadow-primary/25 transition-all">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"

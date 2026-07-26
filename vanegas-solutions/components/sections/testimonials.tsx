@@ -3,19 +3,30 @@ const testimonials = [
     initials: "CR",
     name: "Carlos R.",
     business: "BuildMart, Materiales de Construcción",
-    quote: "En 5 días tenía mi página lista. La primera semana ya recibí 3 consultas nuevas que antes se perdían porque no me encontraban..",
+    quote:
+      "En 5 días tenía mi página lista. La primera semana ya recibí 3 consultas nuevas que antes se perdían porque no me encontraban..",
   },
   {
     initials: "FV",
     name: "Felipe V.",
     business: "Barberia Style",
-    quote: "Antes perdía reservas por no ver los mensajes a tiempo. Ahora WhatsApp trabaja solo y mi agenda está llena.",
+    quote:
+      "Antes perdía reservas por no ver los mensajes a tiempo. Ahora WhatsApp trabaja solo y mi agenda está llena.",
   },
 ];
 
 const StarSVG = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#eab308" stroke="#eab308" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="#eab308"
+    stroke="#eab308"
+    strokeWidth="1"
+    strokeLinecap="round"
+    strokeLinejoin="round">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
   </svg>
 );
 
@@ -34,7 +45,7 @@ export function TestimonialsSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="test-title text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-(family-name:--font-syne)">
             Lo que dicen los negocios
           </h2>
         </div>
@@ -45,7 +56,7 @@ export function TestimonialsSection() {
               key={index}
               className={`test-card-${index} glass-card rounded-2xl p-6 md:p-8`}>
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg shrink-0">
                   {t.initials}
                 </div>
                 <div>

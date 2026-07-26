@@ -1,26 +1,58 @@
 const painPoints = [
   {
     svg: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+        <polyline points="16 7 22 7 22 13" />
       </svg>
     ),
     title: "Tu negocio no existe en Google",
-    description: "Mientras duermes, tu competencia está captando los clientes que deberían ser tuyos",
+    description:
+      "Mientras duermes, tu competencia está captando los clientes que deberían ser tuyos",
   },
   {
     svg: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+        <path d="M12 18h.01" />
       </svg>
     ),
     title: "Pierdes ventas por no responder a tiempo",
-    description: "Cada mensaje sin respuesta es dinero que se va. Y pasa todo el día, todos los días",
+    description:
+      "Cada mensaje sin respuesta es dinero que se va. Y pasa todo el día, todos los días",
   },
   {
     svg: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12 6 12 12 16 14" />
       </svg>
     ),
     title: "Todo depende de ti, y eso te tiene agotado",
@@ -51,8 +83,10 @@ export function PainSection() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {painPoints.map((point, index) => (
-            <div key={index} className={`pain-card-${index} glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300`}>
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+            <div
+              key={index}
+              className={`pain-card-${index} glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300`}>
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 text-primary">
                 {point.svg}
               </div>
               <h3 className="text-lg md:text-xl font-semibold text-foreground mb-3 leading-snug">

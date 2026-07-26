@@ -48,7 +48,7 @@ const socials = [
   {
     href: FACEBOOK_URL,
     label: "Facebook",
-    color: "hover:text-blue-400",
+    color: "hover:text-primary/80",
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +134,7 @@ export function Footer() {
         </div>
         <div className="mt-8 pt-8 border-t border-border text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Juan Jose Vanegas. Todos los derechos
+            © {new Date().getFullYear()} Vanegas Solutions. Todos los derechos
             reservados.
           </p>
         </div>
