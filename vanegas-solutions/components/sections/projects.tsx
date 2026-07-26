@@ -77,7 +77,7 @@ export function ProjectsSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="proj-title text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 font-[family-name:var(--font-syne)]">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 font-(family-name:--font-syne)">
             Así podría verse tu negocio
           </h2>
           <p className="text-muted-foreground text-lg">

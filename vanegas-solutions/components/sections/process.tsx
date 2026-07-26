@@ -38,7 +38,7 @@ export function ProcessSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="proc-title text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-[family-name:var(--font-syne)]">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-(family-name:--font-syne)">
             Así trabajamos juntos
           </h2>
         </div>
@@ -48,7 +48,7 @@ export function ProcessSection() {
             <div
               key={index}
               className={`proc-step-${index} glass-card glass-card-hover rounded-2xl p-6 md:p-8 relative transition-all duration-300`}>
-              <span className="text-4xl font-bold text-primary/20 font-[family-name:var(--font-syne)] mb-4 block">
+              <span className="text-4xl font-bold text-primary/20 font-(family-name:--font-syne) mb-4 block">
                 {step.number}
               </span>
               <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2">
