@@ -11,7 +11,7 @@ const faqs = [
   {
     question: "¿Cuánto cuesta?",
     answer:
-      "Depende del proyecto. Los paquetes básicos arrancan desde $299.000 COP. Hablamos y te doy un precio justo según lo que necesitas.",
+      "Depende del servicio. Configuración básica (WhatsApp, redes): desde $200.000 COP. Landing page o catálogo web: desde $350.000 COP. Página web completa o automatización: desde $600.000 COP. Digitalización completa: desde $1.500.000 COP. Hablamos y te doy el precio exacto según lo que necesites.",
   },
   {
     question: "¿Cuánto demora?",

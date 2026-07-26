@@ -137,6 +137,9 @@ export function Footer() {
             © {new Date().getFullYear()} Vanegas Solutions. Todos los derechos
             reservados.
           </p>
+          <p className="text-xs text-muted-foreground/60 mt-1">
+            NIT: 1013458886
+          </p>
         </div>
       </div>
     </footer>

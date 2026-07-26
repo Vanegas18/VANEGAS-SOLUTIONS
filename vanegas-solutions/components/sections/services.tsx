@@ -28,6 +28,7 @@ const services = [
         "Tiendas, restaurantes, peluquerías, ferreterías, talleres — cualquier negocio que quiera más clientes.",
       whatsappMessage:
         "Hola, me interesa una página web profesional para mi negocio",
+      priceFrom: "Desde $650.000 COP",
     },
   },
   {
@@ -51,6 +52,7 @@ const services = [
       ideal:
         "Cualquier negocio que reciba consultas por WhatsApp y quiera responder mejor y más rápido.",
       whatsappMessage: "Hola, quiero optimizar mi WhatsApp Business",
+      priceFrom: "Desde $200.000 COP",
     },
   },
   {
@@ -74,6 +76,7 @@ const services = [
       ideal:
         "Negocios con procesos repetitivos que consumen tiempo: agendas, pedidos, confirmaciones, seguimientos.",
       whatsappMessage: "Hola, quiero automatizar procesos de mi negocio",
+      priceFrom: "Desde $600.000 COP",
     },
   },
   {
@@ -97,6 +100,7 @@ const services = [
       ideal:
         "Negocios que hacen publicidad en redes sociales o Google y necesitan una página que convierta ese tráfico en clientes.",
       whatsappMessage: "Hola, necesito una landing page para mi negocio",
+      priceFrom: "Desde $350.000 COP",
     },
   },
   {
@@ -122,6 +126,7 @@ const services = [
         "Tiendas, ferreterías, distribuidoras, restaurantes — negocios con muchos productos que reciben consultas repetitivas.",
       whatsappMessage:
         "Hola, quiero un catálogo digital para mostrar mis productos",
+      priceFrom: "Desde $350.000 COP",
     },
   },
   {
@@ -146,6 +151,7 @@ const services = [
       ideal:
         "Negocios que tienen redes sociales pero no las tienen bien configuradas o no generan resultados.",
       whatsappMessage: "Hola, quiero optimizar mis redes sociales",
+      priceFrom: "Desde $200.000 COP",
     },
   },
   {
@@ -170,6 +176,7 @@ const services = [
       ideal:
         "Negocios que quieren dar el salto digital de una sola vez, sin hacerlo por partes.",
       whatsappMessage: "Hola, quiero digitalizar completamente mi negocio",
+      priceFrom: "Desde $1.500.000 COP",
     },
   },
 ];
@@ -238,6 +245,9 @@ export function ServicesSection() {
                   </p>
                   <p className="text-muted-foreground text-sm mb-6">
                     {service.description}
+                  </p>
+                  <p className="text-sm font-semibold text-primary mb-6">
+                    {service.modal.priceFrom}
                   </p>
                 </div>
 
@@ -310,6 +320,7 @@ export function ServicesSection() {
                 </p>
                 <p className="text-sm text-white/70">{selected.modal.ideal}</p>
               </div>
+              <p className="text-sm font-semibold text-primary">{selected.modal.priceFrom}</p>
               <a
                 href={waLink(selected.modal.whatsappMessage)}
                 target="_blank"

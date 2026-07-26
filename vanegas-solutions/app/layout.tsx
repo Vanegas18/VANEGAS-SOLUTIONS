@@ -78,6 +78,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
               name: "Vanegas Solutions",
+              taxID: "1013458886",
               description:
                 "Desarrollo de software y soluciones digitales para pequeñas y medianas empresas en Medellín.",
               url: "https://vanegassolutions.com",
