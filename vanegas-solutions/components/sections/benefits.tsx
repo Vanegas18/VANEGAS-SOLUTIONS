@@ -81,7 +81,7 @@ const benefits = [
 
 export function BenefitsSection() {
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section id="beneficios" className="py-24 md:py-32 bg-background">
       <style>{`
         @keyframes ben-in {
           from { opacity: 0; transform: translateY(20px); }

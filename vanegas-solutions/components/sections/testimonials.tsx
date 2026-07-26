@@ -21,7 +21,7 @@ const StarSVG = () => (
 
 export function TestimonialsSection() {
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section id="testimonios" className="py-24 md:py-32 bg-background">
       <style>{`
         @keyframes test-in {
           from { opacity: 0; transform: translateY(20px); }
@@ -41,7 +41,9 @@ export function TestimonialsSection() {
 
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {testimonials.map((t, index) => (
-            <div key={index} className={`test-card-${index} glass-card rounded-2xl p-6 md:p-8`}>
+            <div
+              key={index}
+              className={`test-card-${index} glass-card rounded-2xl p-6 md:p-8`}>
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
                   {t.initials}
@@ -52,9 +54,13 @@ export function TestimonialsSection() {
                 </div>
               </div>
               <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => <StarSVG key={i} />)}
+                {[...Array(5)].map((_, i) => (
+                  <StarSVG key={i} />
+                ))}
               </div>
-              <p className="text-foreground leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
+              <p className="text-foreground leading-relaxed">
+                &ldquo;{t.quote}&rdquo;
+              </p>
             </div>
           ))}
         </div>

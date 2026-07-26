@@ -3,6 +3,7 @@ const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 const navLinks = [
   { href: "#servicios", label: "Servicios" },
   { href: "#proyectos", label: "Proyectos" },
+  { href: "#testimonios", label: "Testimonios" },
   { href: "#faq", label: "FAQ" },
 ];
 
