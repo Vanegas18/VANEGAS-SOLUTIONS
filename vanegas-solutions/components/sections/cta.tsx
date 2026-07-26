@@ -1,11 +1,5 @@
 const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
 
-const guarantees = [
-  "Sin contratos",
-  "Sin permanencia",
-  "Primera consulta gratis",
-];
-
 export function CTASection() {
   return (
     <section className="py-24 md:py-32 relative overflow-hidden">
@@ -51,26 +45,6 @@ export function CTASection() {
             </svg>
             Empezar ahora por WhatsApp
           </a>
-        </div>
-        <div className="cta-tags mt-8 flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-muted-foreground">
-          {guarantees.map((item, index) => (
-            <span key={index} className="flex items-center gap-1.5">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#22c55e"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                <path d="m9 11 3 3L22 4" />
-              </svg>
-              {item}
-            </span>
-          ))}
         </div>
       </div>
     </section>
