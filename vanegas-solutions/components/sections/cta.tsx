@@ -49,7 +49,7 @@ export function CTASection() {
               strokeLinejoin="round">
               <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
             </svg>
-            Empezar ahora por WhatsApp 🚀
+            Empezar ahora por WhatsApp
           </a>
         </div>
         <div className="cta-tags mt-8 flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-muted-foreground">
