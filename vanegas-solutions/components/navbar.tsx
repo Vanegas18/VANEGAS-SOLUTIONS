@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import Link from "next/link";
@@ -17,6 +18,10 @@ const navLinks = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    !href.startsWith("/#") && pathname === href;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
@@ -32,7 +37,11 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="hidden md:block text-muted-foreground hover:text-foreground transition-colors text-sm">
+                className={`hidden md:block text-sm transition-colors ${
+                  isActive(link.href)
+                    ? "text-blue-500 font-medium"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}>
                 {link.label}
               </Link>
             ))}
@@ -58,13 +67,17 @@ export function Navbar() {
         style={{ maxHeight: open ? "320px" : "0px" }}>
         <div className="px-4 sm:px-6 py-4 flex flex-col gap-4">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="text-muted-foreground hover:text-foreground transition-colors text-base">
+              className={`text-base transition-colors ${
+                isActive(link.href)
+                  ? "text-blue-500 font-medium"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
