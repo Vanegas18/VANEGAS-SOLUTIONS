@@ -66,13 +66,6 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href={waLink("Hola, quiero saber más sobre Vanegas Solutions")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground text-center text-sm font-medium px-4 py-2.5 rounded-lg transition-colors">
-            Contactar
-          </a>
         </div>
       </div>
     </nav>
