@@ -6,10 +6,12 @@ import { waLink } from "@/lib/whatsapp";
 import Link from "next/link";
 
 const navLinks = [
+  { href: "/", label: "Inicio" },
   { href: "/#servicios", label: "Servicios" },
   { href: "/#proyectos", label: "Proyectos" },
   { href: "/nosotros", label: "Nosotros" },
   { href: "/legal", label: "Legal" },
+  { href: "/acompanamiento", label: "Acompañamiento" },
   { href: "/#faq", label: "FAQ" },
 ];
 
