@@ -72,7 +72,7 @@ export function HeroSection() {
               strokeLinejoin="round">
               <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
             </svg>
-            Cuéntame de tu negocio, sin compromiso
+            Cotizar proyecto
           </a>
         </div>
 
