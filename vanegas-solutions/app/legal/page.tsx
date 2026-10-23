@@ -9,7 +9,7 @@ import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 
 export const metadata: Metadata = {
-  title: "Legal | Vanegas Solutions",
+  title: "Legal",
   description:
     "Términos, garantías y políticas de Vanegas Solutions. Transparencia total antes de contratar.",
   alternates: { canonical: "/legal" },

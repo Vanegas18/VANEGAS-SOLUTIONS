@@ -30,7 +30,7 @@ export function AcompanamientoHeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-brand hover:bg-brand-hover text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-blue-600/25 transition-all">
-            Quiero acompañamiento continuo 🚀
+            Quiero acompañamiento continuo.
           </a>
         </div>
       </div>

@@ -328,7 +328,7 @@ export const legalDocs: LegalDoc[] = [
             type: "list",
             items: [
               "Correo: contacto@vanegassolutions.com",
-              "WhatsApp: wa.me/message/ONFQJUHPPM3JK1",
+              "WhatsApp: +57 318 968 1599",
             ],
           },
         ],

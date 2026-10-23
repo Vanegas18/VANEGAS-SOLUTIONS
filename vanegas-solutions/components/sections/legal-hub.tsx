@@ -29,7 +29,7 @@ export function LegalHubSection() {
               key={doc.slug}
               href={`/legal/${doc.slug}`}
               className={`lh-card-${i} group glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300 ${
-                doc.featured ? "sm:col-span-2 border-blue-500/40" : ""
+                doc.featured ? "sm:col-span-2 border-primary/40" : ""
               }`}>
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
                 <doc.icon className="text-primary" size={26} strokeWidth={2} />

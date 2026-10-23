@@ -54,7 +54,7 @@ export function NosotrosTimelineSection() {
             <div
               key={step.title}
               className={`nt-step-${i} relative flex md:flex-col items-start md:items-center gap-4 md:text-center`}>
-              <div className="relative z-10 w-14 h-14 rounded-full bg-primary/10 border border-blue-500/30 flex items-center justify-center shrink-0">
+              <div className="relative z-10 w-14 h-14 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center shrink-0">
                 <step.icon className="text-primary" size={22} strokeWidth={2} />
               </div>
               <div>

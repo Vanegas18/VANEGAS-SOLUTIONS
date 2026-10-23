@@ -5,7 +5,7 @@ export function AcompanamientoPriceSection() {
   return (
     <section className="py-16 md:py-20 bg-background">
       <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="glass-card rounded-2xl p-8 md:p-10 text-center border-blue-500/40">
+        <div className="glass-card rounded-2xl p-8 md:p-10 text-center border-primary/40">
           <span className="inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium mb-6">
             <Check size={14} strokeWidth={3} /> Sin permanencia · Cancela cuando
             quieras

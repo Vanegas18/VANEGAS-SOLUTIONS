@@ -9,7 +9,7 @@ import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 
 export const metadata: Metadata = {
-  title: "Nosotros | Vanegas Solutions",
+  title: "Nosotros",
   description:
     "Conoce cómo trabajamos y por qué somos el aliado tecnológico de pequeñas y medianas empresas en Medellín.",
   alternates: { canonical: "/nosotros" },

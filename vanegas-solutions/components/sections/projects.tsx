@@ -72,6 +72,7 @@ export function ProjectsSection() {
         .proj-card-0 { animation: proj-in 0.5s ease 0.1s both; }
         .proj-card-1 { animation: proj-in 0.5s ease 0.25s both; }
         .proj-card-2 { animation: proj-in 0.5s ease 0.4s both; }
+        .proj-card-3 { animation: proj-in 0.5s ease 0.55s both; }
       `}</style>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -110,7 +111,7 @@ export function ProjectsSection() {
                     src={project.image}
                     alt={`Vista previa de ${project.name}`}
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
