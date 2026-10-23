@@ -1,26 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Syne, Geist } from "next/font/google";
+import { Outfit, Syne } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { siteConfig } from "@/lib/site-config";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-});
-
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-});
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
+const syne = Syne({ subsets: ["latin"], variable: "--font-syne" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vanegassolutions.com"),
-  title: "Vanegas Solutions | Digitaliza tu negocio",
-  description:
-    "Páginas web, WhatsApp automatizado y soluciones tecnológicas simples para negocios tradicionales. Vendé más con tecnología.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
   keywords: [
     "páginas web para negocios medellín",
     "whatsapp business automatizado colombia",
@@ -29,23 +23,20 @@ export const metadata: Metadata = {
     "página web para restaurante",
     "automatización pymes colombia",
   ],
-  authors: [{ name: "Vanegas Solutions" }],
+  authors: [{ name: siteConfig.name }],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Vanegas Solutions | Digitaliza tu negocio",
-    description:
-      "Páginas web, WhatsApp automatizado y soluciones tecnológicas simples para negocios tradicionales. Vendé más con tecnología.",
+    title: siteConfig.title,
+    description: siteConfig.description,
     type: "website",
-    locale: "es_CO",
-    url: "https://vanegassolutions.com",
-    siteName: "Vanegas Solutions",
-    images: [
-      {
-        url: "/LOGO.png",
-        width: 759,
-        height: 759,
-        alt: "Vanegas Solutions - Soluciones digitales para negocios",
-      },
-    ],
+    locale: siteConfig.locale,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
   },
 };
 
@@ -55,43 +46,33 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  logo: `${siteConfig.url}/LOGO.png`,
+  image: `${siteConfig.url}/opengraph-image`,
+  description: siteConfig.description,
+  taxID: siteConfig.nit,
+  email: siteConfig.email,
+  telephone: `+${siteConfig.whatsappNumber}`,
+  areaServed: { "@type": "City", name: "Medellín" },
+  sameAs: Object.values(siteConfig.socials),
+};
+
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="es"
-      className={cn(
-        "bg-background",
-        outfit.variable,
-        syne.variable,
-        "font-sans",
-        geist.variable,
-      )}>
+      className={cn("bg-background", outfit.variable, syne.variable)}>
       <body className="font-sans antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              name: "Vanegas Solutions",
-              taxID: "1013458886",
-              description:
-                "Desarrollo de software y soluciones digitales para pequeñas y medianas empresas en Medellín.",
-              url: "https://vanegassolutions.com",
-              areaServed: {
-                "@type": "City",
-                name: "Medellín",
-              },
-              sameAs: [
-                "https://www.instagram.com/vanegas.solutions/",
-                "https://www.facebook.com/profile.php?id=61572028376926",
-                "https://www.tiktok.com/@vanegassolutions",
-              ],
-            }),
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
           }}
         />
         {children}

@@ -2,8 +2,8 @@ import { Navbar } from "@/components/navbar";
 import { HeroSection } from "@/components/sections/hero";
 import { PainSection } from "@/components/sections/pain";
 import { ServicesSection } from "@/components/sections/services";
-import { TestimonialsSection } from "@/components/sections/testimonials";
 import { ProjectsSection } from "@/components/sections/projects";
+import { ProductsSection } from "@/components/sections/products";
 import { ProjectsCTASection } from "@/components/sections/projects-cta";
 import { FAQSection } from "@/components/sections/faq";
 import { CTASection } from "@/components/sections/cta";
@@ -17,9 +17,9 @@ export default function Home() {
       <HeroSection />
       <PainSection />
       <ServicesSection />
-      <TestimonialsSection />
       <ProjectsSection />
       <ProjectsCTASection />
+      <ProductsSection />
       <FAQSection />
       <CTASection />
       <Footer />

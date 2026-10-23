@@ -5,8 +5,8 @@ export function AcompanamientoPriceSection() {
   return (
     <section className="py-16 md:py-20 bg-background">
       <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="glass-card rounded-2xl p-8 md:p-10 text-center border-blue-500/40">
-          <span className="inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full bg-blue-600/10 text-blue-500 font-medium mb-6">
+        <div className="glass-card rounded-2xl p-8 md:p-10 text-center border-primary/40">
+          <span className="inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium mb-6">
             <Check size={14} strokeWidth={3} /> Sin permanencia · Cancela cuando
             quieras
           </span>
@@ -28,7 +28,7 @@ export function AcompanamientoPriceSection() {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-colors">
+            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-brand hover:bg-brand-hover text-white font-semibold text-sm transition-colors">
             Empezar acompañamiento
           </a>
         </div>

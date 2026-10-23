@@ -16,8 +16,8 @@ export function LegalTrustSection() {
         <ul className="space-y-4 text-left">
           {reasons.map((r) => (
             <li key={r} className="flex items-start gap-3">
-              <span className="w-6 h-6 rounded-full bg-blue-600/15 flex items-center justify-center shrink-0 mt-0.5">
-                <Check size={14} className="text-blue-500" strokeWidth={3} />
+              <span className="w-6 h-6 rounded-full bg-primary/15 flex items-center justify-center shrink-0 mt-0.5">
+                <Check size={14} className="text-primary" strokeWidth={3} />
               </span>
               <span className="text-foreground/90">{r}</span>
             </li>

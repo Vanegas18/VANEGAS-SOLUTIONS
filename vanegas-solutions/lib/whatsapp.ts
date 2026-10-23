@@ -1,5 +1,5 @@
-const WHATSAPP_NUMBER = "573189681599";
+import { siteConfig } from "@/lib/site-config";
 
 export function waLink(message: string) {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }

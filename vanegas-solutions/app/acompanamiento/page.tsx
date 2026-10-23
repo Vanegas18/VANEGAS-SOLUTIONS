@@ -10,9 +10,10 @@ import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 
 export const metadata: Metadata = {
-  title: "Acompañamiento | Vanegas Solutions",
+  title: "Acompañamiento",
   description:
     "Servicio mensual de Fidelización: mejoras, soporte y actualizaciones continuas para tu proyecto, desde $250.000 COP/mes.",
+  alternates: { canonical: "/acompanamiento" },
 };
 
 export default function AcompanamientoPage() {

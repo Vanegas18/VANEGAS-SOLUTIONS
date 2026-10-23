@@ -1,145 +1,53 @@
 "use client";
 
+import Link from "next/link";
+import { useEffect } from "react";
+import "./globals.css";
+
 export default function GlobalError({
   error,
+  reset,
 }: {
   error: Error & { digest?: string };
+  reset: () => void;
 }) {
-  const pathname =
-    typeof window !== "undefined" ? window.location.pathname : "";
-  console.error(error);
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
 
   return (
-    <html>
-      <head>
-        <style>{`
-          * { box-sizing: border-box; }
-          body {
-            margin: 0;
-            font-family: ui-monospace, monospace;
-            padding: 2rem;
-            background: #fafafa;
-            color: #171717;
-            font-size: 14px;
-            min-height: 100vh;
-            display: flex;
-            align-items: flex-start;
-          }
-          .error-container {
-            width: 100%;
-            max-width: 560px;
-            min-width: 0;
-          }
-          .error-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-          }
-          .error-icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #fef2f2;
-            color: #b91c1c;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 12px;
-            flex-shrink: 0;
-          }
-          .error-message {
-            margin: 0;
-            font-weight: 500;
-            line-height: 1.5;
-          }
-          .error-message code {
-            background: #e5e5e5;
-            padding: 0.1em 0.3em;
-          }
-          .error-summary {
-            margin: 0.25rem 0 0 2rem;
-            padding: 0;
-            font-size: 13px;
-            color: #b91c1c;
-            line-height: 1.5;
-          }
-          .error-details-wrapper {
-            margin: 1rem 0 0 2rem;
-          }
-          .error-details summary {
-            list-style: none;
-            cursor: pointer;
-            padding: 0;
-            color: #737373;
-            font-size: 12px;
-            user-select: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-          }
-          .error-details summary::-webkit-details-marker {
-            display: none;
-          }
-          .error-details summary .chevron {
-            display: inline-flex;
-            align-items: center;
-            font-size: 0.6rem;
-            transition: transform 0.2s ease;
-            transform: rotate(-90deg);
-          }
-          .error-details[open] summary .chevron {
-            transform: rotate(0deg);
-          }
-          .error-stack-slot {
-            height: 320px;
-            margin-top: 0.5rem;
-          }
-          .error-details-wrapper:not(:has(details[open])) .error-stack {
-            visibility: hidden;
-          }
-          .error-stack {
-            margin: 0;
-            padding: 1rem;
-            background: #f5f5f5;
-            overflow: auto;
-            max-width: 100%;
-            min-width: 0;
-            height: 100%;
-            box-sizing: border-box;
-            font-size: 11px;
-            line-height: 1.5;
-          }
-        `}</style>
-      </head>
-      <body>
-        <div className="error-container">
-          <div className="error-header">
-            <div className="error-icon">!</div>
-            <div>
-              <p className="error-message">
-                An application error has occurred while loading{" "}
-                <code>{pathname || "/"}</code>
-              </p>
-            </div>
+    <html lang="es">
+      <body className="min-h-screen bg-background text-foreground antialiased flex items-center justify-center px-4">
+        <main className="max-w-xl text-center">
+          <p className="text-sm font-semibold text-primary mb-4">
+            Algo salió mal
+          </p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+            No pudimos cargar esta página
+          </h1>
+          <p className="text-muted-foreground mb-10">
+            Intenta de nuevo en unos segundos. Si el problema continúa,
+            escríbenos y lo revisamos.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <button
+              type="button"
+              onClick={reset}
+              className="inline-flex items-center justify-center bg-brand hover:bg-brand-hover text-white font-semibold px-6 py-3 rounded-xl transition-colors">
+              Intentar de nuevo
+            </button>
+            <Link
+              href="/"
+              className="inline-flex items-center justify-center border border-border hover:bg-muted text-foreground font-semibold px-6 py-3 rounded-xl transition-colors">
+              Volver al inicio
+            </Link>
           </div>
-          <div className="error-summary">
-            {error.message || "Unknown error"}
-          </div>
-          {error.stack && (
-            <div className="error-details-wrapper">
-              <details className="error-details">
-                <summary>
-                  <span className="chevron">▼</span>
-                  View full error trace
-                </summary>
-              </details>
-              <div className="error-stack-slot">
-                <pre className="error-stack">{error.stack}</pre>
-              </div>
-            </div>
+          {error.digest && (
+            <p className="mt-8 text-xs text-muted-foreground/60">
+              Código: {error.digest}
+            </p>
           )}
-        </div>
+        </main>
       </body>
     </html>
   );

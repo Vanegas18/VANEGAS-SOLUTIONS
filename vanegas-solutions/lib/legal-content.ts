@@ -20,7 +20,7 @@ export type LegalDoc = {
   sections: LegalSection[];
 };
 
-const UPDATED = "26 de julio de 2026";
+const UPDATED = "22 de octubre de 2026";
 
 export const legalDocs: LegalDoc[] = [
   {
@@ -172,8 +172,18 @@ export const legalDocs: LegalDoc[] = [
         ],
       },
       {
+        id: "ajustes-de-satisfaccion",
+        title: "2. Ajustes de satisfacción",
+        blocks: [
+          {
+            type: "p",
+            text: "Si durante la revisión de la entrega algo no convence al cliente, Vanegas Solutions revisa con él qué cambiar y lo ajusta sin costo adicional, dentro del alcance acordado en la propuesta. Las funcionalidades, secciones o cambios fuera de ese alcance se cotizan por separado.",
+          },
+        ],
+      },
+      {
         id: "anticipo-y-cancelacion",
-        title: "2. Anticipo y cancelación durante el desarrollo",
+        title: "3. Anticipo y cancelación durante el desarrollo",
         blocks: [
           {
             type: "p",
@@ -183,7 +193,7 @@ export const legalDocs: LegalDoc[] = [
       },
       {
         id: "cancelacion-fidelizacion",
-        title: "3. Cancelación del servicio de Fidelización",
+        title: "4. Cancelación del servicio de Fidelización",
         blocks: [
           {
             type: "p",
@@ -193,7 +203,7 @@ export const legalDocs: LegalDoc[] = [
       },
       {
         id: "sin-permanencia",
-        title: "4. Sin contratos de permanencia",
+        title: "5. Sin contratos de permanencia",
         blocks: [
           {
             type: "p",
@@ -318,7 +328,7 @@ export const legalDocs: LegalDoc[] = [
             type: "list",
             items: [
               "Correo: contacto@vanegassolutions.com",
-              "WhatsApp: wa.me/message/ONFQJUHPPM3JK1",
+              "WhatsApp: +57 318 968 1599",
             ],
           },
         ],

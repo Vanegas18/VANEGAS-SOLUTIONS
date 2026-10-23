@@ -1,7 +1,25 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { useState } from "react";
-import { Globe, MessageCircle, Zap, FileText, Grid2x2, Instagram, Package, CheckCircle2, X, ArrowRight } from "lucide-react";
+import {
+  Globe,
+  MessageCircle,
+  Zap,
+  FileText,
+  Grid2x2,
+  Instagram,
+  Package,
+  CheckCircle2,
+  ArrowRight,
+} from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 
 const services = [
@@ -9,7 +27,7 @@ const services = [
     icon: <Globe className="w-7 h-7" />,
     title: "Página web profesional",
     benefit:
-      "Tu negocio visible las 24hs, captando clientes aunque estés durmiendo",
+      "Tu negocio visible las 24 horas, captando clientes aunque estés durmiendo",
     description:
       "Diseño moderno, optimizado para celular y listo para recibir clientes.",
     featured: false,
@@ -22,7 +40,7 @@ const services = [
         "Se ve perfecto en celular, tablet y computador",
         "Botón directo a tu WhatsApp",
         "Optimizada para aparecer en Google",
-        "Lista en 3 a 7 días hábiles",
+        "Entrega ágil, con avances que revisas en el camino",
       ],
       ideal:
         "Tiendas, restaurantes, peluquerías, ferreterías, talleres — cualquier negocio que quiera más clientes.",
@@ -36,12 +54,12 @@ const services = [
     title: "WhatsApp Business",
     benefit: "Responde más rápido, mejor y no pierdas ni una venta más",
     description:
-      "Configuro y optimizo tu WhatsApp para que no pierdas ninguna oportunidad de venta.",
+      "Configuramos y optimizamos tu WhatsApp para que no pierdas ninguna oportunidad de venta.",
     featured: false,
     modal: {
-      headline: "¿Cómo mejoro tu WhatsApp?",
+      headline: "¿Cómo mejoramos tu WhatsApp?",
       explanation:
-        "Cada mensaje sin respuesta es dinero que se va. Configuro tu WhatsApp Business completo — perfil profesional, catálogo de productos, respuestas rápidas y mensajes automáticos — para que tu negocio responda bien incluso cuando no estás disponible.",
+        "Cada mensaje sin respuesta es dinero que se va. Configuramos tu WhatsApp Business completo — perfil profesional, catálogo de productos, respuestas rápidas y mensajes automáticos — para que tu negocio responda bien incluso cuando no estás disponible.",
       includes: [
         "Perfil de negocio profesional completo",
         "Catálogo de productos o servicios",
@@ -60,12 +78,12 @@ const services = [
     title: "Automatización",
     benefit: "Tu negocio funcionando solo — tú enfocado en crecer",
     description:
-      "Automatizo procesos para que tu negocio funcione más eficiente, ahorrando tiempo y esfuerzo.",
+      "Automatizamos procesos para que tu negocio funcione más eficiente, ahorrando tiempo y esfuerzo.",
     featured: false,
     modal: {
-      headline: "¿Qué procesos puedo automatizar?",
+      headline: "¿Qué procesos podemos automatizar?",
       explanation:
-        "Si todavía haces las mismas tareas repetitivas todos los días — responder las mismas preguntas, confirmar citas manualmente, anotar pedidos en papel — estás perdiendo tiempo valioso. Automatizo esos procesos para que sucedan solos.",
+        "Si todavía haces las mismas tareas repetitivas todos los días — responder las mismas preguntas, confirmar citas manualmente, anotar pedidos en papel — estás perdiendo tiempo valioso. Automatizamos esos procesos para que sucedan solos.",
       includes: [
         "Respuestas automáticas a preguntas frecuentes",
         "Confirmación automática de citas y pedidos",
@@ -95,7 +113,7 @@ const services = [
         "Mensaje claro y directo al punto",
         "Formulario o botón de contacto destacado",
         "Optimizada para celular",
-        "Lista en 2 a 4 días hábiles",
+        "Lanzamiento rápido, ideal para campañas",
       ],
       ideal:
         "Negocios que hacen publicidad en redes sociales o Google y necesitan una página que convierta ese tráfico en clientes.",
@@ -135,12 +153,12 @@ const services = [
     benefit:
       "Tus redes listas, conectadas y optimizadas para vender desde el primer día",
     description:
-      "Dejo tus perfiles configurados y optimizados para que generen resultados reales.",
+      "Dejamos tus perfiles configurados y optimizados para que generen resultados reales.",
     featured: false,
     modal: {
-      headline: "¿Qué hago con tus redes sociales?",
+      headline: "¿Qué hacemos con tus redes sociales?",
       explanation:
-        "Tener redes sociales no es suficiente — tienen que estar bien configuradas, con la información correcta y conectadas entre sí. Muchos negocios pierden clientes porque sus redes están incompletas, desactualizadas o no generan confianza. Te las dejo listas para empezar a vender.",
+        "Tener redes sociales no es suficiente — tienen que estar bien configuradas, con la información correcta y conectadas entre sí. Muchos negocios pierden clientes porque sus redes están incompletas, desactualizadas o no generan confianza. Te las dejamos listas para empezar a vender.",
       includes: [
         "Perfil optimizado con toda la información del negocio",
         "Bio y descripción atractiva y profesional",
@@ -160,7 +178,7 @@ const services = [
     benefit:
       "Todo en uno — web, WhatsApp, automatización y estructura digital completa",
     description:
-      "Transformo completamente tu negocio con una solución integral lista para vender.",
+      "Transformamos completamente tu negocio con una solución integral lista para vender.",
     featured: true,
     modal: {
       headline: "¿Qué incluye la digitalización completa?",
@@ -185,55 +203,46 @@ type Service = (typeof services)[number];
 
 export function ServicesSection() {
   const [selected, setSelected] = useState<Service | null>(null);
+  const [open, setOpen] = useState(false);
+
+  const openService = (service: Service) => {
+    setSelected(service);
+    setOpen(true);
+  };
 
   return (
     <section
       id="servicios"
       className="py-24 md:py-32 bg-background dot-pattern">
-      <div className="svc-modal-backdrop" style={{ position: "fixed" }} />
-      <style>{`
-        .svc-modal-backdrop {
-          position: fixed; inset: 0; z-index: 50;
-          background: rgba(0,0,0,0.7);
-          display: ${selected ? "flex" : "none"}; align-items: center; justify-content: center;
-          padding: 16px;
-        }
-        .svc-modal {
-          background: #0f0f17;
-          border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 16px;
-          width: 100%; max-width: 512px;
-          max-height: 90vh; overflow-y: auto;
-        }
-      `}</style>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className="text-center mb-16 animate-stagger"
-          style={{ "--delay": "0s" } as React.CSSProperties}>
+        <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-(family-name:--font-syne)">
-            ¿Qué puedo hacer por tu negocio?
+            ¿Qué podemos hacer por tu negocio?
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              onClick={() => setSelected(service)}
-              className={`group glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300 cursor-pointer relative overflow-hidden animate-stagger ${
-                service.featured ? "border-primary/50 md:col-span-3" : ""
-              }`}
-              style={{ "--delay": `${index * 0.05}s` } as React.CSSProperties}>
+          {services.map((service) => (
+            <article
+              key={service.title}
+              className={cn(
+                "group relative glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300 overflow-hidden",
+                service.featured && "border-primary/50 md:col-span-3",
+              )}>
               {service.featured && (
-                <span className="absolute top-4 right-4 text-xs bg-primary text-white px-3 py-1 rounded-full font-medium">
-                  ⭐ Más popular
+                <span className="absolute top-4 right-4 text-xs bg-brand text-white px-3 py-1 rounded-full font-medium">
+                  Más completo
                 </span>
               )}
 
               <div
-                className={`flex ${service.featured ? "md:flex-row flex-col md:items-center gap-8" : "flex-col"}`}>
-                <div className={service.featured ? "shrink-0" : ""}>
+                className={cn(
+                  "flex",
+                  service.featured
+                    ? "md:flex-row flex-col md:items-center gap-8"
+                    : "flex-col",
+                )}>
+                <div className={service.featured ? "shrink-0" : undefined}>
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors text-primary">
                     {service.icon}
                   </div>
@@ -252,87 +261,100 @@ export function ServicesSection() {
                 </div>
 
                 {service.featured && (
-                  <div className="flex-1 grid grid-cols-2 md:grid-cols-5 gap-3">
-                    {service.modal.includes.map((item, i) => (
-                      <div
-                        key={i}
+                  <ul className="flex-1 grid grid-cols-2 md:grid-cols-5 gap-3">
+                    {service.modal.includes.map((item) => (
+                      <li
+                        key={item}
                         className="flex items-center gap-2 bg-primary/10 rounded-lg px-3 py-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-primary" />
+                        <CheckCircle2
+                          className="w-3.5 h-3.5 shrink-0 text-primary"
+                          aria-hidden="true"
+                        />
                         <span className="text-xs text-foreground/80">
                           {item}
                         </span>
-                      </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 )}
               </div>
 
-              <span className="inline-flex items-center gap-1 text-sm text-muted-foreground group-hover:text-primary transition-colors">
+              <button
+                type="button"
+                onClick={() => openService(service)}
+                aria-label={`Ver más sobre ${service.title}`}
+                className="inline-flex items-center gap-1 text-sm text-muted-foreground group-hover:text-primary transition-colors after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:text-primary focus-visible:after:ring-2 focus-visible:after:ring-ring">
                 Ver más
-                <ArrowRight className="w-4 h-4" />
-              </span>
-            </div>
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </button>
+            </article>
           ))}
         </div>
       </div>
 
-      {selected && (
-        <div className="svc-modal-backdrop" onClick={() => setSelected(null)}>
-          <div className="svc-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between px-6 py-5 border-b border-white/10 bg-primary/10">
-              <div className="flex items-center gap-3">
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="sm:max-w-lg p-0 gap-0 max-h-[90vh] overflow-y-auto">
+          {selected && (
+            <>
+              <DialogHeader className="flex-row items-center gap-3 px-6 py-5 pr-12 border-b border-border bg-primary/10">
                 <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center shrink-0 text-primary">
                   {selected.icon}
                 </div>
-                <p className="text-base font-bold text-white font-(family-name:--font-syne) leading-tight">
+                <DialogTitle className="text-base font-bold text-foreground font-(family-name:--font-syne) leading-tight text-left">
                   {selected.modal.headline}
-                </p>
-              </div>
-              <button
-                onClick={() => setSelected(null)}
-                className="text-white/50 hover:text-white ml-4 shrink-0">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+                </DialogTitle>
+              </DialogHeader>
 
-            <div className="px-6 py-5 space-y-5">
-              <p className="text-gray-400 text-sm leading-relaxed">
-                {selected.modal.explanation}
-              </p>
-              <div>
-                <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">
-                  Qué incluye
+              <div className="px-6 py-5 space-y-5">
+                <DialogDescription className="text-muted-foreground text-sm leading-relaxed">
+                  {selected.modal.explanation}
+                </DialogDescription>
+
+                <div>
+                  <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">
+                    Qué incluye
+                  </p>
+                  <ul className="space-y-2">
+                    {selected.modal.includes.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2.5 text-sm text-foreground/80">
+                        <CheckCircle2
+                          className="w-4 h-4 shrink-0 mt-0.5 text-primary"
+                          aria-hidden="true"
+                        />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="bg-muted border border-border rounded-xl px-4 py-3">
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
+                    Ideal para
+                  </p>
+                  <p className="text-sm text-foreground/70">
+                    {selected.modal.ideal}
+                  </p>
+                </div>
+
+                <p className="text-sm font-semibold text-primary">
+                  {selected.modal.priceFrom}
                 </p>
-                <ul className="space-y-2">
-                  {selected.modal.includes.map((item, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-2.5 text-sm text-white/80">
-                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-primary" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+
+                <a
+                  href={waLink(selected.modal.whatsappMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-brand hover:bg-brand-hover text-white font-semibold text-sm transition-colors">
+                  Quiero esto para mi negocio
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </a>
               </div>
-              <div className="bg-white/5 border border-white/10 rounded-xl px-4 py-3">
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">
-                  Ideal para
-                </p>
-                <p className="text-sm text-white/70">{selected.modal.ideal}</p>
-              </div>
-              <p className="text-sm font-semibold text-primary">{selected.modal.priceFrom}</p>
-              <a
-                href={waLink(selected.modal.whatsappMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-sm transition-colors">
-                Quiero esto para mi negocio
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

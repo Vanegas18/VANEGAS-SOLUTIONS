@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/#servicios", label: "Servicios" },
   { href: "/#proyectos", label: "Proyectos" },
   { href: "/nosotros", label: "Nosotros" },
-  { href: "/legal", label: "Legal" },
+  { href: "/#productos", label: "Productos" },
   { href: "/acompanamiento", label: "Acompañamiento" },
   { href: "/#faq", label: "FAQ" },
 ];
@@ -26,8 +26,11 @@ export function Navbar() {
   // Bloquea el scroll del body mientras el menú móvil está abierto
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
     };
   }, [open]);
 
@@ -48,7 +51,7 @@ export function Navbar() {
                 href={link.href}
                 className={`text-sm tracking-wide transition-colors whitespace-nowrap ${
                   isActive(link.href)
-                    ? "text-blue-500 font-medium"
+                    ? "text-primary font-medium"
                     : "text-muted-foreground hover:text-foreground"
                 }`}>
                 {link.label}
@@ -60,14 +63,16 @@ export function Navbar() {
             href={waLink("Hola, quiero saber más sobre Vanegas Solutions")}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:inline-flex bg-primary hover:bg-primary/90 text-white text-sm font-medium px-4 py-2 rounded-full transition-colors shrink-0">
+            className="hidden md:inline-flex bg-brand hover:bg-brand-hover text-white text-sm font-medium px-4 py-2 rounded-full transition-colors shrink-0">
             Contactar
           </a>
 
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden text-foreground p-1.5 shrink-0"
-            aria-label={open ? "Cerrar menú" : "Abrir menú"}>
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={open}
+            aria-controls="mobile-menu">
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
@@ -76,8 +81,12 @@ export function Navbar() {
       {/* Overlay full-screen mobile */}
       <div
         className={`md:hidden fixed inset-0 z-40 bg-background/98 backdrop-blur-xl transition-opacity duration-300 ${
-          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}>
+          open
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+        id="mobile-menu"
+        inert={!open}>
         <div className="flex flex-col items-center justify-center h-full gap-6 dot-pattern px-6">
           {navLinks.map((link, index) => (
             <Link
@@ -86,7 +95,7 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               style={{ transitionDelay: open ? `${index * 0.05}s` : "0s" }}
               className={`text-2xl font-semibold tracking-wide text-center transition-all duration-300 ${
-                isActive(link.href) ? "text-blue-500" : "text-foreground"
+                isActive(link.href) ? "text-primary" : "text-foreground"
               } ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
               {link.label}
             </Link>
@@ -96,7 +105,7 @@ export function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}
-            className="mt-4 bg-primary hover:bg-primary/90 text-white text-base font-medium px-8 py-3 rounded-full transition-colors">
+            className="mt-4 bg-brand hover:bg-brand-hover text-white text-base font-medium px-8 py-3 rounded-full transition-colors">
             Contactar
           </a>
         </div>

@@ -29,10 +29,10 @@ export function LegalHubSection() {
               key={doc.slug}
               href={`/legal/${doc.slug}`}
               className={`lh-card-${i} group glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300 ${
-                doc.featured ? "sm:col-span-2 border-blue-500/40" : ""
+                doc.featured ? "sm:col-span-2 border-primary/40" : ""
               }`}>
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                <doc.icon className="text-blue-500" size={26} strokeWidth={2} />
+                <doc.icon className="text-primary" size={26} strokeWidth={2} />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-2">
                 {doc.title}
@@ -40,7 +40,7 @@ export function LegalHubSection() {
               <p className="text-muted-foreground text-sm mb-4">
                 {doc.description}
               </p>
-              <span className="inline-flex items-center gap-1 text-sm text-blue-500 group-hover:gap-2 transition-all">
+              <span className="inline-flex items-center gap-1 text-sm text-primary group-hover:gap-2 transition-all">
                 Leer documento <ArrowRight size={16} />
               </span>
             </Link>
