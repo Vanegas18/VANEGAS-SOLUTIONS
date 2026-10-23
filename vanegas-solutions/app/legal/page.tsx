@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Legal | Vanegas Solutions",
   description:
     "Términos, garantías y políticas de Vanegas Solutions. Transparencia total antes de contratar.",
+  alternates: { canonical: "/legal" },
 };
 
 export default function LegalPage() {

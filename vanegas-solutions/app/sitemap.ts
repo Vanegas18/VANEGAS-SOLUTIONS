@@ -1,49 +1,21 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { legalDocs } from "@/lib/legal-content";
+import { siteConfig } from "@/lib/site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const { url } = siteConfig;
+  const lastModified = new Date();
+
   return [
-    {
-      url: "https://vanegassolutions.com",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    {
-      url: "https://vanegassolutions.com/#servicios",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://vanegassolutions.com/#proyectos",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: "https://vanegassolutions.com/legal",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.5,
-    },
+    { url, lastModified, changeFrequency: "monthly", priority: 1 },
+    { url: `${url}/nosotros`, lastModified, changeFrequency: "yearly", priority: 0.6 },
+    { url: `${url}/acompanamiento`, lastModified, changeFrequency: "yearly", priority: 0.6 },
+    { url: `${url}/legal`, lastModified, changeFrequency: "yearly", priority: 0.5 },
     ...legalDocs.map((doc) => ({
-      url: `https://vanegassolutions.com/legal/${doc.slug}`,
-      lastModified: new Date(),
+      url: `${url}/legal/${doc.slug}`,
+      lastModified,
       changeFrequency: "yearly" as const,
       priority: 0.4,
     })),
-    {
-      url: "https://vanegassolutions.com/nosotros",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.6,
-    },
-    {
-      url: "https://vanegassolutions.com/acompanamiento",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.6,
-    },
   ];
 }

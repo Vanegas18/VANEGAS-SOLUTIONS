@@ -1,8 +1,14 @@
-const WHATSAPP_URL = "https://wa.me/message/ONFQJUHPPM3JK1";
-const INSTAGRAM_URL = "https://www.instagram.com/vanegas.solutions/";
-const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61572028376926";
-const TIKTOK_URL = "https://www.tiktok.com/@vanegassolutions";
-const EMAIL = "mailto:contacto@vanegassolutions.com";
+import Link from "next/link";
+import { siteConfig } from "@/lib/site-config";
+import { waLink } from "@/lib/whatsapp";
+
+const WHATSAPP_URL = waLink("Hola, quiero saber más sobre Vanegas Solutions");
+const {
+  instagram: INSTAGRAM_URL,
+  facebook: FACEBOOK_URL,
+  tiktok: TIKTOK_URL,
+} = siteConfig.socials;
+const EMAIL = `mailto:${siteConfig.email}`;
 
 const socials = [
   {
@@ -115,7 +121,7 @@ export function Footer() {
               Vanegas Solutions
             </p>
             <p className="text-muted-foreground text-sm mt-1">
-              Digitalizando negocios 🚀
+              Digitalizando negocios
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -138,7 +144,12 @@ export function Footer() {
             reservados.
           </p>
           <p className="text-xs text-muted-foreground/60 mt-1">
-            NIT: 1013458886
+            NIT: {siteConfig.nit}{" "} | {" "}
+            <Link
+              href="/legal"
+              className="hover:text-foreground transition-colors">
+              Legal
+            </Link>
           </p>
         </div>
       </div>

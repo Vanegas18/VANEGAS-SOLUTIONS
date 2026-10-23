@@ -48,7 +48,7 @@ export function NosotrosWhySection() {
               key={r.title}
               className={`nw-card-${i} glass-card glass-card-hover rounded-2xl p-6 md:p-8 flex items-start gap-4 transition-all duration-300`}>
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <r.icon className="text-blue-500" size={24} strokeWidth={2} />
+                <r.icon className="text-primary" size={24} strokeWidth={2} />
               </div>
               <div>
                 <h3 className="text-lg font-bold text-foreground mb-1">

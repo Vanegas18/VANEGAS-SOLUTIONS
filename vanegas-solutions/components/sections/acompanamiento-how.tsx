@@ -41,7 +41,7 @@ export function AcompanamientoHowSection() {
               key={s.title}
               className={`aw-card-${i} glass-card rounded-2xl p-6 text-center`}>
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto">
-                <s.icon className="text-blue-500" size={24} strokeWidth={2} />
+                <s.icon className="text-primary" size={24} strokeWidth={2} />
               </div>
               <h3 className="text-base font-bold text-foreground mb-1">
                 {s.title}

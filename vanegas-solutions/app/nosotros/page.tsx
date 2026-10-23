@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Nosotros | Vanegas Solutions",
   description:
     "Conoce cómo trabajamos y por qué somos el aliado tecnológico de pequeñas y medianas empresas en Medellín.",
+  alternates: { canonical: "/nosotros" },
 };
 
 export default function NosotrosPage() {

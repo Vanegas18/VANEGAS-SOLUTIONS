@@ -1,9 +1,9 @@
 import { waLink } from "@/lib/whatsapp";
 
 const badges = [
-  "Respondo en menos de 1 hora",
   "Primera consulta gratis",
-  "+4 negocios digitalizados",
+  "Proceso ágil y sin vueltas",
+  "Ajustes sin costo adicional",
 ];
 
 export function HeroSection() {
@@ -26,7 +26,6 @@ export function HeroSection() {
           0%, 100% { transform: translateY(0); }
           50%      { transform: translateY(12px); }
         }
-        .hero-h1     { animation: hero-in 0.6s ease both; }
         .hero-p      { animation: hero-in 0.6s ease 0.2s both; }
         .hero-cta    { animation: hero-in 0.6s ease 0.4s both; }
         .hero-tags   { animation: hero-in 0.6s ease 0.6s both; }
@@ -42,7 +41,7 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="hero-h1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight font-(family-name:--font-syne) text-balance">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight font-(family-name:--font-syne) text-balance">
           Tu negocio pierde clientes hoy por no estar en internet
         </h1>
 
@@ -58,7 +57,7 @@ export function HeroSection() {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-lg px-8 py-4 rounded-xl shadow-lg shadow-primary/25 transition-all">
+            className="inline-flex items-center gap-2 bg-brand hover:bg-brand-hover text-white text-lg px-8 py-4 rounded-xl shadow-lg shadow-primary/25 transition-all">
             {/* WhatsApp / MessageCircle SVG inline */}
             <svg
               xmlns="http://www.w3.org/2000/svg"

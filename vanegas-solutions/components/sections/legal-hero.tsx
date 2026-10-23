@@ -26,7 +26,7 @@ export function LegalHeroSection() {
         <div className="legal-hero-cta mt-8">
           <a
             href="#centro-legal"
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-xl transition-colors">
+            className="inline-flex items-center gap-2 bg-brand hover:bg-brand-hover text-white font-medium px-6 py-3 rounded-xl transition-colors">
             Ver documentos
           </a>
         </div>

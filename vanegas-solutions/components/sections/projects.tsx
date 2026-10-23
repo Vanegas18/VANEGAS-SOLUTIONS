@@ -20,41 +20,40 @@ const projects = [
   {
     name: "BuildMart",
     category: "Constructora",
+    badge: "Proyecto para cliente",
     image: "/images/buildmart.png",
     description:
-      "Sistema web completo con catálogo, carrito, pagos y gestión administrativa",
-    result:
-      "Ahora controla todo su negocio desde una sola plataforma, sin depender de terceros",
+      "Sistema web con catálogo, carrito, pagos y gestión administrativa.",
+    highlight: "Ventas, inventario y pedidos en una sola plataforma",
     link: "https://build-two-sage.vercel.app/",
   },
   {
     name: "SaborExpress",
     category: "Restaurante",
+    badge: "Demo en vivo",
     image: "/images/saborexpress.png",
-    description:
-      "Landing page con menú digital y sistema de reservas via WhatsApp",
-    result:
-      "Ahora sus clientes pueden reservar y ordenar desde su celular, sin esperas ni llamadas perdidas",
+    description: "Landing page con menú digital y reservas por WhatsApp.",
+    highlight: "Tus clientes ven el menú y reservan desde el celular",
     link: "https://restaurant-landing-beta.vercel.app/",
   },
   {
     name: "Lumen",
     category: "Tienda de ropa",
+    badge: "Demo en vivo",
     image: "/images/lumen.png",
     description:
-      "Landing page con catálogo de productos y sistema de compra via WhatsApp",
-    result:
-      "Ahora sus clientes pueden comprar desde su celular, sin esperas ni llamadas perdidas",
+      "Landing page con catálogo de productos y compra por WhatsApp.",
+    highlight: "Tus clientes eligen y compran en pocos clics",
     link: "https://store-landing-rouge.vercel.app/",
   },
   {
     name: "Maison Noir",
     category: "Perfumería",
+    badge: "Demo en vivo",
     image: "/images/maison.png",
     description:
-      "Catalogo digital con sistema de compra via WhatsApp Y panel administrativo para gestionar productos",
-    result:
-      "Ahora sus clientes pueden comprar desde su celular, sin esperas ni llamadas perdidas y el negocio puede gestionar su catálogo sin depender de terceros",
+      "Catálogo digital con compra por WhatsApp y panel administrativo.",
+    highlight: "Actualizas productos y precios sin depender de nadie",
     link: "https://perfume-catalog-chi.vercel.app/",
   },
 ];
@@ -81,18 +80,11 @@ export function ProjectsSection() {
             Así podría verse tu negocio
           </h2>
           <p className="text-muted-foreground text-lg">
-            Ejemplos reales de lo que puedo construir para tu negocio.
+            Demos funcionales que puedes probar ahora mismo.
           </p>
         </div>
 
-        <div
-          className={`grid gap-6 ${
-            projects.length === 1
-              ? "grid-cols-1 max-w-sm mx-auto"
-              : projects.length === 2
-                ? "grid-cols-1 md:grid-cols-2 max-w-2xl mx-auto"
-                : "grid-cols-1 md:grid-cols-3"
-          }`}>
+        <div className={"grid gap-6 grid-cols-1 md:grid-cols-2"}>
           {projects.map((project, index) => (
             <div
               key={index}
@@ -106,7 +98,7 @@ export function ProjectsSection() {
                 </div>
                 <div className="flex-1 mx-4">
                   <div className="bg-background/50 rounded-md px-3 py-1 text-xs text-muted-foreground text-center">
-                    {project.name.toLowerCase().replace(/\s+/g, "")}.com
+                    {new URL(project.link).hostname}
                   </div>
                 </div>
               </div>
@@ -136,17 +128,22 @@ export function ProjectsSection() {
                 <p className="text-sm text-muted-foreground mb-2">
                   {project.description}
                 </p>
+                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
+                  {project.badge}
+                </p>
                 <p className="text-sm text-primary font-medium mb-4">
-                  → {project.result}
+                  {project.highlight}
                 </p>
                 <div className="mt-auto">
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-sm text-muted-foreground group-hover:text-primary transition-colors"
-                  >
-                    Ver proyecto <ArrowSVG />
+                    className="inline-flex items-center gap-1 text-sm text-muted-foreground group-hover:text-primary transition-colors">
+                    {project.badge === "Demo en vivo"
+                      ? "Probar demo"
+                      : "Ver proyecto"}{" "}
+                    <ArrowSVG />
                   </a>
                 </div>
               </div>

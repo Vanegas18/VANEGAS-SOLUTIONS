@@ -19,18 +19,18 @@ export function CTASection() {
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="cta-h2 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 font-(family-name:--font-syne)">
-          Tu negocio puede estar digitalizado esta semana
+          Empieza hoy a digitalizar tu negocio.
         </h2>
         <p className="cta-p text-lg md:text-xl text-muted-foreground mb-10">
-          Escríbeme hoy — en menos de 24 horas tienes una propuesta concreta y
-          un plan claro.
+          Escríbenos y recibe una propuesta concreta, con alcance y precio
+          claros antes de empezar.
         </p>
         <div className="cta-btn">
           <a
             href={waLink("Hola, quiero empezar a digitalizar mi negocio ahora")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-lg font-semibold px-10 py-4 rounded-xl shadow-lg shadow-primary/25 transition-all">
+            className="inline-flex items-center gap-2 bg-brand hover:bg-brand-hover text-white text-lg font-semibold px-10 py-4 rounded-xl shadow-lg shadow-primary/25 transition-all">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"

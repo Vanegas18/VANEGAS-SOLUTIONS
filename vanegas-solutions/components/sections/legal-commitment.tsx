@@ -48,7 +48,7 @@ export function LegalCommitmentSection() {
               key={p.title}
               className={`lc-card-${i} glass-card rounded-2xl p-6 md:p-8 flex items-start gap-4`}>
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <p.icon className="text-blue-500" size={26} strokeWidth={2} />
+                <p.icon className="text-primary" size={26} strokeWidth={2} />
               </div>
               <div>
                 <h3 className="text-lg font-bold text-foreground mb-1">
