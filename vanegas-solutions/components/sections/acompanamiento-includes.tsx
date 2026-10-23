@@ -66,7 +66,7 @@ export function AcompanamientoIncludesSection() {
           {includes.map((item, i) => (
             <div
               key={item.title}
-              className={`ai-card-${i} glass-card glass-card-hover rounded-2xl p-6 transition-all duration-300`}>
+              className={`ai-card-${i} glass-card rounded-2xl p-6 transition-all duration-300`}>
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                 <item.icon className="text-primary" size={22} strokeWidth={2} />
               </div>

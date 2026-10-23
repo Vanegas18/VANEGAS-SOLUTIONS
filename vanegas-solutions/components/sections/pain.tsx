@@ -85,7 +85,7 @@ export function PainSection() {
           {painPoints.map((point, index) => (
             <div
               key={index}
-              className={`pain-card-${index} glass-card glass-card-hover rounded-2xl p-6 md:p-8 transition-all duration-300`}>
+              className={`pain-card-${index} glass-card rounded-2xl p-6 md:p-8 transition-all duration-300`}>
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 text-primary">
                 {point.svg}
               </div>
