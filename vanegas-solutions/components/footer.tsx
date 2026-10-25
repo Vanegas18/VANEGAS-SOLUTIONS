@@ -1,156 +1,82 @@
 import Link from "next/link";
+import { Logo } from "@/components/brand/logo";
 import { siteConfig } from "@/lib/site-config";
 import { waLink } from "@/lib/whatsapp";
 
-const WHATSAPP_URL = waLink("Hola, quiero saber más sobre Vanegas Solutions");
-const {
-  instagram: INSTAGRAM_URL,
-  facebook: FACEBOOK_URL,
-  tiktok: TIKTOK_URL,
-} = siteConfig.socials;
-const EMAIL = `mailto:${siteConfig.email}`;
+const company = [
+  { href: "/nosotros", label: "Nosotros" },
+  { href: "/#proyectos", label: "Proyectos" },
+  { href: "/acompanamiento", label: "Acompañamiento" },
+  { href: "/#faq", label: "Preguntas frecuentes" },
+];
+
+const legal = [
+  { href: "/legal/terminos-y-condiciones", label: "Términos y condiciones" },
+  { href: "/legal/politica-de-privacidad", label: "Política de privacidad" },
+  { href: "/legal/garantia-y-cancelacion", label: "Garantía y cancelación" },
+  { href: "/legal/aviso-legal", label: "Aviso legal" },
+];
 
 const socials = [
-  {
-    href: INSTAGRAM_URL,
-    label: "Instagram",
-    color: "hover:text-pink-400",
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round">
-        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-      </svg>
-    ),
-  },
-  {
-    href: WHATSAPP_URL,
-    label: "WhatsApp",
-    color: "hover:text-green-400",
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round">
-        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-      </svg>
-    ),
-  },
-  {
-    href: FACEBOOK_URL,
-    label: "Facebook",
-    color: "hover:text-primary/80",
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round">
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-      </svg>
-    ),
-  },
-  {
-    href: TIKTOK_URL,
-    label: "TikTok",
-    color: "hover:text-white",
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round">
-        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
-      </svg>
-    ),
-  },
-  {
-    href: EMAIL,
-    label: "Correo",
-    color: "hover:text-sky-400",
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round">
-        <rect width="20" height="16" x="2" y="4" rx="2" />
-        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-      </svg>
-    ),
-  },
+  { href: siteConfig.socials.instagram, label: "Instagram" },
+  { href: siteConfig.socials.facebook, label: "Facebook" },
+  { href: siteConfig.socials.tiktok, label: "TikTok" },
 ];
+
+const linkClass = "py-1 transition-colors duration-[var(--dur-instante)] hover:text-ladrillo";
+const phone = `+${siteConfig.whatsappNumber.slice(0, 2)} ${siteConfig.whatsappNumber.slice(2, 5)} ${siteConfig.whatsappNumber.slice(5, 8)} ${siteConfig.whatsappNumber.slice(8)}`;
 
 export function Footer() {
   return (
-    <footer className="py-12 border-t border-border bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-center md:text-left">
-            <p className="text-xl font-bold text-foreground font-(family-name:--font-syne)">
-              Vanegas Solutions
-            </p>
-            <p className="text-muted-foreground text-sm mt-1">
-              Digitalizando negocios
+    <footer className="dark bg-fondo text-texto">
+      <div className="mx-auto flex max-w-sitio flex-col gap-12 px-5 pt-16 pb-24 md:gap-14 md:px-10 md:pt-20 md:pb-10">
+        <div className="flex flex-wrap justify-between gap-x-12 gap-y-10">
+          <div className="flex min-w-0 flex-[2_1_280px] flex-col gap-4">
+            <Logo tone="cal" className="block h-10 w-auto self-start" />
+            <p className="max-w-[24em] text-texto-suave">
+              Estudio de software en Medellín para negocios que venden cara a cara.
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            {socials.map(({ href, label, color, svg }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith("mailto") ? "_self" : "_blank"}
-                rel="noopener noreferrer"
-                aria-label={label}
-                className={`w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground transition-colors ${color}`}>
-                {svg}
+          <div className="grid min-w-0 flex-[3_1_520px] grid-cols-2 gap-8 text-[15px] md:grid-cols-[1fr_1.2fr_1.3fr]">
+            <nav aria-label="Empresa" className="flex flex-col gap-1.5">
+              <span className="etiqueta mb-2 text-texto-suave">Empresa</span>
+              {company.map((link) => (
+                <Link key={link.href} href={link.href} className={linkClass}>
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+            <nav aria-label="Legal" className="flex flex-col gap-1.5">
+              <span className="etiqueta mb-2 text-texto-suave">Legal</span>
+              {legal.map((link) => (
+                <Link key={link.href} href={link.href} className={linkClass}>
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+            <nav aria-label="Contacto" className="col-span-2 flex flex-col gap-1.5 md:col-span-1">
+              <span className="etiqueta mb-2 text-texto-suave">Contacto</span>
+              <a href={waLink("Hola, tengo una consulta")} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                WhatsApp {phone}
               </a>
-            ))}
+              <a href={`mailto:${siteConfig.email}`} className={linkClass}>
+                {siteConfig.email}
+              </a>
+              <span className="flex flex-wrap gap-x-4">
+                {socials.map((social) => (
+                  <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                    {social.label}
+                  </a>
+                ))}
+              </span>
+            </nav>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-border text-center">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Vanegas Solutions. Todos los derechos
-            reservados.
-          </p>
-          <p className="text-xs text-muted-foreground/60 mt-1">
-            NIT: {siteConfig.nit}{" "} | {" "}
-            <Link
-              href="/legal"
-              className="hover:text-foreground transition-colors">
-              Legal
-            </Link>
-          </p>
+        <div className="flex flex-wrap justify-between gap-3 border-t border-borde pt-6 font-mono text-xs text-texto-suave">
+          <span>
+            © {new Date().getFullYear()} {siteConfig.name} · NIT {siteConfig.nit}
+          </span>
+          <span>Medellín, Colombia</span>
         </div>
       </div>
     </footer>

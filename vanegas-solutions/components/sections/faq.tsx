@@ -1,73 +1,45 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Plus } from "lucide-react";
+import { Icon } from "@/components/brand/icon";
+import { faqs } from "@/lib/faqs";
 
-const faqs = [
-  {
-    question: "¿Por dónde empezamos?",
-    answer:
-      "Escríbenos por WhatsApp, cuéntanos sobre tu negocio y te enviamos una propuesta concreta con alcance y precio.",
-  },
-  {
-    question: "¿Cuánto cuesta?",
-    answer:
-      "Depende del servicio. Configuración de WhatsApp o redes: desde $200.000 COP. Landing page o catálogo web: desde $350.000 COP. Automatización: desde $600.000 COP. Página web completa: desde $650.000 COP. Digitalización completa: desde $1.500.000 COP. Hablamos y te damos el precio exacto según lo que necesites.",
-  },
-  {
-    question: "¿Cuánto demora?",
-    answer:
-      "Depende del alcance del proyecto. Una vez definimos qué necesitas, te damos un tiempo estimado claro antes de empezar.",
-  },
-  {
-    question: "¿Necesito saber de tecnología?",
-    answer:
-      "Para nada. Nos encargamos de todo y te lo explicamos en lenguaje simple.",
-  },
-  {
-    question: "¿Qué pasa si no quedo satisfecho?",
-    answer:
-      "Si algo no te convence, revisamos contigo qué cambiar y lo ajustamos sin costo adicional, dentro del alcance acordado en la propuesta. Además, cualquier error atribuible al desarrollo queda cubierto por nuestra garantía.",
-  },
-  {
-    question: "¿Cómo funciona el pago?",
-    answer:
-      "Se solicita un anticipo del 50% para iniciar el proyecto, y el saldo restante se cancela según lo acordado o antes de la entrega final.",
-  },
-  {
-    question: "¿Qué pasa después de la entrega?",
-    answer:
-      "Te damos soporte inicial para resolver dudas. Si quieres que sigamos acompañándote con mejoras, actualizaciones y nuevas funcionalidades, existe el servicio de Fidelización mensual.",
-  },
-];
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
 
 export function FAQSection() {
   return (
-    <section id="faq" className="py-24 md:py-32 bg-background dot-pattern">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-(family-name:--font-syne)">
-            Preguntas frecuentes
-          </h2>
+    <section id="faq" aria-labelledby="faq-titulo" className="scroll-mt-20 bg-superficie">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
+      />
+      <div className="mx-auto flex max-w-sitio flex-wrap gap-x-16 gap-y-8 px-5 py-16 md:px-10 md:py-28">
+        <div className="flex min-w-0 flex-[4_1_280px] flex-col gap-3">
+          <h2 id="faq-titulo" className="titular text-h1">Preguntas frecuentes</h2>
+          <p className="text-texto-suave">Toca una pregunta para ver la respuesta.</p>
         </div>
-
-        <Accordion type="single" collapsible className="space-y-4">
-          {faqs.map((faq) => (
-            <AccordionItem
+        <div className="min-w-0 flex-[8_1_520px] border-t-2 border-borde-fuerte">
+          {faqs.map((faq, index) => (
+            <details
               key={faq.question}
-              value={faq.question}
-              className="glass-card rounded-xl overflow-hidden">
-              <AccordionTrigger className="px-6 py-5 text-base md:text-lg font-medium text-foreground text-left hover:no-underline">
+              open={index === 0}
+              className="group border-b border-borde last:border-b-2 last:border-borde-fuerte">
+              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 text-[17px] font-semibold md:text-xl [&::-webkit-details-marker]:hidden">
                 {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pb-5 text-base text-muted-foreground">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
+                <span className="flex size-9 shrink-0 items-center justify-center border-2 border-borde-fuerte transition-colors duration-[var(--dur-rapido)] group-open:bg-texto group-open:text-fondo">
+                  <Icon icon={Plus} className="size-4 transition-transform duration-[var(--dur-rapido)] group-open:rotate-45" />
+                </span>
+              </summary>
+              <p className="max-w-[40em] pb-5 text-texto-suave md:text-lg">{faq.answer}</p>
+            </details>
           ))}
-        </Accordion>
+        </div>
       </div>
     </section>
   );

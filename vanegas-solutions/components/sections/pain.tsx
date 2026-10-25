@@ -1,104 +1,40 @@
+import { Reveal } from "@/components/brand/reveal";
+import { cn } from "@/lib/utils";
+
 const painPoints = [
   {
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round">
-        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-        <polyline points="16 7 22 7 22 13" />
-      </svg>
-    ),
-    title: "Tu negocio no existe en Google",
-    description:
-      "Mientras duermes, tu competencia está captando los clientes que deberían ser tuyos",
+    title: "Tu negocio no existe en Google.",
+    description: "Te buscan cerca y encuentran a otro.",
   },
   {
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round">
-        <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
-        <path d="M12 18h.01" />
-      </svg>
-    ),
-    title: "Pierdes ventas por no responder a tiempo",
-    description:
-      "Cada mensaje sin respuesta es dinero que se va. Y pasa todo el día, todos los días",
+    title: "Pierdes ventas por no responder a tiempo.",
+    description: "Un mensaje sin respuesta es un cliente que se va.",
   },
   {
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <polyline points="12 6 12 12 16 14" />
-      </svg>
-    ),
-    title: "Todo depende de ti, y eso te tiene agotado",
-    description: "Sin sistemas, sin orden — si tú no estás, el negocio se para",
+    title: "Todo depende de ti, y eso te tiene agotado.",
+    description: "Las tareas repetitivas se pueden automatizar.",
   },
 ];
 
 export function PainSection() {
   return (
-    <section className="py-24 md:py-32 bg-background">
-      <style>{`
-        @keyframes pain-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .pain-title { animation: pain-in 0.6s ease both; }
-        .pain-card-0 { animation: pain-in 0.5s ease 0.1s both; }
-        .pain-card-1 { animation: pain-in 0.5s ease 0.25s both; }
-        .pain-card-2 { animation: pain-in 0.5s ease 0.4s both; }
-      `}</style>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="pain-title text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-(family-name:--font-syne)">
-            ¿Te identificas con alguno de estos?
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {painPoints.map((point, index) => (
-            <div
-              key={index}
-              className={`pain-card-${index} glass-card rounded-2xl p-6 md:p-8 transition-all duration-300`}>
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 text-primary">
-                {point.svg}
+    <section aria-labelledby="problemas" className="mx-auto max-w-sitio px-5 py-18 md:px-10 md:pt-8 md:pb-28">
+      <h2 id="problemas" className="titular mb-6 text-h1 md:mb-8">
+        ¿Te identificas con alguno de estos?
+      </h2>
+      <ul className="grid gap-1.5 md:grid-cols-3">
+        {painPoints.map((point, index) => (
+          <li key={point.title} className={cn(index === 1 && "ml-6 md:ml-0")}>
+            <Reveal delay={index * 70} className="h-full">
+              <div className="flex h-full flex-col gap-2 border-2 border-borde-fuerte bg-superficie p-5 md:gap-4 md:p-7">
+                <span className="hidden font-mono text-xs font-medium md:block">0{index + 1}</span>
+                <strong className="text-[19px] leading-snug md:text-[22px]">{point.title}</strong>
+                <span className="text-[15px] text-texto-suave md:text-body">{point.description}</span>
               </div>
-              <h3 className="text-lg md:text-xl font-semibold text-foreground mb-3 leading-snug">
-                {point.title}
-              </h3>
-              <p className="text-muted-foreground text-sm md:text-base">
-                {point.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
+            </Reveal>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

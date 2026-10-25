@@ -1,32 +1,42 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
-import { waLink } from "@/lib/whatsapp";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, MessageCircle, X } from "lucide-react";
+import { Logo } from "@/components/brand/logo";
+import { Icon } from "@/components/brand/icon";
+import { Button } from "@/components/ui/button";
+import { waLink } from "@/lib/whatsapp";
+import { cn } from "@/lib/utils";
 
-const navLinks = [
-  { href: "/", label: "Inicio" },
+const mainLinks = [
   { href: "/#servicios", label: "Servicios" },
   { href: "/#proyectos", label: "Proyectos" },
-  { href: "/nosotros", label: "Nosotros" },
   { href: "/#productos", label: "Productos" },
   { href: "/acompanamiento", label: "Acompañamiento" },
-  { href: "/#faq", label: "FAQ" },
 ];
+
+const mobileExtraLinks = [
+  { href: "/nosotros", label: "Nosotros" },
+  { href: "/#faq", label: "Preguntas frecuentes" },
+];
+
+const contactHref = waLink("Hola, quiero saber más sobre Vanegas Solutions");
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  const isActive = (href: string) =>
-    !href.startsWith("/#") && pathname === href;
+  const isActive = (href: string) => !href.startsWith("/#") && pathname === href;
 
-  // Bloquea el scroll del body mientras el menú móvil está abierto
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKey = (event: KeyboardEvent) => event.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
@@ -35,81 +45,73 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <>
-      <nav className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl">
-        <div className="flex items-center justify-between gap-4 rounded-full border border-border bg-background/80 backdrop-blur-xl px-4 md:px-6 py-2.5 md:py-3 shadow-lg shadow-black/20">
-          <Link
-            href="/"
-            className="text-base md:text-lg font-bold text-foreground font-(family-name:--font-syne) shrink-0">
-            Vanegas Solutions
-          </Link>
+    <header className="sticky top-0 z-50 border-b border-borde bg-fondo">
+      <div className="mx-auto flex h-17 max-w-sitio items-center justify-between gap-6 px-5 md:h-19 md:px-10">
+        <Link href="/" aria-label="Vanegas Solutions, inicio" className="shrink-0">
+          <Logo animated={pathname === "/"} className="block h-8 w-auto md:h-10" />
+        </Link>
 
-          <div className="hidden md:flex items-center gap-5 lg:gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm tracking-wide transition-colors whitespace-nowrap ${
-                  isActive(link.href)
-                    ? "text-primary font-medium"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}>
-                {link.label}
-              </Link>
-            ))}
-          </div>
+        <nav aria-label="Principal" className="hidden items-center gap-8 md:flex">
+          {mainLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              aria-current={isActive(link.href) ? "page" : undefined}
+              className={cn(
+                "text-[15px] font-medium underline-offset-[6px] decoration-2 transition-colors duration-[var(--dur-instante)] hover:text-ladrillo-hover",
+                isActive(link.href) && "underline decoration-ladrillo",
+              )}>
+              {link.label}
+            </Link>
+          ))}
+          <Button asChild variant="outline">
+            <a href={contactHref} target="_blank" rel="noopener noreferrer">
+              Escríbenos
+            </a>
+          </Button>
+        </nav>
 
-          <a
-            href={waLink("Hola, quiero saber más sobre Vanegas Solutions")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:inline-flex bg-brand hover:bg-brand-hover text-white text-sm font-medium px-4 py-2 rounded-full transition-colors shrink-0">
-            Contactar
-          </a>
+        <Button
+          variant="outline"
+          size="icon"
+          className="md:hidden"
+          onClick={() => setOpen(!open)}
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+          aria-controls="menu-movil">
+          <Icon icon={open ? X : Menu} />
+        </Button>
+      </div>
 
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden text-foreground p-1.5 shrink-0"
-            aria-label={open ? "Cerrar menú" : "Abrir menú"}
-            aria-expanded={open}
-            aria-controls="mobile-menu">
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-      </nav>
-
-      {/* Overlay full-screen mobile */}
       <div
-        className={`md:hidden fixed inset-0 z-40 bg-background/98 backdrop-blur-xl transition-opacity duration-300 ${
-          open
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-        id="mobile-menu"
-        inert={!open}>
-        <div className="flex flex-col items-center justify-center h-full gap-6 dot-pattern px-6">
-          {navLinks.map((link, index) => (
+        id="menu-movil"
+        inert={!open}
+        className={cn(
+          "fixed inset-x-0 top-[69px] bottom-0 flex flex-col bg-fondo px-5 pt-8 pb-10 transition-[opacity,transform] duration-[var(--dur-base)] ease-asentar md:hidden",
+          open ? "translate-y-0 opacity-100" : "pointer-events-none opacity-0 motion-safe:-translate-y-2",
+        )}>
+        <nav aria-label="Menú móvil" className="flex flex-col border-t-2 border-borde-fuerte">
+          {[...mainLinks, ...mobileExtraLinks].map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              style={{ transitionDelay: open ? `${index * 0.05}s` : "0s" }}
-              className={`text-2xl font-semibold tracking-wide text-center transition-all duration-300 ${
-                isActive(link.href) ? "text-primary" : "text-foreground"
-              } ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+              aria-current={isActive(link.href) ? "page" : undefined}
+              className={cn(
+                "titular border-b border-borde py-4 text-h2",
+                isActive(link.href) && "text-ladrillo",
+              )}>
               {link.label}
             </Link>
           ))}
-          <a
-            href={waLink("Hola, quiero saber más sobre Vanegas Solutions")}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setOpen(false)}
-            className="mt-4 bg-brand hover:bg-brand-hover text-white text-base font-medium px-8 py-3 rounded-full transition-colors">
-            Contactar
+        </nav>
+        <Button asChild size="lg" className="mt-auto w-full">
+          <a href={contactHref} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+            <Icon icon={MessageCircle} />
+            Escríbenos por WhatsApp
           </a>
-        </div>
+        </Button>
       </div>
-    </>
+    </header>
   );
 }

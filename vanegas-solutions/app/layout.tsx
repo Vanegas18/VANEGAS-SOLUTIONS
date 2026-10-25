@@ -1,12 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Syne } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
+import { archivo, plexMono } from "./fonts";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site-config";
-
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
-const syne = Syne({ subsets: ["latin"], variable: "--font-syne" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -41,7 +38,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0A0A0F",
+  themeColor: "#EFEAE1",
   width: "device-width",
   initialScale: 1,
 };
@@ -67,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={cn("bg-background", outfit.variable, syne.variable)}>
+      className={cn("bg-background", archivo.variable, plexMono.variable)}>
       <body className="font-sans antialiased">
         <script
           type="application/ld+json"

@@ -1,107 +1,94 @@
+import Link from "next/link";
+import { MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Icon } from "@/components/brand/icon";
+import { services } from "@/lib/services";
 import { waLink } from "@/lib/whatsapp";
+import { cn } from "@/lib/utils";
 
-const badges = [
-  "Primera consulta gratis",
-  "Proceso ágil y sin vueltas",
-  "Ajustes sin costo adicional",
+const bySlug = Object.fromEntries(services.map((service) => [service.slug, service]));
+
+const wallRows: { slugs: string[]; offset: boolean }[] = [
+  { slugs: ["pagina-web", "catalogo-digital"], offset: false },
+  { slugs: ["whatsapp-business", "landing-page"], offset: true },
+  { slugs: ["automatizacion", "redes-sociales"], offset: false },
+  { slugs: ["digitalizacion-completa"], offset: true },
 ];
 
+const mobileRows = [["pagina-web", "catalogo-digital", "whatsapp-business", "landing-page"]];
+
 export function HeroSection() {
+  let brickIndex = 0;
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden dot-pattern">
-      <style>{`
-        @keyframes hero-blob-1 {
-          0%, 100% { transform: scale(1);   opacity: 0.3; }
-          50%       { transform: scale(1.2); opacity: 0.5; }
-        }
-        @keyframes hero-blob-2 {
-          0%, 100% { transform: scale(1.2); opacity: 0.4; }
-          50%       { transform: scale(1);   opacity: 0.2; }
-        }
-        @keyframes hero-in {
-          from { opacity: 0; transform: translateY(30px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes scroll-dot {
-          0%, 100% { transform: translateY(0); }
-          50%      { transform: translateY(12px); }
-        }
-        .hero-p      { animation: hero-in 0.6s ease 0.2s both; }
-        .hero-cta    { animation: hero-in 0.6s ease 0.4s both; }
-        .hero-tags   { animation: hero-in 0.6s ease 0.6s both; }
-        .hero-scroll { animation: hero-in 0.6s ease 1.2s both; }
-        .scroll-dot  { animation: scroll-dot 1.5s ease infinite; }
-        .hero-blob-1 { animation: hero-blob-1 8s ease-in-out infinite; }
-        .hero-blob-2 { animation: hero-blob-2 10s ease-in-out infinite; }
-      `}</style>
-
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="hero-blob-1 absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[128px]" />
-        <div className="hero-blob-2 absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-[128px]" />
-      </div>
-
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight font-(family-name:--font-syne) text-balance">
-          Tu negocio pierde clientes hoy por no estar en internet
-        </h1>
-
-        <p className="hero-p mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-          Página web, WhatsApp automatizado y catálogo digital, hechos a la
-          medida de tu negocio.
-        </p>
-
-        <div className="hero-cta mt-10">
-          <a
-            href={waLink(
-              "Hola, quiero información sobre digitalizar mi negocio",
-            )}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-brand hover:bg-brand-hover text-white text-lg px-8 py-4 rounded-xl shadow-lg shadow-primary/25 transition-all">
-            {/* WhatsApp / MessageCircle SVG inline */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round">
-              <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-            </svg>
-            Cotizar proyecto
-          </a>
+    <section className="mx-auto flex min-h-[calc(100svh-4.25rem)] max-w-sitio flex-col justify-center overflow-x-clip px-5 py-6 md:min-h-[calc(100svh-4.75rem)] md:px-10 md:py-10">
+      <div className="flex flex-wrap items-center gap-x-16 gap-y-8">
+        <div className="flex min-w-0 flex-[7_1_520px] flex-col gap-4 md:gap-6">
+          <h1 className="titular text-[clamp(2.75rem,min(6.4vw,11.5svh),6.5rem)] leading-[0.95]">
+            Construimos lo digital de tu negocio, ladrillo a ladrillo.
+          </h1>
+          <p className="max-w-[34em] text-[17px] leading-[1.55] md:text-lead">
+            Páginas web, catálogos y WhatsApp Business para negocios que venden cara a cara. Hablas
+            directo con quien lo construye.
+          </p>
+          <div className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
+            <Button asChild size="xl" className="w-full sm:w-auto">
+              <a
+                href={waLink("Hola, quiero información sobre digitalizar mi negocio")}
+                target="_blank"
+                rel="noopener noreferrer">
+                <Icon icon={MessageCircle} />
+                Cotiza por WhatsApp
+              </a>
+            </Button>
+            <Button asChild variant="link" size="lg" className="self-center sm:self-auto">
+              <Link href="#servicios">Ver servicios y precios</Link>
+            </Button>
+          </div>
+          <p className="text-center font-mono text-xs text-texto-suave sm:text-left md:text-[13px]">
+            Primera consulta gratis · Precios visibles · Garantía por escrito
+          </p>
         </div>
 
-        <div className="hero-tags mt-8 flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-muted-foreground">
-          {badges.map((item, index) => (
-            <span key={index} className="flex items-center gap-1.5">
-              {/* CheckCircle SVG inline */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#22c55e"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                <path d="m9 11 3 3L22 4" />
-              </svg>
-              {item}
-            </span>
+        <nav
+          aria-label="Servicios"
+          className="-mr-10 hidden min-w-0 flex-[5_1_380px] flex-col gap-1.5 font-mono text-sm font-medium md:flex">
+          {wallRows.map((row, rowIndex) => (
+            <div key={rowIndex} className={cn("flex gap-1.5", row.offset && "-ml-15")}>
+              {row.offset && <span aria-hidden="true" className="flex-[0.5] bg-borde" />}
+              {row.slugs.map((slug) => {
+                const service = bySlug[slug];
+                const delay = brickIndex++ * 70;
+                return (
+                  <a
+                    key={slug}
+                    href={`#servicio-${slug}`}
+                    style={{ animationDelay: `${delay}ms` }}
+                    className={cn(
+                      "px-4.5 py-[clamp(1rem,2.6svh,1.625rem)] transition-colors duration-[var(--dur-instante)] motion-safe:animate-asentar",
+                      service.featured
+                        ? "flex-[2] bg-borde text-texto hover:bg-texto hover:text-fondo"
+                        : "flex-1 bg-texto text-fondo hover:bg-ladrillo",
+                    )}>
+                    {service.title}
+                  </a>
+                );
+              })}
+            </div>
           ))}
-        </div>
+        </nav>
       </div>
 
-      <div className="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2">
-        <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
-          <div className="scroll-dot w-1.5 h-3 bg-muted-foreground/50 rounded-full mt-2" />
-        </div>
+      <div aria-hidden="true" className="-mx-5 mt-6 flex flex-col gap-1 font-mono text-xs font-medium md:hidden">
+        {mobileRows.map((row, rowIndex) => (
+          <div key={rowIndex} className="flex gap-1">
+            {row.map((slug) => (
+              <span key={slug} className="flex-1 bg-texto px-2.5 py-3.5 text-fondo">
+                {bySlug[slug].shortTitle}
+              </span>
+            ))}
+          </div>
+        ))}
       </div>
     </section>
   );

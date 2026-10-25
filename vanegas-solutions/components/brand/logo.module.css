@@ -1,0 +1,87 @@
+.logo {
+  aspect-ratio: 446 / 92;
+  overflow: visible;
+  --logo-ink: var(--color-marca-tinta);
+}
+
+.cal {
+  --logo-ink: var(--color-marca-cal);
+}
+
+.brick,
+.word,
+.solutions {
+  fill: var(--logo-ink);
+}
+
+.accent {
+  fill: var(--color-marca-ladrillo);
+}
+
+.brick,
+.accent,
+.word,
+.solutions {
+  transform-box: fill-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animated .brick {
+    animation: asentar-logo 360ms var(--ease-asentar) both;
+    animation-delay: calc(var(--i) * 70ms);
+  }
+
+  .animated .accent {
+    animation: colocar-logo 420ms var(--ease-colocar) 520ms both;
+  }
+
+  .animated .word {
+    animation: subir-logo 480ms var(--ease-asentar) 780ms both;
+  }
+
+  .animated .solutions {
+    animation: aparecer-logo 320ms ease-out 1080ms both;
+  }
+}
+
+@keyframes asentar-logo {
+  from {
+    opacity: 0;
+    transform: translateY(-36px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes colocar-logo {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes subir-logo {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes aparecer-logo {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

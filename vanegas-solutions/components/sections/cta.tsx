@@ -1,52 +1,28 @@
+import { MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Hilada } from "@/components/brand/hilada";
+import { Icon } from "@/components/brand/icon";
 import { waLink } from "@/lib/whatsapp";
 
 export function CTASection() {
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden">
-      <style>{`
-        @keyframes cta-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .cta-h2   { animation: cta-in 0.6s ease both; }
-        .cta-p    { animation: cta-in 0.6s ease 0.1s both; }
-        .cta-btn  { animation: cta-in 0.6s ease 0.2s both; }
-        .cta-tags { animation: cta-in 0.6s ease 0.3s both; }
-      `}</style>
-
-      <div className="absolute inset-0 bg-linear-to-br from-primary/10 via-accent/5 to-background" />
-      <div className="absolute inset-0 dot-pattern opacity-50" />
-
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="cta-h2 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 font-(family-name:--font-syne)">
-          Empieza hoy a digitalizar tu negocio.
-        </h2>
-        <p className="cta-p text-lg md:text-xl text-muted-foreground mb-10">
-          Escríbenos y recibe una propuesta concreta, con alcance y precio
-          claros antes de empezar.
+    <>
+      <Hilada accentAt={5} />
+      <section aria-labelledby="cta-titulo" className="mx-auto flex max-w-sitio flex-col items-start gap-6 px-5 py-20 md:gap-7 md:px-10 md:py-32">
+        <h2 id="cta-titulo" className="titular max-w-[10em] text-display-xl">Cuéntanos qué vende tu negocio.</h2>
+        <p className="max-w-[32em] text-[17px] md:text-lead">
+          Te respondemos por WhatsApp con una idea concreta para tu caso. La primera consulta es gratis.
         </p>
-        <div className="cta-btn">
+        <Button asChild size="xl" className="w-full sm:w-auto">
           <a
-            href={waLink("Hola, quiero empezar a digitalizar mi negocio ahora")}
+            href={waLink("Hola, quiero contarles sobre mi negocio")}
             target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-brand hover:bg-brand-hover text-white text-lg font-semibold px-10 py-4 rounded-xl shadow-lg shadow-primary/25 transition-all">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round">
-              <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-            </svg>
-            Empezar ahora por WhatsApp
+            rel="noopener noreferrer">
+            <Icon icon={MessageCircle} />
+            Escríbenos por WhatsApp
           </a>
-        </div>
-      </div>
-    </section>
+        </Button>
+      </section>
+    </>
   );
 }

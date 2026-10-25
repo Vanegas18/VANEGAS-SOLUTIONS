@@ -1,46 +1,20 @@
+import { MessageCircle } from "lucide-react";
+import { Icon } from "@/components/brand/icon";
 import { waLink } from "@/lib/whatsapp";
 
-export function WhatsAppButton() {
-  return (
-    <>
-      <style>{`
-        @keyframes wa-appear {
-          0%   { transform: scale(0); opacity: 0; }
-          60%  { transform: scale(1.15); opacity: 1; }
-          100% { transform: scale(1); opacity: 1; }
-        }
-        .wa-btn { animation: wa-appear 0.5s cubic-bezier(0.34,1.56,0.64,1) 1s both; }
-        .wa-btn:hover .wa-inner { transform: scale(1.1); box-shadow: 0 10px 40px rgba(37,211,102,0.4); }
-        .wa-inner { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .wa-tooltip { opacity: 0; transition: opacity 0.2s ease; pointer-events: none; }
-        .wa-btn:hover .wa-tooltip { opacity: 1; }
-      `}</style>
+type WhatsAppButtonProps = {
+  message?: string;
+};
 
-      <a
-        href={waLink("Hola, tengo una consulta")}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="wa-btn fixed bottom-6 right-6 z-50"
-        aria-label="Contactar por WhatsApp">
-        <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-25" />
-        <span className="wa-inner relative flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#25D366] text-white shadow-lg shadow-[#25D366]/30">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round">
-            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-          </svg>
-        </span>
-        <span className="wa-tooltip absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg bg-foreground text-background text-sm font-medium whitespace-nowrap">
-          ¡Hablemos!
-        </span>
-      </a>
-    </>
+export function WhatsAppButton({ message = "Hola, tengo una consulta" }: WhatsAppButtonProps) {
+  return (
+    <a
+      href={waLink(message)}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Escríbenos por WhatsApp"
+      className="fixed right-4 bottom-4 z-40 flex size-14 items-center justify-center border-2 border-texto bg-superficie text-texto transition-[transform,box-shadow] duration-[var(--dur-rapido)] ease-asentar hover:shadow-[4px_4px_0_var(--ladrillo)] focus-visible:shadow-[4px_4px_0_var(--ladrillo)] motion-safe:animate-aparecer motion-safe:[animation-delay:1s] motion-safe:hover:-translate-x-1 motion-safe:hover:-translate-y-1 motion-safe:focus-visible:-translate-x-1 motion-safe:focus-visible:-translate-y-1 md:right-6 md:bottom-6 md:size-16">
+      <Icon icon={MessageCircle} className="size-7" />
+    </a>
   );
 }
