@@ -32,8 +32,8 @@ export function FAQSection() {
               className="group border-b border-borde last:border-b-2 last:border-borde-fuerte">
               <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 text-[17px] font-semibold md:text-xl [&::-webkit-details-marker]:hidden">
                 {faq.question}
-                <span className="flex size-9 shrink-0 items-center justify-center border-2 border-borde-fuerte transition-colors duration-[var(--dur-rapido)] group-open:bg-texto group-open:text-fondo">
-                  <Icon icon={Plus} className="size-4 transition-transform duration-[var(--dur-rapido)] group-open:rotate-45" />
+                <span className="flex size-9 shrink-0 items-center justify-center border-2 border-borde-fuerte transition-colors duration-(--dur-rapido) group-open:bg-texto group-open:text-fondo">
+                  <Icon icon={Plus} className="size-4 transition-transform duration-(--dur-rapido) group-open:rotate-45" />
                 </span>
               </summary>
               <p className="max-w-[40em] pb-5 text-texto-suave md:text-lg">{faq.answer}</p>

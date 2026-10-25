@@ -65,9 +65,9 @@ export function HeroSection() {
                     href={`#servicio-${slug}`}
                     style={{ animationDelay: `${delay}ms` }}
                     className={cn(
-                      "px-4.5 py-[clamp(1rem,2.6svh,1.625rem)] transition-colors duration-[var(--dur-instante)] motion-safe:animate-asentar",
+                      "px-4.5 py-[clamp(1rem,2.6svh,1.625rem)] transition-colors duration-(--dur-instante) motion-safe:animate-asentar",
                       service.featured
-                        ? "flex-[2] bg-borde text-texto hover:bg-texto hover:text-fondo"
+                        ? "flex-2 bg-borde text-texto hover:bg-texto hover:text-fondo"
                         : "flex-1 bg-texto text-fondo hover:bg-ladrillo",
                     )}>
                     {service.title}

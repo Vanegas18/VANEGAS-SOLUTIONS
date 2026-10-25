@@ -6,6 +6,7 @@ import { ProcessSection } from "@/components/sections/process";
 import { ProjectsSection } from "@/components/sections/projects";
 import { GuaranteeSection } from "@/components/sections/guarantee";
 import { ProductsSection } from "@/components/sections/products";
+import { SupportSection } from "@/components/sections/support";
 import { FAQSection } from "@/components/sections/faq";
 import { CTASection } from "@/components/sections/cta";
 import { Footer } from "@/components/footer";
@@ -22,6 +23,7 @@ export default function Home() {
         <ProcessSection />
         <ProjectsSection />
         <GuaranteeSection />
+        <SupportSection />
         <ProductsSection />
         <FAQSection />
         <CTASection />
