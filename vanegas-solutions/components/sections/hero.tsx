@@ -15,7 +15,10 @@ const wallRows: { slugs: string[]; offset: boolean }[] = [
   { slugs: ["digitalizacion-completa"], offset: true },
 ];
 
-const mobileRows = [["pagina-web", "catalogo-digital", "whatsapp-business", "landing-page"]];
+const mobileRows: { slugs: string[]; offset: boolean }[] = [
+  { slugs: ["pagina-web", "catalogo-digital", "whatsapp-business"], offset: false },
+  { slugs: ["landing-page", "redes-sociales"], offset: true },
+];
 
 export function HeroSection() {
   let brickIndex = 0;
@@ -65,9 +68,9 @@ export function HeroSection() {
                     href={`#servicio-${slug}`}
                     style={{ animationDelay: `${delay}ms` }}
                     className={cn(
-                      "px-4.5 py-[clamp(1rem,2.6svh,1.625rem)] transition-colors duration-(--dur-instante) motion-safe:animate-asentar",
+                      "px-4.5 py-[clamp(1rem,2.6svh,1.625rem)] transition-colors duration-[var(--dur-instante)] motion-safe:animate-asentar",
                       service.featured
-                        ? "flex-2 bg-borde text-texto hover:bg-texto hover:text-fondo"
+                        ? "flex-[2] bg-borde text-texto hover:bg-texto hover:text-fondo"
                         : "flex-1 bg-texto text-fondo hover:bg-ladrillo",
                     )}>
                     {service.title}
@@ -79,17 +82,22 @@ export function HeroSection() {
         </nav>
       </div>
 
-      <div aria-hidden="true" className="-mx-5 mt-6 flex flex-col gap-1 font-mono text-xs font-medium md:hidden">
+      <nav aria-label="Servicios" className="mt-8 flex flex-col gap-1 font-mono text-xs font-medium md:hidden">
         {mobileRows.map((row, rowIndex) => (
           <div key={rowIndex} className="flex gap-1">
-            {row.map((slug) => (
-              <span key={slug} className="flex-1 bg-texto px-2.5 py-3.5 text-fondo">
+            {row.offset && <span aria-hidden="true" className="flex-[0.5] bg-borde" />}
+            {row.slugs.map((slug) => (
+              <a
+                key={slug}
+                href={`#servicio-${slug}`}
+                className="flex min-h-11 flex-1 items-center justify-center bg-texto px-2 py-3 text-fondo active:bg-ladrillo">
                 {bySlug[slug].shortTitle}
-              </span>
+              </a>
             ))}
+            {row.offset && <span aria-hidden="true" className="flex-[0.5] bg-borde" />}
           </div>
         ))}
-      </div>
+      </nav>
     </section>
   );
 }

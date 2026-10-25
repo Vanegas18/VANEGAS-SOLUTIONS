@@ -19,11 +19,11 @@ export function ProcessSection() {
             Hablas directo con quien construye tu proyecto. Ves avances y apruebas antes de publicar.
           </p>
         </div>
-        <ol className="grid min-w-0 flex-[8_1_520px] gap-1.5 md:grid-cols-2 md:pr-12">
+        <ol className="grid min-w-0 flex-[8_1_520px] auto-rows-fr gap-1.5 md:grid-cols-2 md:pr-12">
           {steps.map((step, index) => {
             const last = index === steps.length - 1;
             return (
-              <li key={step.title} className={cn(index % 2 === 1 && "ml-6 md:ml-0", index >= 2 && "md:translate-x-12")}>
+              <li key={step.title} className={cn("h-full", index >= 2 && "md:translate-x-12")}>
                 <Reveal delay={index * 70} className="h-full">
                   <div
                     className={cn(
