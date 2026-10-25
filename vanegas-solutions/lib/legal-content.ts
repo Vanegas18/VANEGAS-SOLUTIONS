@@ -47,7 +47,7 @@ export const legalDocs: LegalDoc[] = [
         blocks: [
           {
             type: "p",
-            text: "Desarrollo de páginas web, landing pages, catálogos administrables, configuración de WhatsApp Business, automatizaciones, configuración de redes sociales, digitalización completa y servicio de fidelización. El alcance específico de cada servicio se define por escrito en la cotización correspondiente.",
+            text: "Desarrollo de páginas web, landing pages, catálogos administrables, configuración de WhatsApp Business, automatizaciones, configuración de redes sociales, digitalización completa y plan de Acompañamiento mensual. El alcance específico de cada servicio se define por escrito en la cotización correspondiente.",
           },
         ],
       },
@@ -192,12 +192,12 @@ export const legalDocs: LegalDoc[] = [
         ],
       },
       {
-        id: "cancelacion-fidelizacion",
-        title: "4. Cancelación del servicio de Fidelización",
+        id: "cancelacion-acompanamiento",
+        title: "4. Cancelación del plan de Acompañamiento",
         blocks: [
           {
             type: "p",
-            text: "El servicio mensual de Fidelización no tiene permanencia ni contratos forzosos. El cliente puede cancelarlo en cualquier momento, sin penalidad, dejando de realizar el pago del mes siguiente.",
+            text: "El plan mensual de Acompañamiento no tiene permanencia ni contratos forzosos. El cliente puede cancelarlo en cualquier momento, sin penalidad, dejando de realizar el pago del mes siguiente.",
           },
         ],
       },

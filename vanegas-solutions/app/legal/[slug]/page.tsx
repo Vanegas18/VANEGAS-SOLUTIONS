@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
-import { legalDocs, getLegalDoc } from "@/lib/legal-content";
-import { waLink } from "@/lib/whatsapp";
+import { ArrowLeft, MessageCircle } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
+import { Hilada } from "@/components/brand/hilada";
+import { Icon } from "@/components/brand/icon";
+import { Button } from "@/components/ui/button";
+import { legalDocs, getLegalDoc } from "@/lib/legal-content";
+import { waLink } from "@/lib/whatsapp";
 
 export function generateStaticParams() {
   return legalDocs.map((doc) => ({ slug: doc.slug }));
@@ -27,114 +30,92 @@ export async function generateMetadata({
   };
 }
 
-export default async function LegalDocPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+
+export default async function LegalDocPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const doc = getLegalDoc(slug);
   if (!doc) notFound();
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
       <Navbar />
-      <div className="pt-28 md:pt-36 pb-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main>
+        <header className="mx-auto flex max-w-sitio flex-col gap-5 px-5 pt-10 pb-12 md:px-10 md:pt-16 md:pb-16">
           <Link
             href="/legal"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8">
-            <ArrowLeft size={16} /> Centro Legal
+            className="inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold hover:text-ladrillo-hover">
+            <Icon icon={ArrowLeft} className="size-4" />
+            Centro legal
           </Link>
+          <h1 className="titular max-w-[16em] text-display-l">{doc.title}</h1>
+          <span className="etiqueta text-texto-suave">Última actualización: {doc.updatedAt}</span>
+        </header>
+        <Hilada />
 
-          <header className="mb-10">
-            <span className="inline-block text-xs px-3 py-1 rounded-full bg-muted text-muted-foreground mb-4">
-              Última actualización: {doc.updatedAt}
-            </span>
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground font-(family-name:--font-syne)">
-              {doc.title}
-            </h1>
-          </header>
-
-          <div className="grid md:grid-cols-[220px_1fr] gap-10">
-            {/* TOC — mobile */}
-            <details className="md:hidden glass-card rounded-xl p-4">
-              <summary className="cursor-pointer text-sm font-medium text-foreground">
+        <div className="bg-superficie">
+          <div className="mx-auto grid max-w-sitio gap-10 px-5 py-12 md:grid-cols-[240px_1fr] md:gap-16 md:px-10 md:py-20">
+            <details className="border-2 border-borde-fuerte md:hidden">
+              <summary className="flex min-h-12 cursor-pointer list-none items-center px-4 font-semibold [&::-webkit-details-marker]:hidden">
                 Contenido del documento
               </summary>
-              <nav className="mt-3 space-y-2">
-                {doc.sections.map((s) => (
-                  <a
-                    key={s.id}
-                    href={`#${s.id}`}
-                    className="block text-sm text-muted-foreground hover:text-foreground">
-                    {s.title}
+              <nav aria-label="Contenido" className="flex flex-col border-t border-borde px-4 py-2">
+                {doc.sections.map((section) => (
+                  <a key={section.id} href={`#${section.id}`} className="py-2 text-[15px] text-texto-suave hover:text-texto">
+                    {section.title}
                   </a>
                 ))}
               </nav>
             </details>
 
-            {/* TOC — desktop */}
-            <nav className="hidden md:block sticky top-28 self-start space-y-2">
-              {doc.sections.map((s) => (
-                <a
-                  key={s.id}
-                  href={`#${s.id}`}
-                  className="block text-sm text-muted-foreground hover:text-foreground transition-colors py-1">
-                  {s.title}
+            <nav aria-label="Contenido" className="sticky top-28 hidden flex-col self-start border-l-2 border-borde-fuerte md:flex">
+              <span className="etiqueta mb-2 pl-4">Contenido</span>
+              {doc.sections.map((section) => (
+                <a key={section.id} href={`#${section.id}`} className="py-1.5 pl-4 text-[15px] text-texto-suave hover:text-texto">
+                  {section.title}
                 </a>
               ))}
             </nav>
 
-            {/* Contenido */}
-            <div className="space-y-10">
-              {doc.sections.map((s) => (
-                <section key={s.id} id={s.id} className="scroll-mt-28">
-                  <h2 className="text-xl font-bold text-foreground mb-3">
-                    {s.title}
-                  </h2>
-                  <div className="space-y-3">
-                    {s.blocks.map((b, i) =>
-                      b.type === "p" ? (
-                        <p
-                          key={i}
-                          className="text-foreground/80 leading-relaxed">
-                          {b.text}
-                        </p>
-                      ) : (
-                        <ul
-                          key={i}
-                          className="list-disc list-inside space-y-1 text-foreground/80">
-                          {b.items.map((item) => (
-                            <li key={item}>{item}</li>
-                          ))}
-                        </ul>
-                      ),
-                    )}
-                  </div>
+            <article className="flex max-w-[42em] flex-col gap-10">
+              {doc.sections.map((section) => (
+                <section key={section.id} id={section.id} className="flex scroll-mt-28 flex-col gap-3">
+                  <h2 className="titular text-h3">{section.title}</h2>
+                  {section.blocks.map((block, index) =>
+                    block.type === "p" ? (
+                      <p key={index} className="leading-relaxed">
+                        {block.text}
+                      </p>
+                    ) : (
+                      <ul key={index} className="flex flex-col gap-1">
+                        {block.items.map((item) => (
+                          <li key={item} className="flex gap-3 border-b border-borde py-2">
+                            <span aria-hidden="true" className="mt-2 h-2 w-4 shrink-0 bg-ladrillo" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    ),
+                  )}
                 </section>
               ))}
 
-              <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-                <a
-                  href={waLink(`Hola, tengo una duda sobre ${doc.title}`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-primary hover:underline">
-                  ¿Tienes dudas? Escríbenos por WhatsApp
-                </a>
-                <Link
-                  href="/legal"
-                  className="text-sm text-muted-foreground hover:text-foreground">
-                  ← Volver al Centro Legal
-                </Link>
+              <div className="flex flex-col gap-4 border-t-2 border-borde-fuerte pt-8 sm:flex-row sm:items-center sm:justify-between">
+                <Button asChild size="lg">
+                  <a href={waLink(`Hola, tengo una duda sobre ${doc.title}`)} target="_blank" rel="noopener noreferrer">
+                    <Icon icon={MessageCircle} />
+                    ¿Dudas? Escríbenos
+                  </a>
+                </Button>
+                <Button asChild variant="link">
+                  <Link href="/legal">Volver al centro legal</Link>
+                </Button>
               </div>
-            </div>
+            </article>
           </div>
         </div>
-      </div>
+      </main>
       <Footer />
-      <WhatsAppButton />
-    </main>
+      <WhatsAppButton message={`Hola, tengo una duda sobre ${doc.title}`} />
+    </>
   );
 }

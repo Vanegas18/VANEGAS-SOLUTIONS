@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { MessageCircle } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { Hilada } from "@/components/brand/hilada";
+import { Icon } from "@/components/brand/icon";
+import { Button } from "@/components/ui/button";
 import { waLink } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
@@ -11,36 +15,33 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen bg-background flex flex-col">
+    <>
       <Navbar />
-      <section className="flex-1 flex items-center justify-center px-4 pt-32 pb-24 dot-pattern">
-        <div className="max-w-xl text-center">
-          <p className="text-sm font-semibold text-primary mb-4">Error 404</p>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 font-(family-name:--font-syne)">
-            Esta página no existe
-          </h1>
-          <p className="text-muted-foreground text-lg mb-10">
-            Es posible que el enlace esté roto o que la página se haya movido.
+      <main className="flex min-h-[calc(100svh-4.25rem)] flex-col md:min-h-[calc(100svh-4.75rem)]">
+        <section className="mx-auto flex w-full max-w-sitio flex-1 flex-col justify-center gap-6 px-5 py-16 md:px-10">
+          <span className="etiqueta text-ladrillo">Error 404</span>
+          <h1 className="titular max-w-[12em] text-display-l">Aquí falta un ladrillo.</h1>
+          <p className="max-w-[32em] text-[17px] md:text-lead">
+            Esta página no existe. Es posible que el enlace esté roto o que la página se haya movido.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/"
-              className="inline-flex items-center justify-center bg-brand hover:bg-brand-hover text-white font-semibold px-6 py-3 rounded-xl transition-colors">
-              Volver al inicio
-            </Link>
-            <a
-              href={waLink(
-                "Hola, encontré un enlace que no funciona en la página web",
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center border border-border hover:bg-muted text-foreground font-semibold px-6 py-3 rounded-xl transition-colors">
-              Escríbenos por WhatsApp
-            </a>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+            <Button asChild size="lg">
+              <Link href="/">Volver al inicio</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <a
+                href={waLink("Hola, encontré un enlace que no funciona en la página web")}
+                target="_blank"
+                rel="noopener noreferrer">
+                <Icon icon={MessageCircle} />
+                Avísanos por WhatsApp
+              </a>
+            </Button>
           </div>
-        </div>
-      </section>
+        </section>
+        <Hilada />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

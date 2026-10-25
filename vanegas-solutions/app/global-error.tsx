@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { archivo, plexMono } from "./fonts";
 import "./globals.css";
 
 export default function GlobalError({
@@ -16,37 +19,23 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <html lang="es">
-      <body className="min-h-screen bg-background text-foreground antialiased flex items-center justify-center px-4">
-        <main className="max-w-xl text-center">
-          <p className="text-sm font-semibold text-primary mb-4">
-            Algo salió mal
+    <html lang="es" className={cn(archivo.variable, plexMono.variable)}>
+      <body className="flex min-h-svh items-center">
+        <main className="mx-auto flex w-full max-w-sitio flex-col gap-6 px-5 py-16 md:px-10">
+          <span className="etiqueta text-ladrillo">Algo salió mal</span>
+          <h1 className="titular max-w-[12em] text-display-l">No pudimos cargar esta página.</h1>
+          <p className="max-w-[32em] text-[17px] md:text-lead">
+            Intenta de nuevo en unos segundos. Si el problema continúa, escríbenos y lo revisamos.
           </p>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            No pudimos cargar esta página
-          </h1>
-          <p className="text-muted-foreground mb-10">
-            Intenta de nuevo en unos segundos. Si el problema continúa,
-            escríbenos y lo revisamos.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button
-              type="button"
-              onClick={reset}
-              className="inline-flex items-center justify-center bg-brand hover:bg-brand-hover text-white font-semibold px-6 py-3 rounded-xl transition-colors">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+            <Button size="lg" onClick={reset}>
               Intentar de nuevo
-            </button>
-            <Link
-              href="/"
-              className="inline-flex items-center justify-center border border-border hover:bg-muted text-foreground font-semibold px-6 py-3 rounded-xl transition-colors">
-              Volver al inicio
-            </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/">Volver al inicio</Link>
+            </Button>
           </div>
-          {error.digest && (
-            <p className="mt-8 text-xs text-muted-foreground/60">
-              Código: {error.digest}
-            </p>
-          )}
+          {error.digest && <p className="font-mono text-xs text-texto-suave">Código: {error.digest}</p>}
         </main>
       </body>
     </html>

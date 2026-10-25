@@ -4,15 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/brand/icon";
 import { Reveal } from "@/components/brand/reveal";
 import { waLink } from "@/lib/whatsapp";
-
-const includes = [
-  { title: "Corrección de errores", detail: "Resolvemos cualquier falla sin costo adicional." },
-  { title: "Mejoras continuas", detail: "Ajustes y optimizaciones con el tiempo." },
-  { title: "Rendimiento", detail: "Revisión periódica para que siga rápido." },
-  { title: "Nuevas funciones", detail: "Cuando tu negocio las necesite." },
-  { title: "Actualización de contenido", detail: "Textos, imágenes o productos." },
-  { title: "Asesoría tecnológica", detail: "Te orientamos en tus decisiones digitales." },
-];
+import { supportIncludes } from "@/lib/support";
 
 export function SupportSection() {
   return (
@@ -48,12 +40,12 @@ export function SupportSection() {
           </div>
         </div>
         <ul className="grid min-w-0 flex-[7_1_480px] gap-1.5 sm:grid-cols-2">
-          {includes.map((item, index) => (
+          {supportIncludes.map((item, index) => (
             <li key={item.title}>
               <Reveal delay={(index % 2) * 70} className="h-full">
                 <div className="flex h-full flex-col gap-1.5 bg-fondo p-5">
                   <strong className="text-[17px]">{item.title}</strong>
-                  <span className="text-[15px] text-texto-suave">{item.detail}</span>
+                  <span className="text-[15px] text-texto-suave">{item.description}</span>
                 </div>
               </Reveal>
             </li>

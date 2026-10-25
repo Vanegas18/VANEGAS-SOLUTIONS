@@ -101,8 +101,6 @@
   --color-error: var(--error);
   --color-alerta: var(--alerta);
   --color-info: var(--info);
-  --color-brand: var(--ladrillo);
-  --color-brand-hover: var(--ladrillo-hover);
 
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
