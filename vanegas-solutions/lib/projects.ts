@@ -9,11 +9,21 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "BuildMart",
+    category: "Constructora",
+    badge: "Proyecto para cliente",
+    image: "/images/buildmart.png",
+    description:
+      "Sistema web con catálogo, carrito, pagos y gestión administrativa: ventas, inventario y pedidos en una sola plataforma.",
+    link: "https://buildmart.vanegassolutions.com/",
+  },
+  {
     name: "Carbón",
     category: "Comidas rápidas",
     badge: "Demo",
     image: "/images/carbon.webp",
-    description: "Menú para domicilios: tus clientes arman el pedido, ven el costo según su barrio y te llega completo por WhatsApp.",
+    description:
+      "Menú para domicilios: tus clientes arman el pedido, ven el costo según su barrio y te llega completo por WhatsApp.",
     link: "https://carbon.vanegassolutions.com/",
   },
   {
@@ -21,7 +31,8 @@ export const projects: Project[] = [
     category: "Perfumería",
     badge: "Demo",
     image: "/images/gota.webp",
-    description: "Catálogo con pedido por WhatsApp y panel para cambiar precios y stock desde el celular, sin depender de nadie.",
+    description:
+      "Catálogo con pedido por WhatsApp y panel para cambiar precios y stock desde el celular, sin depender de nadie.",
     link: "https://gota.vanegassolutions.com/",
   },
   {
@@ -29,15 +40,8 @@ export const projects: Project[] = [
     category: "Tienda de ropa",
     badge: "Demo",
     image: "/images/esquina.webp",
-    description: "Catálogo con talla, color y stock por talla. El pedido llega por WhatsApp con todo listo para despachar.",
+    description:
+      "Catálogo con talla, color y stock por talla. El pedido llega por WhatsApp con todo listo para despachar.",
     link: "https://esquina.vanegassolutions.com/",
-  },
-  {
-    name: "BuildMart",
-    category: "Constructora",
-    badge: "Proyecto para cliente",
-    image: "/images/buildmart.png",
-    description: "Sistema web con catálogo, carrito, pagos y gestión administrativa: ventas, inventario y pedidos en una sola plataforma.",
-    link: "https://build-two-sage.vercel.app/",
   },
 ];
