@@ -17,12 +17,12 @@ export const projects: Project[] = [
     link: "https://restaurant-landing-beta.vercel.app/",
   },
   {
-    name: "Maison Noir",
+    name: "Gota",
     category: "Perfumería",
     badge: "Demo",
-    image: "/images/maison.png",
-    description: "Catálogo con compra por WhatsApp y panel para actualizar productos y precios sin depender de nadie.",
-    link: "https://perfume-catalog-chi.vercel.app/",
+    image: "/images/gota.webp",
+    description: "Catálogo con pedido por WhatsApp y panel para cambiar precios y stock desde el celular, sin depender de nadie.",
+    link: "https://gota.vanegassolutions.com/",
   },
   {
     name: "Lumen",
