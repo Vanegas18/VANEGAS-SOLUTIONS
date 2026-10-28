@@ -25,12 +25,12 @@ export const projects: Project[] = [
     link: "https://gota.vanegassolutions.com/",
   },
   {
-    name: "Lumen",
+    name: "Esquina",
     category: "Tienda de ropa",
     badge: "Demo",
-    image: "/images/lumen.png",
-    description: "Landing con catálogo de productos y compra por WhatsApp. Tus clientes eligen y compran en pocos clics.",
-    link: "https://store-landing-rouge.vercel.app/",
+    image: "/images/esquina.webp",
+    description: "Catálogo con talla, color y stock por talla. El pedido llega por WhatsApp con todo listo para despachar.",
+    link: "https://esquina.vanegassolutions.com/",
   },
   {
     name: "BuildMart",
