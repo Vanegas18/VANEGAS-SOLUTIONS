@@ -9,12 +9,12 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: "SaborExpress",
-    category: "Restaurante",
+    name: "Carbón",
+    category: "Comidas rápidas",
     badge: "Demo",
-    image: "/images/saborexpress.png",
-    description: "Landing con menú digital y reservas por WhatsApp. Tus clientes ven el menú y reservan desde el celular.",
-    link: "https://restaurant-landing-beta.vercel.app/",
+    image: "/images/carbon.webp",
+    description: "Menú para domicilios: tus clientes arman el pedido, ven el costo según su barrio y te llega completo por WhatsApp.",
+    link: "https://carbon.vanegassolutions.com/",
   },
   {
     name: "Gota",
